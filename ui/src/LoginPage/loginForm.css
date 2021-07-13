@@ -2,11 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
     border-radius: 8px;
-   
+    justify-content: center;
+    min-height: 100vh;
 }
 
 body{
     background: #292B3E;
+}
+
+h1{
+    color: white;
+}
+
+.forgotPassword{
+    padding-top: 10px;
+    padding-left: 670px;
+}
+
+.registerLink{
+    padding-top: 100px;
 }

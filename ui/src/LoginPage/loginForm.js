@@ -130,35 +130,29 @@
 
 
 
-
+//everything above is for testing stuff out 
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './loginForm.css'
-import { withStyles } from '@material-ui/core/styles';
-
-
-const styles = {
-    root: {
-      background: "black"
-    },
-    input: {
-      color: "white"
-    }
-  };
+import Link from '@material-ui/core/Link';
 
 
 
-export default function SignInSide(props){
 
-    const { classes } = props;
+
+
+export default function SignInSide(){
+
+   
     
     return(
 
         <div className="login">
-         <TextField 
-            
-            variant="outlined"
+
+          <h1>Log In</h1>
+         <TextField        
+            variant="filled"
             margin="normal"
             required
             id="email"
@@ -167,12 +161,13 @@ export default function SignInSide(props){
             autoComplete="email"
             color="primary"
             autoFocus
+            fullWidth
         />
            <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
-              
+              fullWidth
               name="password"
               label="Password"
               type="password"
@@ -180,18 +175,28 @@ export default function SignInSide(props){
               autoComplete="current-password"
             />
 
-
+            <div className="forgotPassword">
+            <Link href="#" >
+            {"Forgot Password?"}  
+            </Link>
+            </div>
+           
 
             <Button
               type="submit"
-              
+              width = "50px"
               variant="contained"
               color="secondary"
-            //   className={classes.submit}
             >
               Log in
             </Button>
 
+            <div className="registerLink">
+              <Link href="#">
+              {"Don't have an account? Register"}  
+               </Link>
+              {/* <h3>Don't have an account? Sign</h3> */}
+            </div>
         </div>
        
 

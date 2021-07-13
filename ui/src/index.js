@@ -4,18 +4,37 @@ import './index.css';
 import App from './App';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 
+
 const theme = createTheme({
   palette: {
      primary: {
-        main: "#FFFFFF" // This is an orange looking color
+        main: "#FFFFFF" 
                },
      secondary: {
-        main: "#18A0FB" //Another orange-ish color
+        main: "#18A0FB"
                 }
            },
-  root:{
-    backgroundColor: '#fff'
-  }         
+     overrides: {
+       MuiFilledInput: {
+          root: {
+            backgroundColor: 'white'   //filled inputs now are white at first
+          
+          } 
+
+      }
+    },   
+     props: {
+      MuiTextField: {      
+        InputLabelProps: {
+          shrink: true,         //removes the "Google" look aka when the words move to the top, it keeps the words at the top at all times
+        }
+      }
+     },     
+     shape: {
+       borderRadius: 16        //changes border radius of everything 
+     } 
+    
+     
 });
 
 
