@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+// import LoginButton from './LoginPage/loginButton';
+import Header from './LoginPage/header';
+import LoginButton from './LoginPage/loginButton'
+// import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import SignInSide from './LoginPage/loginForm';
 import './App.css';
 
+
 function App() {
+
+
+  // const theme = createMuiTheme({
+  //     primary:{
+  //       main: "#f00"
+  //     }
+  // })
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+      
+       {/* <Header></Header> */}
+        {/* <LoginButton >
+
+        </LoginButton> */}
+
+      <SignInSide/>
     </div>
   );
 }
