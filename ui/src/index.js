@@ -17,10 +17,8 @@ const theme = createTheme({
      overrides: {
        MuiFilledInput: {
           root: {
-            backgroundColor: 'white'   //filled inputs now are white at first
-          
+            backgroundColor: 'white'   //filled inputs now are white at first   
           } 
-
       }
     },   
      props: {
@@ -33,14 +31,12 @@ const theme = createTheme({
      shape: {
        borderRadius: 16        //changes border radius of everything 
      } 
-    
-     
 });
 
 
-
 ReactDOM.render(
-  <ThemeProvider theme={theme}><App /></ThemeProvider>,
+  <ThemeProvider theme={theme}><App/></ThemeProvider>,
+
   document.getElementById('root')
 );
 
