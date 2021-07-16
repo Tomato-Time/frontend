@@ -39,7 +39,7 @@
 //     backgroundColor: theme.palette.secondary.main,
 //   },
 //   form: {
-//     width: '100%', // Fix IE 11 issue.
+//     width: '80%', // Fix IE 11 issue.
 //     marginTop: theme.spacing(1),
 //   },
 //   palette: {
@@ -61,7 +61,6 @@
 //   return (
 //     <Grid container component="main" className={classes.root}>
 //       <CssBaseline />
-//       <Grid item xs={false} sm={4} md={7} className={classes.image} />
 //       <Grid item xs={12} sm={8} md={12} component={Paper} elevation={6} square>
 //         <div className={classes.paper}>
 //           <Avatar className={classes.avatar}>
@@ -134,23 +133,33 @@
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import './loginForm.css'
 import Link from '@material-ui/core/Link';
 
 
 
+const useStyles = makeStyles((theme) =>({
 
+      loginBox: {
+          width: '50%',
+          marginTop: theme.spacing(1),
+          alignItems: 'center',
+      }
+   
+}));
 
 
 export default function SignInSide(){
 
-   
+  const classes = useStyles();
     
     return(
 
         <div className="login">
+           <h1>Log In</h1>
 
-          <h1>Log In</h1>
+          <div className={classes.loginBox}>
          <TextField        
             variant="filled"
             margin="normal"
@@ -162,6 +171,7 @@ export default function SignInSide(){
             color="primary"
             autoFocus
             fullWidth
+            underlineShow= {false}
         />
            <TextField
               variant="filled"
@@ -175,7 +185,11 @@ export default function SignInSide(){
               autoComplete="current-password"
             />
 
-            <div className="forgotPassword">
+            
+
+          </div>
+
+          <div className="forgotPassword">
             <Link href="#" >
             {"Forgot Password?"}  
             </Link>
@@ -197,6 +211,7 @@ export default function SignInSide(){
                </Link>
               {/* <h3>Don't have an account? Sign</h3> */}
             </div>
+        
         </div>
        
 
