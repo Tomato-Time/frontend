@@ -1,13 +1,14 @@
 import SignInSide from "../LoginPage/loginForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Timer from "../Timer/timer";
+import MiniDrawer from '../SideBar/sidebar';
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* drawer goes here */}
+        <MiniDrawer/>
         <Routes>
           <Route exact path="/" element={<Timer />} />
           <Route exact path="/register" element={<SignInSide />} />
