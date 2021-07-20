@@ -151,7 +151,7 @@ export default function MiniDrawer() {
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerClose]: !open,     //try implementing hover button with this?
           }),
           
         }}
@@ -164,7 +164,7 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['To-Do', 'Statistics', 'Work Flow', 'Settings', 'About'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
