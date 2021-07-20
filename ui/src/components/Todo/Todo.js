@@ -1,9 +1,7 @@
 import {
-  Avatar,
   Checkbox,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";

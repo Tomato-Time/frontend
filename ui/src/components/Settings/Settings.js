@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,11 +13,11 @@ import {
 import VolumeOffOutlinedIcon from "@material-ui/icons/VolumeOffOutlined";
 import Switch from "@material-ui/core/Switch";
 
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     width: 300,
+//   },
+// });
 
 function valuetext(value) {
   return `${value}`;
