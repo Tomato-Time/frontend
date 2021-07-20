@@ -1,0 +1,8 @@
+.todoItemSection {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+.todoItems {
+  padding-inline-start: 0px;
+}
