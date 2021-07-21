@@ -1,5 +1,8 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import TimerIcons from "../TimerIcons/timerIcons";
+import React from 'react';
 import './timer.css'
+
 
 const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -28,36 +31,39 @@ const renderTime = ({ remainingTime }) => {
         return <div style={{color: "white"}}>{minutes}:{seconds}</div>
         
     }
-
-    // const ariaLabel = ({color}) => {
-    //     const co = 
-    // }
     
   }
 
 export default function Timer(){
+
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
+  
+  const handleClick = () =>{
+      setIsPlaying((isPlaying) => !isPlaying)
+  }
+
     return (
         <div className="App">
           <h1>
             Make Today Count.
           </h1>
           <div className="timer-wrapper">
-            <CountdownCircleTimer
-              //isPlaying              
+            <CountdownCircleTimer 
+              isPlaying={isPlaying}          
               duration={60}
               colors={[["#33D2FF", 0.20], ["#3D68DE", 0.40], ["#9845E8", 0.40]]}
               onComplete={() => [true, 1000]}
               isLinearGradient
               size={430}
-              strokeWidth={30}
-              
+              strokeWidth={30}  
             > 
-
             {/* this prop is for the time format */}
                {children}      
               {/* {renderTime} */}
             </CountdownCircleTimer>
           </div>
+          <TimerIcons handleClick={handleClick} isPlaying={isPlaying}/>
           {/* <p className="info">
             Change component properties in the code filed on the right to try
             difference functionalities
