@@ -5,23 +5,36 @@ import App from './App';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
      primary: {
         main: "#FFFFFF" 
                },
      secondary: {
-        main: "#18A0FB"
+        main: "#3D68DE"
                 }
            },
+
+          //  backgroundColor:{
+          //    main: "#292B3E"
+          //  },
+
      overrides: {
        MuiFilledInput: {
           root: {
             backgroundColor: 'white'   //filled inputs now are white at first
           
           } 
-
-      }
+      },
+      
+        MuiCssBaseline: {
+          '@global': {
+            '@font-face': ['"Montserrat"'],
+          },
+        },
+        
+        
+        
     },   
      props: {
       MuiTextField: {      
@@ -31,11 +44,36 @@ const theme = createTheme({
       }
      },     
      shape: {
-       borderRadius: 16        //changes border radius of everything 
-     } 
+       borderRadius: 8        //changes border radius of everything 
+     },
+     
+     typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Montserrat"', //our font 
+      ].join(','),
+    },
+    
+  palette: {
+    background: {
+      default: "#292B3E"
+    }
+  }
+});
+    
+    
     
      
-});
+
 
 
 
