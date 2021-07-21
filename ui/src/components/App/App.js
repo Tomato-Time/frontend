@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Timer from "../Timer/timer";
 import MiniDrawer from '../SideBar/sidebar';
 import HorizontalLabelPositionBelowStepper from "../TimerProgress/timerProgress";
+import TimerIcons from "../TimerIcons/timerIcons";
 import "./App.css";
+
 
 function App() {
   return (
@@ -14,9 +16,11 @@ function App() {
           <Route exact path="/register" element={<SignInSide />} />
           <Route exact path="/login" element={<h1>log in</h1>} />
         </Routes>
-        <MiniDrawer/>
+        {/* <MiniDrawer/> */}
         <HorizontalLabelPositionBelowStepper/>
       </BrowserRouter>
+
+      
     </div>
   );
 }
