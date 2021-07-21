@@ -43,7 +43,7 @@ export default function TodoForm() {
           color="primary"
           disabled={!input}
         >
-          +
+          Add
         </Button>
       </form>
       <div className="todoItemSection">

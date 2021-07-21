@@ -14,10 +14,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    // backgroundColor: theme.palette.background.paper,
+    background: "#292B3E",
+    // border: "2px solid #fff", we don't want a border
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: 30,
   },
 }));
 

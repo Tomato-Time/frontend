@@ -16,8 +16,9 @@ function App() {
           <Route exact path="/" element={<Timer />} />
           <Route exact path="/register" element={<SignInSide />} />
           <Route exact path="/login" element={<Modal />} />
+          <Route exact path="/modalTest" element={<Modal />} />
         </Routes>
-        <MiniDrawer />
+        {/* <MiniDrawer /> */}
         <HorizontalLabelPositionBelowStepper />
       </BrowserRouter>
     </div>
