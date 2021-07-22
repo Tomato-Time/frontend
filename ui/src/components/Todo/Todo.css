@@ -1,0 +1,14 @@
+.todoList {
+  text-align: center;
+  justify-content: center;
+  background-color: red;
+}
+.todoForm {
+  background-color: blue;
+  justify-content: center;
+}
+.todoForm .todoItems {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
