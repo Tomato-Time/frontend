@@ -5,11 +5,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
+
 // import "./Todo.css";
 
 export default function Todo({ todo }) {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
