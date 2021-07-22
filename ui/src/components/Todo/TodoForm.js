@@ -9,13 +9,13 @@ export default function TodoForm() {
   console.log('🔫"', input);
 
   // fetch new todos as they get added
-  useEffect(() => {
-    // make api call
-    const { data } = await apiClient.listTodos();
-    console.log(data);
-    // setTodos
-    if (data) setTodos(data.todos);
-  }, [input]);
+  // useEffect(() => {
+  //   // make api call
+  //   const { data } = await apiClient.listTodos();
+  //   console.log(data);
+  //   // setTodos
+  //   if (data) setTodos(data.todos);
+  // }, [input]);
 
   const addTodo = (event) => {
     // this will fire off when we click the button
