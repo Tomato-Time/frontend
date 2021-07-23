@@ -14,7 +14,6 @@ export default function TodoForm() {
     user_id: "",
   });
   console.log('🔫"', form);
-  //(event) => setInput(event.target.value)
   const handleOnInputChange = (event) => {
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
