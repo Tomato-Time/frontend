@@ -2,6 +2,7 @@ import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
+import apiClient from "../../services/apiClient";
 
 export default function TodoForm() {
   const [todos, setTodos] = useState([]);
@@ -9,13 +10,16 @@ export default function TodoForm() {
   console.log('🔫"', input);
 
   // fetch new todos as they get added
-  // useEffect(() => {
-  //   // make api call
-  //   const { data } = await apiClient.listTodos();
-  //   console.log(data);
-  //   // setTodos
-  //   if (data) setTodos(data.todos);
-  // }, [input]);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      // make api call
+      const { data } = await apiClient.listTodos();
+      console.log(data);
+      // setTodos
+      if (data) setTodos(data.getTasks);
+    };
+    fetchTasks();
+  }, []);
 
   const addTodo = (event) => {
     // this will fire off when we click the button
