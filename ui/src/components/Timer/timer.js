@@ -3,6 +3,7 @@ import MiniDrawer from "../SideBar/sidebar";
 import TimerIcons from "../TimerIcons/timerIcons";
 import React from "react";
 import "./timer.css";
+import { duration } from "@material-ui/core";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
@@ -51,13 +52,13 @@ export default function Timer() {
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying={isPlaying}
-          duration={60}
+          duration={60} //time in seconds
           colors={[
             ["#33D2FF", 0.2],
             ["#3D68DE", 0.4],
             ["#9845E8", 0.4],
           ]}
-          onComplete={() => [true, 1000]}
+          onComplete={() => [true, 1000]} //time in milliseconds
           isLinearGradient
           size={430}
           strokeWidth={30}

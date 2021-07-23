@@ -6,6 +6,7 @@ import Fade from "@material-ui/core/Fade";
 // import Settings from "../Settings/Settings";
 // import Todo from "../Todo/Todo";
 import TodoForm from "../Todo/TodoForm";
+import DraggableDialog from "../AboutUs/aboutUs";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -54,7 +55,8 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <TodoForm />
+            {/* <TodoForm /> */}
+            <DraggableDialog/>
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">
               react-transition-group animates me.
