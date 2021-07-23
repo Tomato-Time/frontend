@@ -10,26 +10,16 @@ export default function TodoForm() {
   console.log('🔫"', input);
 
   // fetch new todos as they get added
-<<<<<<< HEAD
-  useEffect(() => {
-    const fetchTasks = async () => {
-      // make api call
-      const { data } = await apiClient.listTodos();
-      console.log(data);
-      // setTodos
-      if (data) setTodos(data.getTasks);
-    };
-    fetchTasks();
-  }, []);
-=======
   // useEffect(() => {
-  //   // make api call
-  //   const { data } = await apiClient.listTodos();
-  //   console.log(data);
-  //   // setTodos
-  //   if (data) setTodos(data.todos);
-  // }, [input]);
->>>>>>> todo_list_api
+  //   const fetchTasks = async () => {
+  //     // make api call
+  //     const { data } = await apiClient.listTodos();
+  //     console.log(data);
+  //     // setTodos
+  //     if (data) setTodos(data.getTasks);
+  //   };
+  //   fetchTasks();
+  // }, []);
 
   const addTodo = (event) => {
     // this will fire off when we click the button
