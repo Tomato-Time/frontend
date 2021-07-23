@@ -128,7 +128,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            Pomodoro App
           </Typography>
         </Toolbar>
       </AppBar>

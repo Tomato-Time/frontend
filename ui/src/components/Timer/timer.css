@@ -1,10 +1,18 @@
 h1 {
-  font-family: "Roboto";
   text-align: center;
   color: #e3ecff;
   font-size: 30px;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
   margin-top: 80px;
+}
+
+.App h2 {
+  text-align: center;
+}
+
+.timerAndDrawer {
+  display: flex;
+  flex-direction: column;
 }
 
 .timer-wrapper {

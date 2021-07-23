@@ -1,16 +1,25 @@
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
+import apiClient from "../../services/apiClient";
 
 export default function TodoForm() {
-  const [todos, setTodos] = useState([
-    "walk the dog",
-    "go for a run",
-    "prep dinner",
-  ]);
+  const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
   console.log('🔫"', input);
+
+  // fetch new todos as they get added
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     // make api call
+  //     const { data } = await apiClient.listTodos();
+  //     console.log(data);
+  //     // setTodos
+  //     if (data) setTodos(data.getTasks);
+  //   };
+  //   fetchTasks();
+  // }, []);
 
   const addTodo = (event) => {
     // this will fire off when we click the button
@@ -24,10 +33,6 @@ export default function TodoForm() {
     <div className="todoForm">
       <h1>Today's Tasks</h1>
       <form>
-        {/* <input
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-        /> */}
         <FormControl>
           <InputLabel>Write a Todo</InputLabel>
           <Input

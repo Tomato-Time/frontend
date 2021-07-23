@@ -27,6 +27,9 @@ h1 {
 .MuiInputLabel-shrink-158 {
   transform: translate(0, 8px) scale(0.8);
   transform-origin: bottom;
+  color: #717171;
+  height: 0px;
+  font-size: 15px;
 }
 
 .loginLink {
@@ -69,6 +72,7 @@ h1 {
   border: 0;
   height: 0.1em;
   font-size: 16px;
+  color: black;
   margin: 0;
   display: block;
   padding: 5px 0 7px;
