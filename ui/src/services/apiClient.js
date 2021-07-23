@@ -47,7 +47,10 @@ class ApiClient {
       data: credentials,
     });
   }
-  // request for new todo item
+  // list todo items
+  async listTodos() {
+    return await this.request({ endpoint: `task`, method: `GET` });
+  }
 }
 export default new ApiClient(
   process.env.REACT_APP_REMOTE_HOST_URL || "http://localhost:3001"
