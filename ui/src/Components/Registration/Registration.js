@@ -191,7 +191,7 @@ export default function Registration() {
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2" className={classes.link}>
-                  Already have an account? Sign in
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
