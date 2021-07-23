@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  modalRoot: {
+    background: 'rgba(255,255,255,0.2)',
+  },
   paper: {
     // backgroundColor: theme.palette.background.paper,
     background: "#292B3E",
@@ -49,9 +52,11 @@ export default function TransitionsModal() {
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        // BackdropProps={{
+        //   timeout: 500,
+        //   root: classes.modalRoot
+        // }}
+        BackdropProps={{style: {backgroundColor: 'rgba(255,255,255,0.00001)'}}}
       >
         <Fade in={open}>
           <div className={classes.paper}>
