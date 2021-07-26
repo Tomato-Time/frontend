@@ -5,8 +5,13 @@
  * The github and gitlab color scales are provided for reference.
  */
 
+.react-calendar-heatmap{
+ 
+  margin-top: 50px;
+}
+
  .react-calendar-heatmap text {
-    font-size: 10px;
+    font-size: 15px;
     fill: #aaa;
   }
   
@@ -30,6 +35,7 @@
   .react-calendar-heatmap .color-filled {
     fill: #8cc665;
   }
+
   
   /*
    * Github color scale

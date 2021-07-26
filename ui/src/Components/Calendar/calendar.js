@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import ReactTooltip from 'react-tooltip';
 import "./calendar.css"
+import { Button } from '@material-ui/core';
 
 export default function Calendar(){
 
@@ -15,16 +16,17 @@ export default function Calendar(){
         };
       });
       return (
-        <div>
+        <div className="calendar-box">
           {/* <h1>react-calendar-heatmap demos</h1>
           <p>Random values with onClick and react-tooltip</p> */}
           <CalendarHeatmap
             // startDate={shiftDate(today, -30)}
-            startDate={new Date('2021-01-20')}
+            startDate={new Date('2021-07-2')}
             endDate={today}
-            // horizontal={false}
+            horizontal={false}
             values={randomValues}
             showOutOfRangeDays={false}
+            // showMonthLabels={false}
             showWeekdayLabels
             weekdayLabels={['Sun',"Mon","Tue","Wed","Thur","Fri","Sat"]}
             // monthLabels={["s","d","h"]}
@@ -36,7 +38,7 @@ export default function Calendar(){
             }}
             tooltipDataAttrs={value => {
               return {
-                'data-tip': `${value.date.toISOString().slice(0, 10)} has count: ${
+                'data-tip': `${value.date.toISOString().slice(0, 10)} the amount of pomodoro sessions done: ${
                   value.count
                 }`,
               };
