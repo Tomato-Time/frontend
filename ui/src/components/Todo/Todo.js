@@ -26,7 +26,7 @@ export default function Todo({ todo }) {
             inputProps={{ "aria-label": "primary checkbox" }}
           />
         </ListItemIcon>
-        <ListItemText primary={todo} secondary="priority" />
+        <ListItemText primary={todo.input} secondary="priority" />
       </ListItem>
     </List>
   );

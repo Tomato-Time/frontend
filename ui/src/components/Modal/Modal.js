@@ -15,11 +15,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   modalRoot: {
-    background: 'rgba(255,255,255,0.2)',
+    background: "rgba(255,255,255,0.2)",
   },
   paper: {
     // backgroundColor: theme.palette.background.paper,
     background: "#292B3E",
+    overflow: "scroll",
+    height: "400px",
+    // width: "600px",
     // border: "2px solid #fff", we don't want a border
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -56,12 +59,14 @@ export default function TransitionsModal() {
         //   timeout: 500,
         //   root: classes.modalRoot
         // }}
-        BackdropProps={{style: {backgroundColor: 'rgba(255,255,255,0.00001)'}}}
+        BackdropProps={{
+          style: { backgroundColor: "rgba(255,255,255,0.00001)" },
+        }}
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            {/* <TodoForm /> */}
-            <DraggableDialog/>
+            <TodoForm />
+            {/* <DraggableDialog/> */}
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">
               react-transition-group animates me.

@@ -5,7 +5,11 @@ import "./TodoForm.css";
 import apiClient from "../../services/apiClient";
 
 export default function TodoForm({ user }) {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([1, 2]);
+  const addTodo = (newTodo) => {
+    setTodos((oldTodos) => [newTodo, ...oldTodos]);
+  };
+  console.log("todos:", todos);
   // const [input, setInput] = useState("");
   const [form, setForm] = useState({
     input: "",
@@ -13,7 +17,7 @@ export default function TodoForm({ user }) {
     deadline: "",
     user_id: "",
   });
-  console.log('🔫"', form);
+  // console.log('🔫"', form);
   const handleOnInputChange = (event) => {
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
@@ -25,33 +29,27 @@ export default function TodoForm({ user }) {
       input: form.input,
       priority: "3",
       deadline: "12:00",
-      user_id: "1",
+      user_id: "",
     });
+    console.log("the data:", data.newTask);
     if (data) {
-      setTodos(data.newTask);
+      addTodo(data.newTask.input);
+      console.log("todos:", todos);
       // set to a blank form
-      setForm({ input: "", priority: "3", deadline: "12:00", user_id: "1" });
+      setForm({ input: "", priority: "3", deadline: "12:00", user_id: "" });
     }
   };
   // fetch new todos as they get added
-  // useEffect(() => {
-  //   const fetchTasks = async () => {
-  //     // make api call
-  //     const { data } = await apiClient.listTodos();
-  //     console.log(data);
-  //     // setTodos
-  //     if (data) setTodos(data.getTasks);
-  //   };
-  //   fetchTasks();
-  // }, []);
-
-  // const addTodo = (event) => {
-  //   // this will fire off when we click the button
-  //   event.preventDefault();
-  //   console.log("I'm working");
-  //   setTodos([...todos, input]);
-  //   setInput(""); // clear the input after submit
-  // };
+  useEffect(() => {
+    const fetchTasks = async () => {
+      // make api call
+      const { data } = await apiClient.listTodos();
+      console.log("the data from the api call", data);
+      // setTodos
+      if (data) setTodos(data.getTasks);
+    };
+    fetchTasks();
+  }, []);
 
   return (
     <div className="todoForm">
@@ -62,7 +60,6 @@ export default function TodoForm({ user }) {
           <Input
             name="input"
             value={form.input}
-            //(event) => setInput(event.target.value)
             onChange={handleOnInputChange}
           />
         </FormControl>
@@ -79,8 +76,8 @@ export default function TodoForm({ user }) {
       </form>
       <div className="todoItemSection">
         <ul className="todoItems">
-          {todos.map((todo) => (
-            <Todo todo={todo} />
+          {todos?.map((todo) => (
+            <Todo key={todo.id} todo={todo} />
           ))}
         </ul>
       </div>
