@@ -106,6 +106,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  // APP BAR
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> background paper */}
@@ -161,7 +162,7 @@ export default function MiniDrawer() {
             (text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 </ListItemIcon>
                 <ListItemText primary={text} />
                 <Modal />
