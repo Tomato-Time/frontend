@@ -1,221 +1,176 @@
-// import React from 'react';
-// import Avatar from '@material-ui/core/Avatar';
-// import Button from '@material-ui/core/Button';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';
-// import Paper from '@material-ui/core/Paper';
-// import Box from '@material-ui/core/Box';
-// import Grid from '@material-ui/core/Grid';
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-// import Typography from '@material-ui/core/Typography';
-// import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+// import clsx from 'clsx';
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles, alpha, StylesProvider } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import "./loginForm.css";
+// import { withStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "50ch",
+
+  },
+
+  form: {
+    marginTop: theme.spacing(8),
+    width: "50ch",
+    borderRadius: 50,
+  },
+
+  submit: {
+    margin: theme.spacing(4, 19, 2), //changes the position
+    alignItems: "center",
+    backgroundColor: "#3D68DE",
+  },
+
+  link: {
+    margin: theme.spacing(4, 12, 2), //changes the position
+    // alignItems: 'center',
+    marginTop: theme.spacing(15),
+    color: "#E3ECFF",
+  },
+
+  forgotLink: {
+    margin: theme.spacing(4, 20, 2), //changes the position
+    alignItems: 'right',
+    marginTop: theme.spacing(15),
+    // marginLeft: theme.spacing(34),
+    color: "#E3ECFF",
+    width: 50,
+  },
 
 
+  lnameInput: {
+    borderRadius: 7,
+    position: "relative",
+    backgroundColor: theme.palette.common.white,
+    border: "1px solid #ced4da",
+    fontSize: 16,
+    left: 0,
+    // width: 'auto',
+    width: 260,
+    height: 44,
+    padding: "10px 12px",
+    fontFamily: [
+      '"Montserrat"', //our font
+    ].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     height: '100vh',
-//   },
-// //   image: {
-// //     // backgroundImage: 'url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dreamsquote.com%2Fwp-content%2Fuploads%2F2018%2F05%2F45-Daily-Motivational-Quotes-Of-The-Day-4.jpg&f=1&nofb=1)',
-// //     backgroundRepeat: 'no-repeat',
-// //     backgroundColor:
-// //       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-// //     backgroundSize: 'cover',
-// //     backgroundPosition: 'center',
-// //   },
-//   paper: {
-//     margin: theme.spacing(8, 4),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-    
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
-//   form: {
-//     width: '80%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(1),
-//   },
-//   palette: {
-//       primary:{
-//         main:"#f00"
-//       },
-//       secondary: {
-//           main: "#0f0"
-//       }
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-// }));
-
-// export default function SignInSide() {
-//   const classes = useStyles();
-
-//   return (
-//     <Grid container component="main" className={classes.root}>
-//       <CssBaseline />
-//       <Grid item xs={12} sm={8} md={12} component={Paper} elevation={6} square>
-//         <div className={classes.paper}>
-//           <Avatar className={classes.avatar}>
-//             <LockOutlinedIcon />
-//           </Avatar>
-//           <Typography component="h1" variant="h5">
-//             Log In
-//           </Typography>
-//           <form className={classes.form} noValidate>
-//             <TextField
-//               variant="outlined"
-//               margin="normal"
-//               required
-//               fullWidth
-//               id="email"
-//               label="Email Address"
-//               name="email"
-//               autoComplete="email"
-//               autoFocus
-//             />
-//             <TextField
-//               variant="outlined"
-//               margin="normal"
-//               required
-//               fullWidth
-//               name="password"
-//               label="Password"
-//               type="password"
-//               id="password"
-//               autoComplete="current-password"
-//             />
-//             <FormControlLabel
-//               control={<Checkbox value="remember" color="primary" />}
-//               label="Remember me"
-//             />
-//             <Button
-//               type="submit"
-//               fullWidth
-//               variant="contained"
-//               color="primary"
-//               className={classes.submit}
-//             >
-//               Log in
-//             </Button>
-//             <Grid container>
-//               <Grid item xs>
-//                 <Link href="#" variant="body2" >
-//                   Forgot password?
-//                 </Link>
-//               </Grid>
-//               <Grid item>
-//                 <Link href="#" variant="body2">
-//                   {"Don't have an account? Sign Up"}
-//                 </Link>
-//               </Grid>
-//             </Grid>
-//             <Box mt={5}>
-              
-//             </Box>
-//           </form>
-//         </div>
-//       </Grid>
-//     </Grid>
-//   );
-// }
-
-
-
-//everything above is for testing stuff out 
-
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import './loginForm.css'
-import Link from '@material-ui/core/Link';
-
-
-
-const useStyles = makeStyles((theme) =>({
-
-      loginBox: {
-          width: '50%',
-          marginTop: theme.spacing(1),
-          alignItems: 'center',
-      }
-   
+  longInput: {
+    borderRadius: 7,
+    position: "relative",
+    backgroundColor: theme.palette.common.white,
+    border: "1px solid #ced4da",
+    fontSize: 16,
+    right: 50,
+    // width: 'auto',
+    width: 537,
+    height: 44,
+    padding: "10px 12px",
+    fontFamily: [
+      '"Montserrat"', //our font from figma
+    ].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
 }));
 
-
-export default function SignInSide(){
-
+export default function Login() {
   const classes = useStyles();
-    
-    return(
 
-        <div className="login">
-           <h1>Log In</h1>
+  return (
+    <StylesProvider injectFirst>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          
+          <Typography component="h1" variant="h5">
+            Log In
+          </Typography>
 
-          <div className={classes.loginBox}>
-         <TextField        
-            variant="filled"
-            margin="normal"
-            required
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            color="primary"
-            autoFocus
-            fullWidth
-            underlineShow= {false}
-        />
-           <TextField
-              variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+          
+              {/* EMAIL */}
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.longInput}
+                  // variant="filled"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
 
-            
+              {/* PASSWORD */}
+              <Grid item xs={12}>
+                <TextField
+                  className={classes.longInput}
+                  // variant="filled"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </Grid>
 
-          </div>
+                   {/* FORGOT PASSWORD LINK */}
+            <div className="forgotLink"></div>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2" className={classes.forgotLink}>
+                  Forgot Password? 
+                </Link>
+              </Grid>
+            </Grid>
 
-          <div className="forgotPassword">
-            <Link href="#" >
-            {"Forgot Password?"}  
-            </Link>
-            </div>
-           
 
+              {/* LOG IN BUTTON */}
+           </Grid>
             <Button
               type="submit"
-              width = "50px"
+              width="50px"
               variant="contained"
-              color="secondary"
+              color="primary"
+              className={classes.submit}
             >
-              Log in
+              LOG IN
             </Button>
 
-            <div className="registerLink">
-              <Link href="#">
-              {"Don't have an account? Register"}  
-               </Link>
-              {/* <h3>Don't have an account? Sign</h3> */}
-            </div>
-        
+            {/* REGISTER LINK */}
+            <div className="registerLink"></div>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2" className={classes.link}>
+                  Don't have an account? Register
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
         </div>
-       
-
-        
-    )
-
+        <Box mt={5}></Box>
+      </Container>
+    </StylesProvider>
+  );
 }
