@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#292B3E",
     overflow: "scroll",
     height: "400px",
-    // width: "600px",
+    width: "500px",
     // border: "2px solid #fff", we don't want a border
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),

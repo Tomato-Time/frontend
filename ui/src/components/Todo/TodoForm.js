@@ -33,7 +33,7 @@ export default function TodoForm({ user }) {
     });
     console.log("the data:", data.newTask);
     if (data) {
-      addTodo(data.newTask.input);
+      addTodo(data.newTask);
       console.log("todos:", todos);
       // set to a blank form
       setForm({ input: "", priority: "3", deadline: "12:00", user_id: "" });
@@ -54,7 +54,7 @@ export default function TodoForm({ user }) {
   return (
     <div className="todoForm">
       <h1>Today's Tasks</h1>
-      <form>
+      <form className="todoInput">
         <FormControl>
           <InputLabel>Write a Todo</InputLabel>
           <Input
@@ -77,7 +77,7 @@ export default function TodoForm({ user }) {
       <div className="todoItemSection">
         <ul className="todoItems">
           {todos?.map((todo) => (
-            <Todo key={todo.id} todo={todo} />
+            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
           ))}
         </ul>
       </div>
