@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Todo({ todo, setTodos }) {
+export default function Todo({ todo, setTodos, edit }) {
   const [checked, setChecked] = useState(false);
   const classes = useStyles(checked);
 
@@ -55,11 +55,13 @@ export default function Todo({ todo, setTodos }) {
           primary={todo.input}
           secondary={todo.priority}
         />
-        <ListItemIcon>
-          <IconButton onClick={() => deleteTask(todo.id)} aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </ListItemIcon>
+        {edit ? (
+          <ListItemIcon>
+            <IconButton onClick={() => deleteTask(todo.id)} aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          </ListItemIcon>
+        ) : null}
       </ListItem>
     </List>
   );

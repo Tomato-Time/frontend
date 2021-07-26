@@ -1,11 +1,19 @@
-import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  Input,
+  InputLabel,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
 import apiClient from "../../services/apiClient";
+import EditIcon from "@material-ui/icons/Edit";
 
 export default function TodoForm({ user }) {
-  const [todos, setTodos] = useState([1, 2]);
+  const [todos, setTodos] = useState([]);
+  const [edit, setEdit] = useState(false);
   const addTodo = (newTodo) => {
     setTodos((oldTodos) => [newTodo, ...oldTodos]);
   };
@@ -53,6 +61,9 @@ export default function TodoForm({ user }) {
 
   return (
     <div className="todoForm">
+      <IconButton aria-label="edit">
+        <EditIcon onClick={() => setEdit((prev) => !prev)} />
+      </IconButton>
       <h1>Today's Tasks</h1>
       <form className="todoInput">
         <FormControl>
@@ -77,7 +88,13 @@ export default function TodoForm({ user }) {
       <div className="todoItemSection">
         <ul className="todoItems">
           {todos?.map((todo) => (
-            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+            <Todo
+              key={todo.id}
+              todo={todo}
+              setTodos={setTodos}
+              edit={edit}
+              setEdit={setEdit}
+            />
           ))}
         </ul>
       </div>
