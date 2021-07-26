@@ -4,7 +4,7 @@ import Todo from "./Todo";
 import "./TodoForm.css";
 import apiClient from "../../services/apiClient";
 
-export default function TodoForm() {
+export default function TodoForm({ user }) {
   const [todos, setTodos] = useState([]);
   // const [input, setInput] = useState("");
   const [form, setForm] = useState({

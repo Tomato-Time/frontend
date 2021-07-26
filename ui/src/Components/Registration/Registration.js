@@ -10,6 +10,9 @@ import { makeStyles, alpha, StylesProvider } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./Registration.css";
 // import { withStyles } from '@material-ui/core/styles';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import apiClient from "../../services/apiClient";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -99,9 +102,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Registration() {
+export default function Registration({ user, setUser }) {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  });
 
+  useEffect(() => {
+    // if user is already logged in,
+    // redirect them to the home page
+    if (user?.email) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const handleOnInputChange = (event) => {
+    // checking for valid email
+    if (event.target.name === "email") {
+      if (event.target.value.indexOf("@") === -1) {
+        setErrors((e) => ({ ...e, email: "Please enter a valid email." }));
+      } else {
+        setErrors((e) => ({ ...e, email: null }));
+      }
+    }
+    setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setErrors((e) => ({ ...e, form: null }));
+    // make api call to register user
+    const { data, error } = await apiClient.signupUser({
+      first_name: form.first_name,
+      last_name: form.last_name,
+      email: form.email,
+      password: form.password,
+    });
+    if (error) setErrors((e) => ({ ...e, form: error }));
+    if (data?.user) {
+      setUser(data.user);
+      apiClient.setToken(data.token);
+    }
+  };
   return (
     <StylesProvider injectFirst>
       <Container component="main" maxWidth="xs">
@@ -121,7 +168,9 @@ export default function Registration() {
                 <TextField
                   className={classes.fnameInput}
                   autoComplete="fname"
-                  name="firstName"
+                  name="first_name"
+                  value={form.first_name}
+                  onChange={handleOnInputChange}
                   // variant="filled"
                   required
                   fullWidth
@@ -140,7 +189,9 @@ export default function Registration() {
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
+                  value={form.last_name}
+                  onChange={handleOnInputChange}
                   autoComplete="lname"
                 />
               </Grid>
@@ -155,6 +206,8 @@ export default function Registration() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  value={form.email}
+                  onChange={handleOnInputChange}
                   autoComplete="email"
                 />
               </Grid>
@@ -167,6 +220,8 @@ export default function Registration() {
                   required
                   fullWidth
                   name="password"
+                  value={form.password}
+                  onChange={handleOnInputChange}
                   label="Password"
                   type="password"
                   id="password"
@@ -181,6 +236,7 @@ export default function Registration() {
               width="50px"
               variant="contained"
               color="primary"
+              onClick={handleOnSubmit}
               className={classes.submit}
             >
               Register
