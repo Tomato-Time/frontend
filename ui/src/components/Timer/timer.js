@@ -1,8 +1,8 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import MiniDrawer from "../SideBar/sidebar";
 import TimerIcons from "../TimerIcons/timerIcons";
 import React, { useEffect, useState } from "react";
 import "./timer.css";
+import { duration } from "@material-ui/core";
 
 export default function Timer() {
   // variables
@@ -104,7 +104,6 @@ export default function Timer() {
             </CountdownCircleTimer>
           )}
         </div>
-        <MiniDrawer />
       </div>
       <TimerIcons
         setKey={setKey}

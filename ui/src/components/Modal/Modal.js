@@ -6,12 +6,16 @@ import Fade from "@material-ui/core/Fade";
 // import Settings from "../Settings/Settings";
 // import Todo from "../Todo/Todo";
 import TodoForm from "../Todo/TodoForm";
+import DraggableDialog from "../AboutUs/aboutUs";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  modalRoot: {
+    background: 'rgba(255,255,255,0.2)',
   },
   paper: {
     // backgroundColor: theme.palette.background.paper,
@@ -48,13 +52,16 @@ export default function TransitionsModal() {
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        // BackdropProps={{
+        //   timeout: 500,
+        //   root: classes.modalRoot
+        // }}
+        BackdropProps={{style: {backgroundColor: 'rgba(255,255,255,0.00001)'}}}
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <TodoForm />
+            {/* <TodoForm /> */}
+            <DraggableDialog/>
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">
               react-transition-group animates me.
