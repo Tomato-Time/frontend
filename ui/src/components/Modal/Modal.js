@@ -7,6 +7,7 @@ import Settings from "../Settings/Settings";
 // import Todo from "../Todo/Todo";
 import TodoForm from "../Todo/TodoForm";
 import DraggableDialog from "../AboutUs/aboutUs";
+import Calendar from "../Calendar/calendar";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: 30,
+    height: "400px",
+    width: "500px",
   },
 }));
 
@@ -65,9 +68,9 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <TodoForm />
-            {/* <Settings /> */}
+            {/* <TodoForm /> */}
             {/* <DraggableDialog/> */}
+            <Calendar />
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">
               react-transition-group animates me.

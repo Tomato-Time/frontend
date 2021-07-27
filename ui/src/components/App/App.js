@@ -10,6 +10,8 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import apiClient from "../../services/apiClient";
 import { useEffect, useState } from "react";
+import Calendar from "../Calendar/calendar";
+
 
 function App() {
   const [user, setUser] = useState({});
@@ -39,6 +41,7 @@ function App() {
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/login" element={<SignInSide />} />
             <Route exact path="/modalTest" element={<Modal />} />
+           {/* <Calendar/> */}
           </Routes>
         </BrowserRouter>
       </div>
