@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-// import Settings from "../Settings/Settings";
+import Settings from "../Settings/Settings";
 // import Todo from "../Todo/Todo";
 import TodoForm from "../Todo/TodoForm";
 import DraggableDialog from "../AboutUs/aboutUs";
@@ -66,6 +66,7 @@ export default function TransitionsModal() {
         <Fade in={open}>
           <div className={classes.paper}>
             <TodoForm />
+            {/* <Settings /> */}
             {/* <DraggableDialog/> */}
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">

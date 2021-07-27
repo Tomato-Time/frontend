@@ -39,44 +39,44 @@ export default function Settings() {
               Work Session Duration
             </Typography>
             <Slider
-              defaultValue={30}
+              defaultValue={25}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
-              step={10}
+              step={5}
               marks
-              min={10}
-              max={110}
+              min={15}
+              max={60}
             />
           </div>
           <div className="long break duration">
             <Typography id="discrete-slider" gutterBottom>
-              Long Break Duration
+              Short Break Duration
             </Typography>
             <Slider
-              defaultValue={30}
+              defaultValue={5}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
-              step={10}
+              step={1}
               marks
-              min={10}
-              max={110}
+              min={2}
+              max={10}
             />
           </div>
           <div className="short break duration">
             <Typography id="discrete-slider" gutterBottom>
-              Short Break Duration
+              Long Break Duration
             </Typography>
             <Slider
-              defaultValue={30}
+              defaultValue={40}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={10}
               marks
-              min={10}
-              max={110}
+              min={20}
+              max={80}
             />
           </div>
           <div
@@ -91,13 +91,13 @@ export default function Settings() {
             <ListItem className="muteSection">
               <ListItemText primary="Mute" />
               <ListItemIcon>
-                <VolumeOffOutlinedIcon></VolumeOffOutlinedIcon>
+                <VolumeOffOutlinedIcon />
               </ListItemIcon>
             </ListItem>
             <ListItem className="darkModeSection">
               <ListItemText primary="Dark mode" />
               <ListItemSecondaryAction>
-                <Switch></Switch>
+                <Switch />
               </ListItemSecondaryAction>
             </ListItem>
             <ListItem className="messageSection">

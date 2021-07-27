@@ -133,7 +133,7 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer
-        PaperProps={{ elevation: 100 }}
+        PaperProps={{ elevation: 24 }}
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
