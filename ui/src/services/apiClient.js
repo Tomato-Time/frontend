@@ -59,6 +59,15 @@ class ApiClient {
       data: task,
     });
   }
+
+  // delete a todo list item
+  async deleteTask(taskId) {
+    console.log("the task id is", taskId);
+    return await this.request({
+      endpoint: `task/${taskId}`,
+      method: `DELETE`,
+    });
+  }
 }
 export default new ApiClient(
   process.env.REACT_APP_REMOTE_HOST_URL || "http://localhost:3001"

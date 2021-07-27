@@ -2,7 +2,22 @@
   display: flex;
   justify-content: center;
   vertical-align: middle;
+  width: 100%;
 }
 .todoItems {
   padding-inline-start: 0px;
+  width: 100%;
+}
+
+.todoForm h1 {
+  font-family: "Montserrat";
+}
+
+.todoInput {
+  justify-content: center;
+  text-align: center;
+}
+.todoIcons {
+  justify-content: space-between;
+  display: flex;
 }
