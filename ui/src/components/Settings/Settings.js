@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 // import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -6,18 +6,23 @@ import ListItem from "@material-ui/core/ListItem";
 import Slider from "@material-ui/core/Slider";
 import "./Settings.css";
 import {
+  Grid,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
+  makeStyles,
 } from "@material-ui/core";
 import VolumeOffOutlinedIcon from "@material-ui/icons/VolumeOffOutlined";
 import Switch from "@material-ui/core/Switch";
 
-// const useStyles = makeStyles({
-//   root: {
-//     width: 300,
-//   },
-// });
+export const userSettings = createContext();
+
+const useStyles = makeStyles({
+  timer: {
+    fontSize: "20px",
+    marginBottom: "5px",
+  },
+});
 
 function valuetext(value) {
   return `${value}`;
@@ -25,90 +30,119 @@ function valuetext(value) {
 // possibly should use an array to map through silders
 
 export default function Settings() {
-  //   const classes = useStyles();
+  const [shortBreak, setShortBreak] = useState(5);
+  const [longBreak, setLongBreak] = useState(40);
+  const [working, setWorking] = useState(25);
+
+  const handleShortChange = (event, newValue) => {
+    setShortBreak(newValue);
+    // console.log("the short break:", shortBreak);
+  };
+  const handleLongChange = (event, newValue) => {
+    setLongBreak(newValue);
+    // console.log("the long break:", longBreak);
+  };
+  const handleWorkChange = (event, newValue) => {
+    setWorking(newValue);
+    // console.log("the working period:", working);
+  };
+
+  const classes = useStyles();
   return (
     <div className="settings">
       <div className="settings title">
-        <h1>Settings</h1>
+        <h2>Settings</h2>
       </div>
       <div className="settings content">
-        <div className="settings subheader">
-          <h3>Timer</h3>
-          <div className="work session duration">
+        <Grid container spacing={1} justifyContent="flex-start">
+          <Grid item className="timer">
+            <Typography className={classes.timer}>Timer</Typography>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="stretch"
+        >
+          <Grid item className="work session duration">
             <Typography id="discrete-slider" gutterBottom>
               Work Session Duration
             </Typography>
             <Slider
               defaultValue={25}
+              onChange={handleWorkChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={5}
               marks
               min={15}
-              max={60}
+              max={40}
             />
-          </div>
-          <div className="long break duration">
+          </Grid>
+          <Grid item className="long break duration">
             <Typography id="discrete-slider" gutterBottom>
               Short Break Duration
             </Typography>
             <Slider
               defaultValue={5}
+              onChange={handleShortChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={1}
               marks
-              min={2}
-              max={10}
+              min={3}
+              max={20}
             />
-          </div>
-          <div className="short break duration">
+          </Grid>
+          <Grid item className="short break duration">
             <Typography id="discrete-slider" gutterBottom>
               Long Break Duration
             </Typography>
             <Slider
               defaultValue={40}
+              onChange={handleLongChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
-              step={10}
+              step={4}
               marks
               min={20}
               max={80}
             />
-          </div>
-          <div
-            className="dividerLine"
-            style={{
-              borderTop: "2px solid #fff ",
-              marginTop: 20,
-            }}
-          ></div>
-          {/* beginning of list */}
-          <List>
-            <ListItem className="muteSection">
-              <ListItemText primary="Mute" />
-              <ListItemIcon>
-                <VolumeOffOutlinedIcon />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem className="darkModeSection">
-              <ListItemText primary="Dark mode" />
-              <ListItemSecondaryAction>
-                <Switch />
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem className="messageSection">
-              <ListItemText primary="Message" />
-            </ListItem>
-            <ListItem className="addBackground">
-              <ListItemText primary="Add Background" />
-            </ListItem>
-          </List>
-          {/* end of list  */}
-        </div>
+          </Grid>
+        </Grid>
+        <div
+          className="dividerLine"
+          style={{
+            borderTop: "2px solid #fff ",
+            marginTop: 20,
+          }}
+        ></div>
+        {/* beginning of list */}
+        <List className="settingSelectionList">
+          <ListItem className="muteSection">
+            <ListItemText primary="Mute" />
+            <ListItemIcon>
+              <VolumeOffOutlinedIcon />
+            </ListItemIcon>
+          </ListItem>
+          <ListItem className="darkModeSection">
+            <ListItemText primary="Dark mode" />
+            <ListItemSecondaryAction>
+              <Switch />
+            </ListItemSecondaryAction>
+          </ListItem>
+          <ListItem className="messageSection">
+            <ListItemText primary="Message" />
+          </ListItem>
+          <ListItem className="addBackground">
+            <ListItemText primary="Add Background" />
+          </ListItem>
+        </List>
+        {/* end of list  */}
       </div>
     </div>
   );

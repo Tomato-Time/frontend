@@ -9,7 +9,7 @@ import { theme } from "../../index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import apiClient from "../../services/apiClient";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Calendar from "../Calendar/calendar";
 import { RoundContext } from "../../RoundContext";
 
@@ -38,11 +38,10 @@ function App() {
               path="/register"
               element={<Registration user={user} setUser={setUser} />}
             />
-            
+
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/login" element={<SignInSide />} />
             <Route exact path="/modalTest" element={<Modal />} />
-           {/* <Calendar/> */}
           </Routes>
         </BrowserRouter>
       </div>

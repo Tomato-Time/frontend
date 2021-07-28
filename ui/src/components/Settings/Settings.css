@@ -1,22 +1,5 @@
 .settings {
   color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-
-/* .settings .muteSection {
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  height: fit-content;
-  background-color: red;
-}
-
-.settings .muteSection h4 {
-  display: block;
-  height: fit-content;
-  background-color: blue;
-}
-.settings .muteSection h1 {
-  display: block;
-  height: fit-content;
-  background-color: blue;
-} */

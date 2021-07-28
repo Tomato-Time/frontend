@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -21,13 +21,11 @@ import { shadows } from "@material-ui/system";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
 
-
-// user icon 
-// import IconButton from '@material-ui/core/IconButton';   already declared 
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-
+// user icon
+// import IconButton from '@material-ui/core/IconButton';   already declared
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 const drawerWidth = 240;
 
@@ -41,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#292B3E",
+    backgroundColor: "#32344A",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -50,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    backgroundColor: "#292B3E",
+    backgroundColor: "#32344A",
   },
   menuButton: {
     marginRight: 36,
@@ -91,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    backgroundColor: "#32344A",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -99,8 +98,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
- 
-
 }));
 
 export default function MiniDrawer() {
@@ -115,38 +112,40 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  // modal function
+  const [openModal, setOpenModal] = useState(false);
+  const handleModalOpen = () => {
+    setOpenModal(true);
+  };
+  console.log("OpenModal boolean:", openModal);
 
-// USER ICON
+  // USER ICON
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openUserIcon = Boolean(anchorEl);
 
-
   const handleMenu = (event) => {
-    console.log (event.currentTarget)
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
 
-    var title = document.querySelector('title');
-    title.innerText = 'Focus Time';
+    var title = document.querySelector("title");
+    title.innerText = "Focus Time";
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
-  
+
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> background paper */}
       <AppBar
         position="fixed"
+        elevation={0}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-
-        
-        <Toolbar >
-          
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -162,33 +161,25 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap>
             Welcome Back,
           </Typography>
-          
-          
-            {/* USER ICON */}
-            <div className={classes.userIcon}>
 
-              <IconButton
-                aria-label="account of current user"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                open={openUserIcon}
-                onClose={handleClose}
-                anchorEl={anchorEl}
-              >
-            <MenuItem onClick={handleClose} >Log Out</MenuItem>
-          </Menu> 
-            </div>
-
-
+          {/* USER ICON */}
+          <div className={classes.userIcon}>
+            <IconButton
+              aria-label="account of current user"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
+              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
-        PaperProps={{ elevation: 24 }}
+        PaperProps={{ elevation: 0 }}
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
@@ -218,8 +209,18 @@ export default function MiniDrawer() {
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
-                <Modal />
+                <div>
+                  <ListItemText
+                    button
+                    onClick={handleModalOpen}
+                    primary={text}
+                  />
+                  <Modal
+                    text={text}
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                  />
+                </div>
               </ListItem>
             )
           )}
@@ -233,7 +234,6 @@ export default function MiniDrawer() {
       {/* <main className={classes.content}>
         <div className={classes.toolbar} />
       </main> */}
-      
     </div>
   );
 }
