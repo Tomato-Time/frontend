@@ -1,3 +1,17 @@
-.drawer{
-    /* box-shadow: 10px 10px white; */
+.drawer {
+  /* box-shadow: 10px 10px white; */
+}
+
+/* USER ICON */
+.MuiToolbar-root-60 {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* MENU ICON */
+.makeStyles-menuButton-13 {
+  margin-right: 36px;
+  right: 980px;
 }

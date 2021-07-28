@@ -21,6 +21,14 @@ import { shadows } from "@material-ui/system";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
 
+
+// user icon 
+// import IconButton from '@material-ui/core/IconButton';   already declared 
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -91,6 +99,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+ 
+
 }));
 
 export default function MiniDrawer() {
@@ -106,6 +116,24 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+// USER ICON
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openUserIcon = Boolean(anchorEl);
+
+
+  const handleMenu = (event) => {
+    console.log (event.currentTarget)
+    setAnchorEl(event.currentTarget);
+
+    var title = document.querySelector('title');
+    title.innerText = 'Focus Time';
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
+  
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> background paper */}
@@ -115,7 +143,10 @@ export default function MiniDrawer() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+
+        
+        <Toolbar >
+          
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,9 +158,33 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap>
-            Pomodoro App
+            Welcome Back,
           </Typography>
+          
+          
+            {/* USER ICON */}
+            <div className={classes.userIcon}>
+
+              <IconButton
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                open={openUserIcon}
+                onClose={handleClose}
+                anchorEl={anchorEl}
+              >
+            <MenuItem onClick={handleClose} >Log Out</MenuItem>
+          </Menu> 
+            </div>
+
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -178,6 +233,7 @@ export default function MiniDrawer() {
       {/* <main className={classes.content}>
         <div className={classes.toolbar} />
       </main> */}
+      
     </div>
   );
 }
