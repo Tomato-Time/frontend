@@ -78,7 +78,7 @@ export default function Timer() {
                 return [false, 1000];
               }}
               isLinearGradient
-              size={430}
+              size={390}
               strokeWidth={30}
             >
               {/* this prop is for the time format */}

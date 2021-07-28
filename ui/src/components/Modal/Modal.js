@@ -28,56 +28,43 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: 30,
-    height: "400px",
-    width: "500px",
   },
 }));
 
-export default function TransitionsModal() {
+export default function TransitionsModal({ openModal, setOpenModal }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const handleModalClose = () => {
+    console.log("handle modal close");
+    setOpenModal(false);
+    console.log("openModal", openModal);
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Settings
-      </button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        // BackdropProps={{
-        //   timeout: 500,
-        //   root: classes.modalRoot
-        // }}
-        BackdropProps={{
-          style: { backgroundColor: "rgba(255,255,255,0.00001)" },
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            {/* <TodoForm /> */}
-            {/* <DraggableDialog/> */}
-            <Calendar />
-            {/* <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p> */}
-          </div>
-        </Fade>
-      </Modal>
-    </div>
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      className={classes.modal}
+      open={openModal}
+      onClose={handleModalClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      // BackdropProps={{
+      //   timeout: 500,
+      //   root: classes.modalRoot
+      // }}
+      BackdropProps={{
+        style: { backgroundColor: "rgba(255,255,255,0.00001)" },
+      }}
+    >
+      <Fade in={openModal}>
+        <div className={classes.paper}>
+          {/* <TodoForm /> */}
+          <Settings />
+          {/* <DraggableDialog/> */}
+          {/* <Calendar /> */}
+        </div>
+      </Fade>
+    </Modal>
   );
 }

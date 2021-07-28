@@ -12,7 +12,6 @@ import apiClient from "../../services/apiClient";
 import { useEffect, useState } from "react";
 import Calendar from "../Calendar/calendar";
 
-
 function App() {
   const [user, setUser] = useState({});
   useEffect(() => {
@@ -41,7 +40,6 @@ function App() {
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/login" element={<SignInSide />} />
             <Route exact path="/modalTest" element={<Modal />} />
-           {/* <Calendar/> */}
           </Routes>
         </BrowserRouter>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#292B3E",
+    backgroundColor: "#32344A",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    backgroundColor: "#292B3E",
+    backgroundColor: "#32344A",
   },
   menuButton: {
     marginRight: 36,
@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    backgroundColor: "#32344A",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -105,12 +106,19 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  // modal function
+  const [openModal, setOpenModal] = useState(false);
+  const handleModalOpen = () => {
+    setOpenModal(true);
+  };
+  console.log("OpenModal boolean:", openModal);
 
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> background paper */}
       <AppBar
         position="fixed"
+        elevation={0}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -133,7 +141,7 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer
-        PaperProps={{ elevation: 24 }}
+        PaperProps={{ elevation: 0 }}
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
@@ -163,21 +171,19 @@ export default function MiniDrawer() {
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
-                <Modal />
+                <div>
+                  <ListItemText
+                    button
+                    onClick={handleModalOpen}
+                    primary={text}
+                  />
+                  <Modal openModal={openModal} setOpenModal={setOpenModal} />
+                </div>
               </ListItem>
             )
           )}
         </List>
       </Drawer>
-      {/* {displayed && (
-          <div style={handleDrawerOpen}>
-            Text that will appear when you hover over the button.
-          </div>
-        )} */}
-      {/* <main className={classes.content}>
-        <div className={classes.toolbar} />
-      </main> */}
     </div>
   );
 }
