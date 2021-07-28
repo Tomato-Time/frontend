@@ -113,9 +113,12 @@ export default function MiniDrawer() {
     setOpen(false);
   };
   // modal function
+  // modal functionality
+  // const [selected, setSelected] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const handleModalOpen = () => {
+  const handleModalOpen = (text) => {
     setOpenModal(true);
+    setOpenModal(text);
   };
   console.log("OpenModal boolean:", openModal);
 
@@ -212,18 +215,19 @@ export default function MiniDrawer() {
                 <div>
                   <ListItemText
                     button
-                    onClick={handleModalOpen}
+                    onClick={() => handleModalOpen(text)}
                     primary={text}
                   />
-                  <Modal
+                  {/* <Modal
                     text={text}
                     openModal={openModal}
                     setOpenModal={setOpenModal}
-                  />
+                  /> */}
                 </div>
               </ListItem>
             )
           )}
+          <Modal openModal={openModal} setOpenModal={setOpenModal} />
         </List>
       </Drawer>
       {/* {displayed && (

@@ -3,11 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import Settings from "../Settings/Settings";
-// import Todo from "../Todo/Todo";
-import TodoForm from "../Todo/TodoForm";
-import DraggableDialog from "../AboutUs/aboutUs";
-import Calendar from "../Calendar/calendar";
+import VariousModals from "./VariousModals";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -31,13 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ openModal, setOpenModal, text }) {
+export default function TransitionsModal({ openModal, setOpenModal }) {
   const classes = useStyles();
 
   const handleModalClose = () => {
-    console.log("handle modal close");
     setOpenModal(false);
-    console.log("openModal", openModal);
   };
 
   return (
@@ -49,21 +43,13 @@ export default function TransitionsModal({ openModal, setOpenModal, text }) {
       onClose={handleModalClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
-      // BackdropProps={{
-      //   timeout: 500,
-      //   root: classes.modalRoot
-      // }}
       BackdropProps={{
         style: { backgroundColor: "rgba(255,255,255,0.00001)" },
       }}
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
-          {/* <TodoForm /> */}
-          <Settings />
-          {console.log(text)}
-          {/* <DraggableDialog/> */}
-          {/* <Calendar /> */}
+          <VariousModals openModal={openModal} />
         </div>
       </Fade>
     </Modal>
