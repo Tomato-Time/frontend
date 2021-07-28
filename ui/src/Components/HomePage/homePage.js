@@ -1,16 +1,19 @@
 import Timer from "../Timer/timer";
 import MiniDrawer from "../SideBar/sidebar";
 import HorizontalLabelPositionBelowStepper from "../TimerProgress/timerProgress";
-import { shortBreak } from "../Settings/SettingsContext";
+import { RoundContext } from "../../RoundContext";
+import { useState } from "react";
+
 export default function HomePage() {
+  const [round, setRound] = useState(0);
   //just to render the components for the home page
   return (
     <div>
-      <shortBreak.Provider value="hey girl">
+      <RoundContext.Provider value={{ round, setRound }}>
         <Timer />
         <MiniDrawer />
         <HorizontalLabelPositionBelowStepper />
-      </shortBreak.Provider>
+      </RoundContext.Provider>
     </div>
   );
 }

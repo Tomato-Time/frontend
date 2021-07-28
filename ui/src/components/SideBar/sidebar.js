@@ -21,6 +21,12 @@ import { shadows } from "@material-ui/system";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
 
+// user icon
+// import IconButton from '@material-ui/core/IconButton';   already declared
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -113,6 +119,22 @@ export default function MiniDrawer() {
   };
   console.log("OpenModal boolean:", openModal);
 
+  // USER ICON
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openUserIcon = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    console.log(event.currentTarget);
+    setAnchorEl(event.currentTarget);
+
+    var title = document.querySelector("title");
+    title.innerText = "Focus Time";
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> background paper */}
@@ -135,9 +157,25 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap>
-            Pomodoro App
+            Welcome Back,
           </Typography>
+
+          {/* USER ICON */}
+          <div className={classes.userIcon}>
+            <IconButton
+              aria-label="account of current user"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
+              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -177,13 +215,25 @@ export default function MiniDrawer() {
                     onClick={handleModalOpen}
                     primary={text}
                   />
-                  <Modal openModal={openModal} setOpenModal={setOpenModal} />
+                  <Modal
+                    text={text}
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                  />
                 </div>
               </ListItem>
             )
           )}
         </List>
       </Drawer>
+      {/* {displayed && (
+          <div style={handleDrawerOpen}>
+            Text that will appear when you hover over the button.
+          </div>
+        )} */}
+      {/* <main className={classes.content}>
+        <div className={classes.toolbar} />
+      </main> */}
     </div>
   );
 }

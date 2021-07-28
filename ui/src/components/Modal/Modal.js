@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ openModal, setOpenModal }) {
+export default function TransitionsModal({ openModal, setOpenModal, text }) {
   const classes = useStyles();
 
   const handleModalClose = () => {
@@ -61,6 +61,7 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
         <div className={classes.paper}>
           {/* <TodoForm /> */}
           <Settings />
+          {console.log(text)}
           {/* <DraggableDialog/> */}
           {/* <Calendar /> */}
         </div>

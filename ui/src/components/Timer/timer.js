@@ -1,10 +1,15 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import TimerIcons from "../TimerIcons/timerIcons";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import "./timer.css";
-import { duration } from "@material-ui/core";
+import { duration } from "@material-ui/core"
+import { RoundContext } from "../../RoundContext";
 
 export default function Timer() {
+  
+
+  const {round,setRound} = useContext(RoundContext);
+
   // variables
   let duration = 5;
   let focusColors = [
@@ -24,7 +29,7 @@ export default function Timer() {
   // start of state
   const [isPlaying, setIsPlaying] = useState(false);
   const [colorClock, setColorClock] = useState(colorOptions[0]);
-  const [round, setRound] = useState(0);
+  // const [round, setRound] = useState(0);
   const [key, setKey] = useState(0);
   // end of useState
 
@@ -60,6 +65,7 @@ export default function Timer() {
     }
   };
 
+
   return (
     <div className="timerAndDrawer">
       <div className="App">
@@ -70,7 +76,7 @@ export default function Timer() {
             <CountdownCircleTimer
               isPlaying={isPlaying}
               key={key}
-              duration={10}
+              duration={3}
               colors={focusColors}
               onComplete={() => {
                 // do stuff here
@@ -88,7 +94,7 @@ export default function Timer() {
             <CountdownCircleTimer
               isPlaying={isPlaying}
               key={key}
-              duration={5}
+              duration={3}
               colors={breakColors}
               onComplete={() => {
                 // do stuff here
@@ -96,7 +102,7 @@ export default function Timer() {
                 return [false, 1000];
               }}
               isLinearGradient
-              size={430}
+              size={390}
               strokeWidth={30}
             >
               {/* this prop is for the time format */}
