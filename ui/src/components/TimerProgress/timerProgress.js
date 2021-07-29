@@ -1,37 +1,37 @@
-import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Check from '@material-ui/icons/Check';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-import StepConnector from '@material-ui/core/StepConnector';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { RoundContext } from '../../RoundContext';
+import React, { useContext, useEffect } from "react";
+import PropTypes from "prop-types";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Check from "@material-ui/icons/Check";
+import SettingsIcon from "@material-ui/icons/Settings";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import VideoLabelIcon from "@material-ui/icons/VideoLabel";
+import StepConnector from "@material-ui/core/StepConnector";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { RoundContext } from "../../RoundContext";
 
 const QontoConnector = withStyles({
   alternativeLabel: {
     top: 10,
-    left: 'calc(-50% + 16px)',
-    right: 'calc(50% + 16px)',
+    left: "calc(-50% + 16px)",
+    right: "calc(50% + 16px)",
   },
   active: {
-    '& $line': {
-      borderColor: '#784af4',
+    "& $line": {
+      borderColor: "#784af4",
     },
   },
   completed: {
-    '& $line': {
-      borderColor: '#784af4',
+    "& $line": {
+      borderColor: "#784af4",
     },
   },
   line: {
-    borderColor: '#eaeaf0',
+    borderColor: "#eaeaf0",
     borderTopWidth: 3,
     borderRadius: 1,
   },
@@ -39,22 +39,22 @@ const QontoConnector = withStyles({
 
 const useQontoStepIconStyles = makeStyles({
   root: {
-    color: '#eaeaf0',
-    display: 'flex',
+    color: "#eaeaf0",
+    display: "flex",
     height: 22,
-    alignItems: 'center',
+    alignItems: "center",
   },
   active: {
-    color: '#784af4',
+    color: "#784af4",
   },
   circle: {
     width: 8,
     height: 8,
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
+    borderRadius: "50%",
+    backgroundColor: "currentColor",
   },
   completed: {
-    color: '#784af4',
+    color: "#784af4",
     zIndex: 1,
     fontSize: 18,
   },
@@ -70,7 +70,11 @@ function QontoStepIcon(props) {
         [classes.active]: active,
       })}
     >
-      {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
+      {completed ? (
+        <Check className={classes.completed} />
+      ) : (
+        <div className={classes.circle} />
+      )}
     </div>
   );
 }
@@ -91,45 +95,45 @@ const ColorlibConnector = withStyles({
     top: 22,
   },
   active: {
-    '& $line': {
+    "& $line": {
       backgroundImage:
-        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
   completed: {
-    '& $line': {
+    "& $line": {
       backgroundImage:
-        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
   line: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor: "#eaeaf0",
     borderRadius: 1,
   },
 })(StepConnector);
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
     zIndex: 1,
-    color: '#fff',
+    color: "#fff",
     width: 50,
     height: 50,
-    display: 'flex',
-    borderRadius: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    borderRadius: "50%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   active: {
     backgroundImage:
-      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   },
   completed: {
     backgroundImage:
-      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
   },
 });
 
@@ -172,7 +176,7 @@ ColorlibStepIcon.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
   },
   button: {
     marginRight: theme.spacing(1),
@@ -184,11 +188,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [null, null,null,null,null];
+  return [null, null, null, null, null];
 }
 
 export default function CustomizedSteppers() {
-  const {round,setRound} = useContext(RoundContext);
+  const { round, setRound } = useContext(RoundContext);
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -197,9 +201,7 @@ export default function CustomizedSteppers() {
   //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
   // };
 
-//  console.log("test", round % 2 )
-
-  
+  //  console.log("test", round % 2 )
 
   // const handleBack = () => {
   //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -209,20 +211,21 @@ export default function CustomizedSteppers() {
   //   setActiveStep(0);
   // };
 
-  
-
   useEffect(() => {
-      if(round === 2 || round === 4 || round === 6  || round === 8 ){
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      }
-  }, [round])
+    if (round === 2 || round === 4 || round === 6 || round === 8) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+  }, [round]);
 
-  
-
-  console.log(round + " what")
+  console.log(round + " what");
   return (
     <div className={classes.root}>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<QontoConnector />} style={{ backgroundColor: "transparent" }}>
+      <Stepper
+        alternativeLabel
+        activeStep={activeStep}
+        connector={<QontoConnector />}
+        style={{ backgroundColor: "transparent" }}
+      >
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
@@ -230,9 +233,7 @@ export default function CustomizedSteppers() {
         ))}
       </Stepper>
 
-
       <div>
-        
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
@@ -264,4 +265,3 @@ export default function CustomizedSteppers() {
     </div>
   );
 }
-

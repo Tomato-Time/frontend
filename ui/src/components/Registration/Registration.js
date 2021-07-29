@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import clsx from 'clsx';
@@ -13,6 +13,7 @@ import "./Registration.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/apiClient";
+import { UserContext } from "../../RoundContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -102,7 +103,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Registration({ user, setUser }) {
+export default function Registration() {
+  const { user, setUser } = useContext(UserContext);
   const classes = useStyles();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -156,6 +158,8 @@ export default function Registration({ user, setUser }) {
           <Typography component="h1" variant="h5">
             Create Account
           </Typography>
+          {errors.form && <span className="error">{errors.form}</span>}
+          <br />
 
           {/* FIRST NAME */}
           <form className={classes.form} noValidate>
@@ -178,6 +182,9 @@ export default function Registration({ user, setUser }) {
                   label="First Name"
                   autoFocus
                 />
+                {errors.first_name && (
+                  <span className="error">{errors.first_name}</span>
+                )}
               </Grid>
 
               {/* LAST NAME */}
@@ -194,6 +201,9 @@ export default function Registration({ user, setUser }) {
                   onChange={handleOnInputChange}
                   autoComplete="lname"
                 />
+                {errors.last_name && (
+                  <span className="error">{errors.last_name}</span>
+                )}
               </Grid>
 
               {/* EMAIL */}
@@ -210,6 +220,7 @@ export default function Registration({ user, setUser }) {
                   onChange={handleOnInputChange}
                   autoComplete="email"
                 />
+                {errors.email && <span className="error">{errors.email}</span>}
               </Grid>
 
               {/* PASSWORD */}
@@ -227,6 +238,9 @@ export default function Registration({ user, setUser }) {
                   id="password"
                   autoComplete="current-password"
                 />
+                {errors.password && (
+                  <span className="error">{errors.password}</span>
+                )}
               </Grid>
 
               {/* REGISTER BUTTON */}
