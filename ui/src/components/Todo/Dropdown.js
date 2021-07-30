@@ -1,15 +1,33 @@
-import { Grid, makeStyles, MenuItem, Select } from "@material-ui/core";
-import React, { useState } from "react";
+import {
+  Grid,
+  makeStyles,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
+// import React, { useState } from "react";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     // to set the width of the dropdown
     minWidth: 120,
   },
+  textField: {
+    // marginLeft: theme.spacing(1),
+    // marginRight: theme.spacing(1),
+    width: 120,
+  },
 }));
-export default function Dropdown({ showdd, setShowdd, showDeadlinedd }) {
+export default function Dropdown({
+  showdd,
+  setShowdd,
+  showDeadlinedd,
+  setShowDeadlinedd,
+  priority,
+  setPriority,
+  deadline,
+  setDeadline,
+}) {
   const classes = useStyles();
-  const [priority, setPriority] = useState(0);
-  const [deadline, setDeadline] = useState("12:00");
 
   // drop down selection for priority
   const handlePriorityChange = (event) => {
@@ -20,6 +38,7 @@ export default function Dropdown({ showdd, setShowdd, showDeadlinedd }) {
   };
   // if dropdown should be displayed
   if (showdd) {
+    setShowDeadlinedd(false);
     return (
       <Grid item className={classes.formControl}>
         <Select
@@ -46,22 +65,20 @@ export default function Dropdown({ showdd, setShowdd, showDeadlinedd }) {
     setShowdd(false);
     return (
       <Grid item className={classes.formControl}>
-        <Select
-          labelId="select-priority"
-          id="select-priority"
+        <TextField
+          id="time"
+          type="time"
+          defaultValue="07:30"
           value={deadline}
-          fullWidth={true}
           onChange={handleDeadlineChange}
-          displayEmpty
-          labelWidth={6}
-        >
-          <MenuItem value="" disabled>
-            Deadline
-          </MenuItem>
-          <MenuItem value={1}>noon</MenuItem>
-          <MenuItem value={2}>1</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-        </Select>
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        />
       </Grid>
     );
   } else {

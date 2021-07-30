@@ -1,6 +1,7 @@
 import Settings from "../Settings/Settings";
 import TodoForm from "../Todo/TodoForm";
 import Calendar from "../Calendar/calendar";
+import AboutUs from "../AboutUs/aboutUs";
 
 export default function VariousModals({ openModal }) {
   console.log(openModal);
@@ -12,6 +13,9 @@ export default function VariousModals({ openModal }) {
   }
   if (openModal === "Statistics") {
     return <Calendar />;
+  }
+  if (openModal === "About") {
+    return <AboutUs />;
   } else {
     return null;
   }

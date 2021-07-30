@@ -10,7 +10,6 @@ export default function TodoForm({ user }) {
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(false);
   const [add, setAdd] = useState(false);
-  console.log("add", add);
 
   return (
     <div className="todoForm">

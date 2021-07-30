@@ -62,10 +62,18 @@ class ApiClient {
 
   // delete a todo list item
   async deleteTask(taskId) {
-    console.log("the task id is", taskId);
     return await this.request({
       endpoint: `task/${taskId}`,
       method: `DELETE`,
+    });
+  }
+
+  // add time to minutes logged
+  async addToUserTimeLog(minutes) {
+    return await this.request({
+      endpoint: `TimerSession`,
+      method: `POST`,
+      data: minutes,
     });
   }
 }

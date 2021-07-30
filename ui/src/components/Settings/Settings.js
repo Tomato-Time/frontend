@@ -13,7 +13,6 @@ import {
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
-import VolumeOffOutlinedIcon from "@material-ui/icons/VolumeOffOutlined";
 import Switch from "@material-ui/core/Switch";
 import { SettingContext } from "../../RoundContext";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
@@ -34,6 +33,7 @@ function valuetext(value) {
 // possibly should use an array to map through silders
 
 export default function Settings() {
+  const [darkTheme, setDarkTheme] = useState(true);
   const { shortBreak, setShortBreak } = useContext(SettingContext);
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working, setWorking } = useContext(SettingContext);
@@ -50,6 +50,9 @@ export default function Settings() {
   const handleWorkChange = (event, newValue) => {
     setWorking(newValue);
     console.log("the working period:", working);
+  };
+  const handleDarkModeChange = (event) => {
+    setDarkTheme(event.target.checked);
   };
 
   const classes = useStyles();
@@ -143,7 +146,7 @@ export default function Settings() {
           <ListItem className="darkModeSection">
             <ListItemText primary="Dark mode" />
             <ListItemSecondaryAction>
-              <Switch />
+              <Switch checked={darkTheme} onChange={handleDarkModeChange} />
             </ListItemSecondaryAction>
           </ListItem>
           <ListItem className="messageSection">

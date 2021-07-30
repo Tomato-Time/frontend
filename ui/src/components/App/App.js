@@ -6,24 +6,11 @@ import HomePage from "../HomePage/homePage";
 import { theme } from "../../index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
-import apiClient from "../../services/apiClient";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UserContext } from "../../RoundContext";
 
 function App() {
   const [user, setUser] = useState({});
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const { data } = await apiClient.fetchUserFromToken();
-  //     if (data) setUser(data.user);
-  //   };
-  //   const token = localStorage.getItem("web_app_token");
-  //   console.log("the token:", token);
-  //   if (token) {
-  //     apiClient.setToken(token);
-  //     fetchUser();
-  //   }
-  // }, []);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

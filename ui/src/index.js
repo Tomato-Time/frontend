@@ -60,6 +60,7 @@ export const theme = createTheme({
 
   palette: {
     background: {
+      // this changes the color of paper
       default: "#292B3E",
     },
     type: "dark",

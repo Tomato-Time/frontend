@@ -5,6 +5,7 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
+  Typography,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
@@ -28,7 +29,6 @@ export default function Todo({ todo, setTodos, edit }) {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    console.log("i am checked", checked);
   };
 
   // delete a task
@@ -53,7 +53,15 @@ export default function Todo({ todo, setTodos, edit }) {
         <ListItemText
           className={classes.text}
           primary={todo.input}
-          secondary={todo.priority}
+          secondary={
+            <React.Fragment>
+              <Typography component="span" variant="body2" color="textPrimary">
+                priority: {todo.priority}
+                <br />
+                deadline: {todo.deadline}
+              </Typography>
+            </React.Fragment>
+          }
         />
         {edit ? (
           <ListItemIcon>
