@@ -48,6 +48,9 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
       console.log("todos:", todos);
       // set to a blank form
       setForm({ input: "", priority: "", deadline: "", user_id: "" });
+      // set the priority and deadline back to null
+      setPriority(null);
+      setDeadline(null);
     }
   };
   // fetch new todos as they get added

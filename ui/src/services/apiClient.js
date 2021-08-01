@@ -76,6 +76,14 @@ class ApiClient {
       data: minutes,
     });
   }
+  // get the minutes associated with user
+  async getUserMinutes(minutes) {
+    return await this.request({
+      endpoint: `TimerSession`,
+      method: `GET`,
+      data: minutes,
+    });
+  }
 }
 export default new ApiClient(
   process.env.REACT_APP_REMOTE_HOST_URL || "http://localhost:3001"

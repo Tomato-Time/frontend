@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import CalendarHeatmap from "react-calendar-heatmap";
 import ReactTooltip from "react-tooltip";
 import "./calendar.css";
 import { Button } from "@material-ui/core";
+import apiClient from "../../services/apiClient";
 
 export default function Calendar() {
   const today = new Date();
@@ -15,10 +16,20 @@ export default function Calendar() {
       count: getRandomInt(1, 4),
     };
   });
+
+  useEffect(() => {
+    const fetchUserMinutes = async () => {
+      // make api call
+      const { data } = await apiClient.getUserMinutes();
+      console.log("the data from the api call", data);
+    };
+    fetchUserMinutes();
+  }, []);
   return (
     <div className="calendar-box">
       {/* <h1>react-calendar-heatmap demos</h1>
           <p>Random values with onClick and react-tooltip</p> */}
+      <h2>data</h2>
       <CalendarHeatmap
         // startDate={shiftDate(today, -30)}
         startDate={new Date("2021-07-1")}

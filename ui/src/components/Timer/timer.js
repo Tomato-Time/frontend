@@ -40,6 +40,7 @@ export default function Timer() {
   async function addToUserTime(working) {
     const { data } = await apiClient.addToUserTimeLog({
       minutes_logged: working,
+      date_logged: new Date().toISOString().slice(0, 10),
       user_id: "",
     });
     if (data) console.log(data);
