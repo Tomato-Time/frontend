@@ -14,7 +14,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import Switch from "@material-ui/core/Switch";
-import { SettingContext } from "../../RoundContext";
+import { DarkModeContext, SettingContext } from "../../RoundContext";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 
@@ -33,7 +33,7 @@ function valuetext(value) {
 // possibly should use an array to map through silders
 
 export default function Settings() {
-  const [darkTheme, setDarkTheme] = useState(true);
+  const { darkTheme, setDarkTheme } = useContext(DarkModeContext);
   const { shortBreak, setShortBreak } = useContext(SettingContext);
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working, setWorking } = useContext(SettingContext);

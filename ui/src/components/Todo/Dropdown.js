@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     // marginLeft: theme.spacing(1),
     // marginRight: theme.spacing(1),
-    width: 120,
+    width: 110,
   },
 }));
 export default function Dropdown({
@@ -38,7 +38,7 @@ export default function Dropdown({
   };
   // if dropdown should be displayed
   if (showdd) {
-    setShowDeadlinedd(false);
+    // setShowDeadlinedd(false);
     return (
       <Grid item className={classes.formControl}>
         <Select
@@ -62,7 +62,7 @@ export default function Dropdown({
   }
   if (showDeadlinedd) {
     // make sure the priority dropdown does not display
-    setShowdd(false);
+    // setShowdd(false);
     return (
       <Grid item className={classes.formControl}>
         <TextField

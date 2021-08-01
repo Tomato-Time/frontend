@@ -100,19 +100,27 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
             />
             <Grid item>
               <IconButton aria-label="priority">
-                <PriorityHighIcon onClick={() => setShowdd((prev) => !prev)} />
+                <PriorityHighIcon
+                  onClick={() => {
+                    setShowDeadlinedd(false);
+                    setShowdd((prev) => !prev);
+                  }}
+                />
               </IconButton>
             </Grid>
             <Grid item>
               <IconButton aria-label="deadline">
                 <AccessAlarmIcon
-                  onClick={() => setShowDeadlinedd((prev) => !prev)}
+                  onClick={() => {
+                    setShowdd(false);
+                    setShowDeadlinedd((prev) => !prev);
+                  }}
                 />
               </IconButton>
             </Grid>
             <Grid item>
               <Button
-                onClick={() => console.log("Cancel")}
+                onClick={() => setAdd(false)}
                 variant="contained"
                 color="primary"
               >

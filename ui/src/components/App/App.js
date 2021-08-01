@@ -7,22 +7,25 @@ import { theme } from "../../index";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import { useState } from "react";
-import { UserContext } from "../../RoundContext";
+import { UserContext, DarkModeContext } from "../../RoundContext";
 
 function App() {
   const [user, setUser] = useState({});
+  const [darkTheme, setDarkTheme] = useState(true);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider darkTheme={darkTheme} theme={theme}>
       <CssBaseline />
       <div className="App">
         <BrowserRouter>
-          <UserContext.Provider value={{ user, setUser }}>
-            <Routes>
-              <Route path="/register" element={<Registration />} />
-              <Route exact path="/" element={<HomePage />} />
-              <Route path="/login" element={<SignInSide />} />
-            </Routes>
-          </UserContext.Provider>
+          <DarkModeContext.Provider value={{ darkTheme, setDarkTheme }}>
+            <UserContext.Provider value={{ user, setUser }}>
+              <Routes>
+                <Route path="/register" element={<Registration />} />
+                <Route exact path="/" element={<HomePage />} />
+                <Route path="/login" element={<SignInSide />} />
+              </Routes>
+            </UserContext.Provider>
+          </DarkModeContext.Provider>
         </BrowserRouter>
       </div>
     </ThemeProvider>

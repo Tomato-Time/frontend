@@ -56,9 +56,11 @@ export default function Todo({ todo, setTodos, edit }) {
           secondary={
             <React.Fragment>
               <Typography component="span" variant="body2" color="textPrimary">
-                priority: {todo.priority}
+                {todo.priority ? "priority: " + String(todo.priority) : null}
                 <br />
-                deadline: {todo.deadline}
+                {todo.deadline
+                  ? "deadline: " + String(todo.deadline).slice(0, 5)
+                  : null}
               </Typography>
             </React.Fragment>
           }
