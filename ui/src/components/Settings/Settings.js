@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 // import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -7,13 +7,16 @@ import Slider from "@material-ui/core/Slider";
 import "./Settings.css";
 import {
   Grid,
+  IconButton,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
-import VolumeOffOutlinedIcon from "@material-ui/icons/VolumeOffOutlined";
 import Switch from "@material-ui/core/Switch";
+import { DarkModeContext, SettingContext } from "../../RoundContext";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 
 export const userSettings = createContext();
 
@@ -30,21 +33,26 @@ function valuetext(value) {
 // possibly should use an array to map through silders
 
 export default function Settings() {
-  const [shortBreak, setShortBreak] = useState(5);
-  const [longBreak, setLongBreak] = useState(40);
-  const [working, setWorking] = useState(25);
+  const { darkTheme, setDarkTheme } = useContext(DarkModeContext);
+  const { shortBreak, setShortBreak } = useContext(SettingContext);
+  const { longBreak, setLongBreak } = useContext(SettingContext);
+  const { working, setWorking } = useContext(SettingContext);
+  const [volume, setVolume] = useState(true);
 
   const handleShortChange = (event, newValue) => {
     setShortBreak(newValue);
-    // console.log("the short break:", shortBreak);
+    console.log("the short break:", shortBreak);
   };
   const handleLongChange = (event, newValue) => {
     setLongBreak(newValue);
-    // console.log("the long break:", longBreak);
+    console.log("the long break:", longBreak);
   };
   const handleWorkChange = (event, newValue) => {
     setWorking(newValue);
-    // console.log("the working period:", working);
+    console.log("the working period:", working);
+  };
+  const handleDarkModeChange = (event) => {
+    setDarkTheme(event.target.checked);
   };
 
   const classes = useStyles();
@@ -126,13 +134,19 @@ export default function Settings() {
           <ListItem className="muteSection">
             <ListItemText primary="Mute" />
             <ListItemIcon>
-              <VolumeOffOutlinedIcon />
+              <IconButton aria-label="volume">
+                {volume ? (
+                  <VolumeUpIcon onClick={() => setVolume((sound) => !sound)} />
+                ) : (
+                  <VolumeOffIcon onClick={() => setVolume((sound) => !sound)} />
+                )}
+              </IconButton>
             </ListItemIcon>
           </ListItem>
           <ListItem className="darkModeSection">
             <ListItemText primary="Dark mode" />
             <ListItemSecondaryAction>
-              <Switch />
+              <Switch checked={darkTheme} onChange={handleDarkModeChange} />
             </ListItemSecondaryAction>
           </ListItem>
           <ListItem className="messageSection">

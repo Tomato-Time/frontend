@@ -25,7 +25,7 @@ export default function TimerIcons(props) {
       )}
       <SkipNextIcon
         style={{ fontSize: "50px", color: "E3ECFF" }}
-        onClick={props.timerUp}
+        onClick={props.nextRound}
       />
     </div>
   );

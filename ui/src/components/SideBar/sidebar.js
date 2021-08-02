@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -17,7 +17,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import { shadows } from "@material-ui/system";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
 
@@ -26,6 +25,8 @@ import Modal from "../Modal/Modal";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../RoundContext";
 
 const drawerWidth = 240;
 
@@ -104,6 +105,7 @@ export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const { user, setUser } = useContext(UserContext);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -120,22 +122,27 @@ export default function MiniDrawer() {
     setOpenModal(true);
     setOpenModal(text);
   };
-  console.log("OpenModal boolean:", openModal);
 
   // USER ICON
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openUserIcon = Boolean(anchorEl);
 
+  const navigate = useNavigate();
   const handleMenu = (event) => {
     console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
 
-    var title = document.querySelector("title");
-    title.innerText = "Focus Time";
+    // var title = document.querySelector("title");
+    // title.innerText = "Focus Time";
   };
 
   const handleClose = () => {
+    // logout a user
     setAnchorEl(null);
+    setUser({});
+    // new page view of landing page
+    navigate("/login");
+    console.log("the user logged in is:", user);
   };
 
   return (
