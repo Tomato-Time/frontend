@@ -27,6 +27,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../RoundContext";
+import apiClient from "../../services/apiClient";
+import { Button, Tooltip } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -137,13 +139,29 @@ export default function MiniDrawer() {
   };
 
   const handleClose = () => {
-    // logout a user
     setAnchorEl(null);
+  };
+
+  const handleLogOut = () => {
     setUser({});
+    // clear the token
+    apiClient.setToken();
     // new page view of landing page
     navigate("/login");
     console.log("the user logged in is:", user);
   };
+  function notAllowed(text) {
+    console.log("user", user);
+    // if a user is not logged in they don't have access to
+    // todo or statistics
+    if (text === "To-Do" && !user.email) {
+      return true;
+    } else if (text === "Statistics" && !user.email) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -183,7 +201,7 @@ export default function MiniDrawer() {
               <AccountCircle />
             </IconButton>
             <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -215,23 +233,33 @@ export default function MiniDrawer() {
         <List>
           {["To-Do", "Statistics", "Work Flow", "Settings", "About"].map(
             (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <div>
-                  <ListItemText
+              <Tooltip
+                arrow
+                placement="top-start"
+                title={
+                  notAllowed(text) ? "Log in for access to this feature" : ""
+                }
+              >
+                <span>
+                  <ListItem
+                    className={classes.listItems}
                     button
-                    onClick={() => handleModalOpen(text)}
-                    primary={text}
-                  />
-                  {/* <Modal
-                    text={text}
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
-                  /> */}
-                </div>
-              </ListItem>
+                    disabled={notAllowed(text)}
+                    key={text}
+                  >
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <div>
+                      <ListItemText
+                        button
+                        onClick={() => handleModalOpen(text)}
+                        primary={text}
+                      />
+                    </div>
+                  </ListItem>
+                </span>
+              </Tooltip>
             )
           )}
           <Modal openModal={openModal} setOpenModal={setOpenModal} />
