@@ -28,6 +28,7 @@ import Menu from "@material-ui/core/Menu";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../RoundContext";
 import apiClient from "../../services/apiClient";
+import { Button, Tooltip } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -231,18 +232,33 @@ export default function MiniDrawer() {
         <List>
           {["To-Do", "Statistics", "Work Flow", "Settings", "About"].map(
             (text, index) => (
-              <ListItem button disabled={notAllowed(text)} key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <div>
-                  <ListItemText
+              <Tooltip
+                arrow
+                placement="top-start"
+                title={
+                  notAllowed(text) ? "Log in for access to this feature" : ""
+                }
+              >
+                <span>
+                  <ListItem
+                    className={classes.listItems}
                     button
-                    onClick={() => handleModalOpen(text)}
-                    primary={text}
-                  />
-                </div>
-              </ListItem>
+                    disabled={notAllowed(text)}
+                    key={text}
+                  >
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <div>
+                      <ListItemText
+                        button
+                        onClick={() => handleModalOpen(text)}
+                        primary={text}
+                      />
+                    </div>
+                  </ListItem>
+                </span>
+              </Tooltip>
             )
           )}
           <Modal openModal={openModal} setOpenModal={setOpenModal} />

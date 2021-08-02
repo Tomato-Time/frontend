@@ -123,7 +123,7 @@ export default function Timer() {
     <div className="timerAndDrawer">
       <div className="App">
         <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
-        <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2>
+        {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
           {round % 2 === 0 ? (
             <CountdownCircleTimer
