@@ -64,6 +64,17 @@ export default function Timer() {
     setKey((prevKey) => prevKey + 1);
   }
 
+  // to set the correct break time
+  useEffect(() => {
+    if (round % 7 === 0) {
+      setKey((prevKey) => prevKey + 1);
+      setBreakTime(longBreak);
+    } else {
+      setKey((prevKey) => prevKey + 1);
+      setBreakTime(shortBreak);
+    }
+  }, [longBreak, round, shortBreak]);
+
   // function to properly format time
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
@@ -135,7 +146,7 @@ export default function Timer() {
             <CountdownCircleTimer
               isPlaying={isPlaying}
               key={key}
-              duration={shortBreak}
+              duration={breakTime}
               colors={breakColors}
               onComplete={() => {
                 // do stuff here
