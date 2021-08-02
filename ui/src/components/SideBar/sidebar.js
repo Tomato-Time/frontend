@@ -132,8 +132,8 @@ export default function MiniDrawer() {
     console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
 
-    var title = document.querySelector("title");
-    title.innerText = "Focus Time";
+    // var title = document.querySelector("title");
+    // title.innerText = "Focus Time";
   };
 
   const handleClose = () => {

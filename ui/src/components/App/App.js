@@ -12,6 +12,8 @@ import { UserContext, DarkModeContext } from "../../RoundContext";
 function App() {
   const [user, setUser] = useState({});
   const [darkTheme, setDarkTheme] = useState(true);
+  var title = document.querySelector("title");
+  title.innerText = "Focus Time";
   return (
     <ThemeProvider darkTheme={darkTheme} theme={theme}>
       <CssBaseline />

@@ -8,8 +8,12 @@ import apiClient from "../../services/apiClient";
 
 export default function Calendar() {
   const today = new Date();
-  // const month = today.getMonth();
-
+  let firstOfMonth = new Date().toISOString().slice(0, 7) + "-1";
+  console.log(firstOfMonth);
+  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+    .toISOString()
+    .slice(0, 10);
+  console.log(lastDayOfMonth);
   const randomValues = getRange(200).map((index) => {
     return {
       date: shiftDate(today, -index),
@@ -29,7 +33,6 @@ export default function Calendar() {
     <div className="calendar-box">
       {/* <h1>react-calendar-heatmap demos</h1>
           <p>Random values with onClick and react-tooltip</p> */}
-      <h2>data</h2>
       <CalendarHeatmap
         // startDate={shiftDate(today, -30)}
         startDate={new Date("2021-07-1")}

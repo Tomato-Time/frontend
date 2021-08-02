@@ -68,6 +68,16 @@ export default function Timer() {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
     const seconds = remainingTime % 60;
+    // to display timer in title bar
+    var title = document.querySelector("title");
+    if (seconds < 10 && isPlaying) {
+      title.innerText = `${minutes}:0${seconds}`;
+    } else if (seconds > 10 && isPlaying) {
+      title.innerText = `${minutes}:${seconds}`;
+    } else if (!isPlaying) {
+      title.innerText = "Focus Time";
+    }
+    /////
     if (seconds < 10) {
       return (
         <div style={{ color: "white" }}>
@@ -96,16 +106,6 @@ export default function Timer() {
       fetchUser();
     }
   }, [setUser]);
-
-  // useEffect(() => {
-  //   console.log("the current round", round);
-  //   // setting the correct break time depending on break vs last break of pomodoro
-  //   if (round % 8 === 0) {
-  //     setBreakTime(longBreak);
-  //   } else {
-  //     setBreakTime(shortBreak);
-  //   }
-  // }, [round, longBreak, shortBreak]);
 
   return (
     <div className="timerAndDrawer">
