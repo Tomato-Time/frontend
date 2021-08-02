@@ -8,7 +8,7 @@ import apiClient from "../../services/apiClient";
 
 export default function Timer() {
   const { round, setRound } = useContext(RoundContext);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { shortBreak } = useContext(SettingContext);
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working } = useContext(SettingContext);
@@ -51,8 +51,9 @@ export default function Timer() {
     // console.log("round count is", round);
     setIsPlaying(false);
     setKey((prevKey) => prevKey + 1);
-    if (round % 2 === 0) {
+    if (round % 2 === 0 && user.email) {
       addToUserTime(working);
+      console.log("time was added");
     }
   }
 
