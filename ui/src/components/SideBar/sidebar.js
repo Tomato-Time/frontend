@@ -139,8 +139,10 @@ export default function MiniDrawer() {
   };
 
   const handleClose = () => {
-    // logout a user
     setAnchorEl(null);
+  };
+
+  const handleLogOut = () => {
     setUser({});
     // clear the token
     apiClient.setToken();
@@ -148,7 +150,6 @@ export default function MiniDrawer() {
     navigate("/login");
     console.log("the user logged in is:", user);
   };
-
   function notAllowed(text) {
     console.log("user", user);
     // if a user is not logged in they don't have access to
@@ -200,7 +201,7 @@ export default function MiniDrawer() {
               <AccountCircle />
             </IconButton>
             <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
             </Menu>
           </div>
         </Toolbar>
