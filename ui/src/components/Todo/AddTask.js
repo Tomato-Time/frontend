@@ -13,6 +13,8 @@ import "./AddTask.css";
 import Dropdown from "./Dropdown";
 
 export default function AddTask({ todos, setTodos, add, setAdd }) {
+  const [priority, setPriority] = useState(null);
+  const [deadline, setDeadline] = useState(null);
   const [showdd, setShowdd] = useState(false);
   const [showDeadlinedd, setShowDeadlinedd] = useState(false);
   const addTodo = (newTodo) => {
@@ -36,8 +38,8 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
 
     const { data } = await apiClient.addTask({
       input: form.input,
-      priority: "3",
-      deadline: "12:00",
+      priority: priority,
+      deadline: deadline,
       user_id: "",
     });
     console.log("the data:", data.newTask);
@@ -45,7 +47,10 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
       addTodo(data.newTask);
       console.log("todos:", todos);
       // set to a blank form
-      setForm({ input: "", priority: "3", deadline: "12:00", user_id: "" });
+      setForm({ input: "", priority: "", deadline: "", user_id: "" });
+      // set the priority and deadline back to null
+      setPriority(null);
+      setDeadline(null);
     }
   };
   // fetch new todos as they get added
@@ -90,22 +95,35 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
               showdd={showdd}
               setShowdd={setShowdd}
               showDeadlinedd={showDeadlinedd}
+              setShowDeadlinedd={setShowDeadlinedd}
+              priority={priority}
+              setPriority={setPriority}
+              deadline={deadline}
+              setDeadline={setDeadline}
             />
             <Grid item>
               <IconButton aria-label="priority">
-                <PriorityHighIcon onClick={() => setShowdd((prev) => !prev)} />
+                <PriorityHighIcon
+                  onClick={() => {
+                    setShowDeadlinedd(false);
+                    setShowdd((prev) => !prev);
+                  }}
+                />
               </IconButton>
             </Grid>
             <Grid item>
               <IconButton aria-label="deadline">
                 <AccessAlarmIcon
-                  onClick={() => setShowDeadlinedd((prev) => !prev)}
+                  onClick={() => {
+                    setShowdd(false);
+                    setShowDeadlinedd((prev) => !prev);
+                  }}
                 />
               </IconButton>
             </Grid>
             <Grid item>
               <Button
-                onClick={() => console.log("Cancel")}
+                onClick={() => setAdd(false)}
                 variant="contained"
                 color="primary"
               >

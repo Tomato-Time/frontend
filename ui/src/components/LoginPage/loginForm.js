@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 // import clsx from 'clsx';
@@ -9,7 +9,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, alpha, StylesProvider } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./loginForm.css";
+import { useNavigate } from "react-router-dom";
+import apiClient from "../../services/apiClient";
 // import { withStyles } from '@material-ui/core/styles';
+import { UserContext } from "../../RoundContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -18,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     width: "50ch",
-
   },
 
   form: {
@@ -42,13 +44,12 @@ const useStyles = makeStyles((theme) => ({
 
   forgotLink: {
     margin: theme.spacing(4, 20, 2), //changes the position
-    alignItems: 'right',
+    alignItems: "right",
     marginTop: theme.spacing(15),
     // marginLeft: theme.spacing(34),
     color: "#E3ECFF",
     width: 50,
   },
-
 
   lnameInput: {
     borderRadius: 7,
@@ -93,84 +94,133 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    // if user is already logged in,
+    // redirect them to the timer page
+    if (user?.email) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const handleOnInputChange = (event) => {
+    if (event.target.name === "email") {
+      if (event.target.value.indexOf("@") === -1) {
+        setErrors((e) => ({ ...e, email: "Please enter a valid email." }));
+      } else {
+        setErrors((e) => ({ ...e, email: null }));
+      }
+    }
+    setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
+  };
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setErrors((e) => ({ ...e, form: null }));
+
+    const { data, error } = await apiClient.loginUser({
+      email: form.email,
+      password: form.password,
+    });
+    if (error) setErrors((e) => ({ ...e, form: error }));
+    if (data?.user) {
+      setUser(data.user);
+      apiClient.setToken(data.token);
+    }
+  };
 
   return (
-    <StylesProvider injectFirst>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          
-          <Typography component="h1" variant="h5">
-            Log In
-          </Typography>
+    // <StylesProvider injectFirst>
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Log In
+        </Typography>
 
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-          
-              {/* EMAIL */}
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.longInput}
-                  // variant="filled"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
+        {Boolean(errors.form) && <span className="error">{errors.form}</span>}
+        <br />
 
-              {/* PASSWORD */}
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.longInput}
-                  // variant="filled"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-              </Grid>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            {/* EMAIL */}
+            <Grid item xs={12}>
+              <TextField
+                className={classes.longInput}
+                // variant="filled"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                value={form.email}
+                autoComplete="email"
+                onChange={handleOnInputChange}
+              />
+              {errors.email && <span className="error">{errors.email}</span>}
+            </Grid>
 
-                   {/* FORGOT PASSWORD LINK */}
+            {/* PASSWORD */}
+            <Grid item xs={12}>
+              <TextField
+                className={classes.longInput}
+                // variant="filled"
+                required
+                fullWidth
+                name="password"
+                value={form.password}
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={handleOnInputChange}
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </Grid>
+
+            {/* FORGOT PASSWORD LINK */}
             <div className="forgotLink"></div>
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2" className={classes.forgotLink}>
-                  Forgot Password? 
+                  Forgot Password?
                 </Link>
               </Grid>
             </Grid>
 
+            {/* LOG IN BUTTON */}
+          </Grid>
+          <Button
+            type="submit"
+            width="50px"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleOnSubmit}
+          >
+            LOG IN
+          </Button>
 
-              {/* LOG IN BUTTON */}
-           </Grid>
-            <Button
-              type="submit"
-              width="50px"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              LOG IN
-            </Button>
-
-            {/* REGISTER LINK */}
-            <div className="registerLink"></div>
-            <Grid container>
-              <Grid item>
-                <Link href="#" variant="body2" className={classes.link}>
-                  Don't have an account? Register
-                </Link>
-              </Grid>
+          {/* REGISTER LINK */}
+          <div className="registerLink"></div>
+          <Grid container>
+            <Grid item>
+              <Link href="#" variant="body2" className={classes.link}>
+                Don't have an account? Register
+              </Link>
             </Grid>
-          </form>
-        </div>
-        <Box mt={5}></Box>
-      </Container>
-    </StylesProvider>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}></Box>
+    </Container>
+    // </StylesProvider>
   );
 }

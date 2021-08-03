@@ -60,6 +60,7 @@ export const theme = createTheme({
 
   palette: {
     background: {
+      // this changes the color of paper
       default: "#292B3E",
     },
     type: "dark",
@@ -67,9 +68,8 @@ export const theme = createTheme({
 });
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>,
-
+  // <ThemeProvider theme={theme}>
+  <App />,
+  // </ThemeProvider>
   document.getElementById("root")
 );
