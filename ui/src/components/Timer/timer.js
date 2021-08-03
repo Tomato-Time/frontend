@@ -64,6 +64,8 @@ export default function Timer() {
     setKey((prevKey) => prevKey + 1);
   }
 
+  
+
   // to set the correct break time
   useEffect(() => {
     if (round % 7 === 0) {
@@ -88,14 +90,20 @@ export default function Timer() {
     } else if (!isPlaying) {
       title.innerText = "Focus Time";
     }
+    
+    // if (remainingTime === 0){
+    //   return <div className="inside-timer">Too lale..</div>
+    // } 
+
     /////
     if (seconds < 10) {
       return (
+        
         <div style={{ color: "white" }}>
           {minutes}:0{seconds}
         </div>
-      );
-    } else {
+      )
+    }else {
       return (
         <div style={{ color: "white" }}>
           {minutes}:{seconds}
@@ -103,6 +111,8 @@ export default function Timer() {
       );
     }
   };
+
+  
 
   // logging a user in to our app
   useEffect(() => {
@@ -118,11 +128,13 @@ export default function Timer() {
     }
   }, [setUser]);
 
+
+
   return (
     <div className="timerAndDrawer">
       <div className="App">
         <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
-        <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2>
+        {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
           {round % 2 === 0 ? (
             <CountdownCircleTimer
@@ -141,6 +153,7 @@ export default function Timer() {
             >
               {/* this prop is for the time format */}
               {children}
+              
             </CountdownCircleTimer>
           ) : (
             <CountdownCircleTimer
@@ -159,6 +172,7 @@ export default function Timer() {
             >
               {/* this prop is for the time format */}
               {children}
+              
             </CountdownCircleTimer>
           )}
         </div>
