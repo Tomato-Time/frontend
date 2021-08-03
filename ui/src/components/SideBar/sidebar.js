@@ -151,7 +151,6 @@ export default function MiniDrawer() {
     console.log("the user logged in is:", user);
   };
   function notAllowed(text) {
-    console.log("user", user);
     // if a user is not logged in they don't have access to
     // todo or statistics
     if (text === "To-Do" && !user.email) {
