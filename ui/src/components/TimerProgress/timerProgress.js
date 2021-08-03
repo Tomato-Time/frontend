@@ -188,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return [null, null, null, null, null];
+  return  [null, null, null, null];
 }
 
 export default function CustomizedSteppers() {
@@ -212,8 +212,13 @@ export default function CustomizedSteppers() {
   // };
 
   useEffect(() => {
-    if (round === 2 || round === 4 || round === 6 || round === 8) {
+    if (round === 2 || round === 4 || round === 6) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else {
+      if (round === 8){         //resets timer after 1 session is done
+        setRound(0);
+        setActiveStep(0);
+      }
     }
   }, [round]);
 
@@ -225,6 +230,7 @@ export default function CustomizedSteppers() {
         activeStep={activeStep}
         connector={<QontoConnector />}
         style={{ backgroundColor: "transparent" }}
+        
       >
         {steps.map((label) => (
           <Step key={label}>
@@ -233,12 +239,17 @@ export default function CustomizedSteppers() {
         ))}
       </Stepper>
 
+      <Step>
+
+      
+      </Step>
+
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>
+            {/* <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
-            </Typography>
+            </Typography> */}
             {/* <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button> */}
