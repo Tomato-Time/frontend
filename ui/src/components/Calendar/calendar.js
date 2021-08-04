@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import ReactTooltip from "react-tooltip";
 import "./calendar.css";
-// import { Button } from "@material-ui/core";
 import apiClient from "../../services/apiClient";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { Icon, IconButton, Tooltip } from "@material-ui/core";
+import { IconButton, Tooltip } from "@material-ui/core";
 
 export default function Calendar() {
   const monthNames = [
@@ -24,38 +23,55 @@ export default function Calendar() {
     "November",
     "December",
   ];
-  const [minutes, setMinutes] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [userMinData, setUserMinData] = useState([]);
+  // const [minutes, setMinutes] = useState(0);
   const today = new Date();
   const [month, setMonth] = useState(today.getMonth());
-  // let firstOfMonth = new Date().toISOString().slice(0, 7) + "-01";
   const firstOfMonth = new Date(today.getFullYear(), month, 1)
     .toISOString()
     .slice(0, 10);
-  // console.log(firstOfMonth);
   const lastDayOfMonth = new Date(today.getFullYear(), month + 1, 0)
     .toISOString()
     .slice(0, 10);
   const displayMonth = monthNames[month % 12];
 
+  // getting user data with total rounds summed per date
+  useEffect(() => {
+    const fetchUserRounds = async () => {
+      // make api call
+      const { data } = await apiClient.getUserRoundCount();
+      // console.log(data);
+      if (data) setUserData(data.userRounds);
+      // console.log("the data from the api call", data);
+    };
+    fetchUserRounds();
+  }, []);
+
+  // getting user data with minutes summed per date
   useEffect(() => {
     const fetchUserMinutes = async () => {
       // make api call
       const { data } = await apiClient.getUserMinutes();
-      if (data) setMinutes(data.userTimeLogged);
-      // console.log("the data from the api call", minutes);
+      // console.log(data);
+      if (data) {
+        setUserMinData(data.userTimeLogged);
+      }
     };
     fetchUserMinutes();
   }, []);
+
   // for what month do we have data?
   //do not allow the user to look before that month
   // const beginMonthForUser = parseInt(minutes[0].date_logged.slice(5, 7));
-  const dataFromUser = minutes.map((entry) => {
+
+  // data used in calendar
+  const dataFromUser = userData.map((entry) => {
     return {
       date: entry.date_logged.slice(0, 10),
-      count: entry.sum / 25,
+      count: Math.ceil(entry.sum / 4),
     };
   });
-  // console.log(dataFromUser);
   return (
     <div className="calendar-box">
       <div className="month">
@@ -96,7 +112,6 @@ export default function Calendar() {
           gutterSize={2}
           showWeekdayLabels={false}
           showMonthLabels={false}
-          // weekdayLabels={["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]}
           classForValue={(value) => {
             if (!value) {
               return "color-empty";
@@ -115,6 +130,14 @@ export default function Calendar() {
         />
         <ReactTooltip border={false} type={"dark"} />
       </div>
+      {/* <div className="displayUserMinutes">
+        <div>
+          <h2>Total focus minutes for today</h2>
+        </div>
+        <div className="numberMinutesBox">
+          <h2 className="numberMinutes">{minutes}</h2>
+        </div>
+      </div> */}
     </div>
   );
 
@@ -123,12 +146,4 @@ export default function Calendar() {
     newDate.setDate(newDate.getDate() + numDays);
     return newDate;
   }
-
-  // function getRange(count) {
-  //   return Array.from({ length: count }, (_, i) => i);
-  // }
-
-  // function getRandomInt(min, max) {
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
 }

@@ -79,7 +79,16 @@ class ApiClient {
   // get the minutes associated with user
   async getUserMinutes(minutes) {
     return await this.request({
-      endpoint: `TimerSession`,
+      endpoint: `TimerSession/minutes`,
+      method: `GET`,
+      data: minutes,
+    });
+  }
+
+  // get round count associated with user
+  async getUserRoundCount(minutes) {
+    return await this.request({
+      endpoint: `TimerSession/round`,
       method: `GET`,
       data: minutes,
     });
