@@ -39,7 +39,13 @@ export default function Todo({ todo, setTodos, edit }) {
     // setTodos
     // if (data) setTodos();
   };
-
+  const hour = parseInt(String(todo.deadline).slice(0, 2));
+  const formatHour = hour % 12;
+  const minutes = String(todo.deadline).slice(2, 5);
+  const morningOrNight = () => {
+    if (hour > 12) return " PM";
+    else return " AM";
+  };
   return (
     <List className="todoList">
       <ListItem>
@@ -59,7 +65,7 @@ export default function Todo({ todo, setTodos, edit }) {
                 {todo.priority ? "priority: " + String(todo.priority) : null}
                 <br />
                 {todo.deadline
-                  ? "deadline: " + String(todo.deadline).slice(0, 5)
+                  ? "deadline: " + formatHour + minutes + morningOrNight()
                   : null}
               </Typography>
             </React.Fragment>

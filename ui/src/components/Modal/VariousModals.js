@@ -4,7 +4,6 @@ import Calendar from "../Calendar/calendar";
 import AboutUs from "../AboutUs/aboutUs";
 
 export default function VariousModals({ openModal }) {
-  console.log(openModal);
   if (openModal === "Settings") {
     return <Settings />;
   }

@@ -7,7 +7,7 @@ import "./calendar.css";
 import apiClient from "../../services/apiClient";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { Container, Icon, IconButton } from "@material-ui/core";
+import { Icon, IconButton, Tooltip } from "@material-ui/core";
 
 export default function Calendar() {
   const monthNames = [
@@ -37,7 +37,7 @@ export default function Calendar() {
   const lastDayOfMonth = new Date(today.getFullYear(), month + 1, 0)
     .toISOString()
     .slice(0, 10);
-  const displayMonth = monthNames[month];
+  const displayMonth = monthNames[month % 12];
 
   useEffect(() => {
     const fetchUserRounds = async () => {
@@ -72,57 +72,64 @@ export default function Calendar() {
     };
   });
   // console.log(dataFromUser);
-  // console.log(minutes);
   return (
     <div className="calendar-box">
-      <div className="calendar-month-days">
-        <div className="month">
-          <IconButton>
-            <ArrowBackIosIcon onClick={() => setMonth((prev) => prev - 1)} />
-          </IconButton>
-          <h1>{displayMonth}</h1>
-          <IconButton>
-            <ArrowForwardIosIcon onClick={() => setMonth((prev) => prev + 1)} />
-          </IconButton>
-        </div>
-        <div className="daysOfWeek">
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-          <span>Sun</span>
-        </div>
-        <div className="calendar">
-          <CalendarHeatmap
-            startDate={shiftDate(firstOfMonth, -1)}
-            endDate={lastDayOfMonth}
-            horizontal={false}
-            values={dataFromUser}
-            showOutOfRangeDays={false}
-            gutterSize={2}
-            showWeekdayLabels={false}
-            showMonthLabels={false}
-            // weekdayLabels={["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]}
-            classForValue={(value) => {
-              if (!value) {
-                return "color-empty";
-              }
-              return `color-github-${value.count}`;
-            }}
-            tooltipDataAttrs={(value) => {
-              return {
-                "data-tip": `${
-                  value.date ? value.date : ""
-                } the amount of pomodoro sessions done: ${
-                  value.count ? value.count : 0
-                }`,
-              };
-            }}
-          />
-          <ReactTooltip border={false} type={"dark"} />
-        </div>
+      <div className="month">
+        <Tooltip title="no data before this month">
+          <span>
+            <IconButton disabled={true}>
+              <ArrowBackIosIcon onClick={() => setMonth((prev) => prev - 1)} />
+            </IconButton>
+          </span>
+        </Tooltip>
+        <h1>{displayMonth}</h1>
+        <Tooltip title="no data past current month">
+          <span>
+            <IconButton disabled={true}>
+              <ArrowForwardIosIcon
+                onClick={() => setMonth((prev) => prev + 1)}
+              />
+            </IconButton>
+          </span>
+        </Tooltip>
+      </div>
+      <div className="daysOfWeek">
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+        <span>Sun</span>
+      </div>
+      <div className="calendar">
+        <CalendarHeatmap
+          startDate={shiftDate(firstOfMonth, -1)}
+          endDate={lastDayOfMonth}
+          horizontal={false}
+          values={dataFromUser}
+          showOutOfRangeDays={false}
+          gutterSize={2}
+          showWeekdayLabels={false}
+          showMonthLabels={false}
+          // weekdayLabels={["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]}
+          classForValue={(value) => {
+            if (!value) {
+              return "color-empty";
+            }
+            return `color-github-${value.count}`;
+          }}
+          tooltipDataAttrs={(value) => {
+            return {
+              "data-tip": `${
+                value.date ? value.date : ""
+              } the amount of pomodoro sessions done: ${
+                value.count ? value.count : 0
+              }`,
+            };
+          }}
+        />
+        <ReactTooltip border={false} type={"dark"} />
       </div>
       <div className="displayUserMinutes">
         <div>
