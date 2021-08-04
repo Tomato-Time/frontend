@@ -31,6 +31,50 @@ function valuetext(value) {
   return `${value}`;
 }
 // possibly should use an array to map through silders
+const workingPeriodMarks = [
+  {
+    value: 15,
+    label: "15",
+  },
+  {
+    value: 25,
+    label: "25",
+  },
+  {
+    value: 40,
+    label: "40",
+  },
+];
+
+const shortBreakPeriodMarks = [
+  {
+    value: 3,
+    label: "3",
+  },
+  {
+    value: 5,
+    label: "5",
+  },
+  {
+    value: 20,
+    label: "20",
+  },
+];
+
+const longBreakPeriodMarks = [
+  {
+    value: 20,
+    label: "20",
+  },
+  {
+    value: 40,
+    label: "40",
+  },
+  {
+    value: 80,
+    label: "80",
+  },
+];
 
 export default function Settings() {
   const { darkTheme, setDarkTheme } = useContext(DarkModeContext);
@@ -84,7 +128,7 @@ export default function Settings() {
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={5}
-              marks
+              marks={workingPeriodMarks}
               min={15}
               max={40}
             />
@@ -100,7 +144,7 @@ export default function Settings() {
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={1}
-              marks
+              marks={shortBreakPeriodMarks}
               min={3}
               max={20}
             />
@@ -116,7 +160,7 @@ export default function Settings() {
               aria-labelledby="discrete-slider"
               valueLabelDisplay="auto"
               step={4}
-              marks
+              marks={longBreakPeriodMarks}
               min={20}
               max={80}
             />

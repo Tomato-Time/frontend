@@ -42,10 +42,10 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
       deadline: deadline,
       user_id: "",
     });
-    console.log("the data:", data.newTask);
+    // console.log("the data:", data.newTask);
     if (data) {
       addTodo(data.newTask);
-      console.log("todos:", todos);
+      // console.log("todos:", todos);
       // set to a blank form
       setForm({ input: "", priority: "", deadline: "", user_id: "" });
       // set the priority and deadline back to null
@@ -58,7 +58,7 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
     const fetchTasks = async () => {
       // make api call
       const { data } = await apiClient.listTodos();
-      console.log("the data from the api call", data);
+      // console.log("the data from the api call", data);
       // setTodos
       if (data) setTodos(data.getTasks);
     };
