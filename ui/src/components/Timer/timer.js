@@ -41,6 +41,7 @@ export default function Timer() {
     const { data } = await apiClient.addToUserTimeLog({
       minutes_logged: working,
       date_logged: new Date().toISOString().slice(0, 10),
+      round_count: 1,
       user_id: "",
     });
     if (data) console.log(data);
@@ -64,8 +65,6 @@ export default function Timer() {
     setIsPlaying(false);
     setKey((prevKey) => prevKey + 1);
   }
-
-  
 
   // to set the correct break time
   useEffect(() => {
@@ -91,20 +90,19 @@ export default function Timer() {
     } else if (!isPlaying) {
       title.innerText = "Focus Time";
     }
-    
+
     // if (remainingTime === 0){
     //   return <div className="inside-timer">Too lale..</div>
-    // } 
+    // }
 
     /////
     if (seconds < 10) {
       return (
-        
         <div style={{ color: "white" }}>
           {minutes}:0{seconds}
         </div>
-      )
-    }else {
+      );
+    } else {
       return (
         <div style={{ color: "white" }}>
           {minutes}:{seconds}
@@ -112,8 +110,6 @@ export default function Timer() {
       );
     }
   };
-
-  
 
   // logging a user in to our app
   useEffect(() => {
@@ -128,8 +124,6 @@ export default function Timer() {
       fetchUser();
     }
   }, [setUser]);
-
-
 
   return (
     <div className="timerAndDrawer">
@@ -154,7 +148,6 @@ export default function Timer() {
             >
               {/* this prop is for the time format */}
               {children}
-              
             </CountdownCircleTimer>
           ) : (
             <CountdownCircleTimer
@@ -173,7 +166,6 @@ export default function Timer() {
             >
               {/* this prop is for the time format */}
               {children}
-              
             </CountdownCircleTimer>
           )}
         </div>

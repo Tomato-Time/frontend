@@ -25,7 +25,20 @@
   display: flex;
   justify-content: space-evenly;
 }
-
+/* styling for user minutes */
+.numberMinutes {
+  font-size: 60px;
+}
+/* .numberMinutesBox {
+  display: flex;
+  justify-content: center;
+} */
+.displayUserMinutes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* .react-calendar-heatmap {
   margin-top: 50px;
   padding: 20px;
