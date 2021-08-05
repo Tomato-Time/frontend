@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Todo({ todo, setTodos, edit }) {
+export default function Todo({ todo, setTodos }) {
   const [checked, setChecked] = useState(false);
   const classes = useStyles(checked);
 
@@ -71,13 +71,11 @@ export default function Todo({ todo, setTodos, edit }) {
             </React.Fragment>
           }
         />
-        {edit ? (
-          <ListItemIcon>
-            <IconButton onClick={() => deleteTask(todo.id)} aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </ListItemIcon>
-        ) : null}
+        <ListItemIcon>
+          <IconButton onClick={() => deleteTask(todo.id)} aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </ListItemIcon>
       </ListItem>
     </List>
   );
