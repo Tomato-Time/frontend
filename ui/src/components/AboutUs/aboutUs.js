@@ -23,7 +23,7 @@ export default function DraggableDialog() {
             <br />
             4. Then enjoy a five-minute break.
             <br />
-            5. After four rounds, take a longer, more restorative 15-30
+            5. After four rounds, take a longer, more restorative 40
             minute break.
             <br />
             <br />
@@ -33,9 +33,21 @@ export default function DraggableDialog() {
             <br />
             <br />
 
+            Our app combines a sleek look with features such as a to-do list, a calendar that tracks your pomodoro sessions, and the ability to customize the time intervals! ⏲
+
+            <br />
+            <br />
+
+            The main feature of our app is the Pomodoro Timer! Underneath it are three buttons, allowing you to reset the current round you are on, play/pause the timer, skip to the next round respectively. The progress bar underneath the buttons keeps track of your current round in the session.
+
+            <br />
+            <br />
             <div className="bold">
-            It's biggest strength is in it's simplicity! 🍅
+            It's biggest strength is in it's simplicity! 💡
             </div>
+
+            <br/>
+            
             
         </div>    
       </Typography>
