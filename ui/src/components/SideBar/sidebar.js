@@ -19,6 +19,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
+import Icon from "./icon";
 
 // user icon
 // import IconButton from '@material-ui/core/IconButton';   already declared
@@ -230,37 +231,35 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {["To-Do", "Statistics", "Work Flow", "Settings", "About"].map(
-            (text, index) => (
-              <Tooltip
-                arrow
-                placement="top-start"
-                title={
-                  notAllowed(text) ? "Log in for access to this feature" : ""
-                }
-              >
-                <span>
-                  <ListItem
-                    className={classes.listItems}
-                    button
-                    disabled={notAllowed(text)}
-                    key={text}
-                  >
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <div>
-                      <ListItemText
-                        button
-                        onClick={() => handleModalOpen(text)}
-                        primary={text}
-                      />
-                    </div>
-                  </ListItem>
-                </span>
-              </Tooltip>
-            )
-          )}
+          {["To-Do", "Statistics", "Settings", "About"].map((text, index) => (
+            <Tooltip
+              arrow
+              placement="top-start"
+              title={
+                notAllowed(text) ? "Log in for access to this feature" : ""
+              }
+            >
+              <span>
+                <ListItem
+                  className={classes.listItems}
+                  button
+                  disabled={notAllowed(text)}
+                  key={text}
+                >
+                  <ListItemIcon>
+                    <Icon index={index} />
+                  </ListItemIcon>
+                  <div>
+                    <ListItemText
+                      button
+                      onClick={() => handleModalOpen(text)}
+                      primary={text}
+                    />
+                  </div>
+                </ListItem>
+              </span>
+            </Tooltip>
+          ))}
           <Modal openModal={openModal} setOpenModal={setOpenModal} />
         </List>
       </Drawer>
