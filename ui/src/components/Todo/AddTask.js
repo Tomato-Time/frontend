@@ -40,6 +40,7 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
       input: form.input,
       priority: priority,
       deadline: deadline,
+      checked: false,
       user_id: "",
     });
     // console.log("the data:", data.newTask);
@@ -53,17 +54,6 @@ export default function AddTask({ todos, setTodos, add, setAdd }) {
       setDeadline(null);
     }
   };
-  // fetch new todos as they get added
-  useEffect(() => {
-    const fetchTasks = async () => {
-      // make api call
-      const { data } = await apiClient.listTodos();
-      // console.log("the data from the api call", data);
-      // setTodos
-      if (data) setTodos(data.getTasks);
-    };
-    fetchTasks();
-  }, [setTodos]);
 
   // if the form is called then display the form
   if (add) {

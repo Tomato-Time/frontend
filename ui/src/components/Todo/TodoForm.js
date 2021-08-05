@@ -1,14 +1,26 @@
 import { IconButton } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
 import AddIcon from "@material-ui/icons/Add";
 import AddTask from "./AddTask";
+import apiClient from "../../services/apiClient";
 
 export default function TodoForm({ user }) {
   const [todos, setTodos] = useState([]);
   const [add, setAdd] = useState(false);
 
+  // fetch new todos as they get added
+  useEffect(() => {
+    const fetchTasks = async () => {
+      // make api call
+      const { data } = await apiClient.listTodos();
+      console.log("the data from the api call", data);
+      // setTodos
+      if (data) setTodos(data.getTasks);
+    };
+    fetchTasks();
+  }, [setTodos]);
   return (
     <div className="todoForm">
       <div className="todoIcons">
