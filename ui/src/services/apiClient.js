@@ -60,6 +60,14 @@ class ApiClient {
     });
   }
 
+  async completeTask(task) {
+    return await this.request({
+      endpoint: `task`,
+      method: `PUT`,
+      data: task,
+    });
+  }
+
   // delete a todo list item
   async deleteTask(taskId) {
     return await this.request({

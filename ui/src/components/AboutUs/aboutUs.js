@@ -23,7 +23,11 @@ export default function DraggableDialog() {
             <br />
             4. Then enjoy a five-minute break.
             <br />
+
             5. After four rounds, take a longer, more restorative 40
+
+            
+
             minute break.
             <br />
             <br />
@@ -32,6 +36,7 @@ export default function DraggableDialog() {
             amounts of time, or enjoy a gamified goal-setting.
             <br />
             <br />
+
 
             Our app combines a sleek look with features such as a to-do list, a calendar that tracks your pomodoro sessions, and the ability to customize the time intervals! ⏲
 
@@ -46,8 +51,8 @@ export default function DraggableDialog() {
             It's biggest strength is in it's simplicity! 💡
             </div>
 
-            <br/>
-            
+            <br/> 
+
             
         </div>    
       </Typography>
