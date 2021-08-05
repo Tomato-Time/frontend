@@ -32,6 +32,7 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
 
   const handleModalClose = () => {
     setOpenModal(false);
+    console.log("modal was closed");
   };
 
   return (
