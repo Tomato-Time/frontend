@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from "react";
-// import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -131,6 +130,7 @@ export default function Settings() {
               marks={workingPeriodMarks}
               min={15}
               max={40}
+
             />
           </Grid>
           <Grid item className="long break duration">
