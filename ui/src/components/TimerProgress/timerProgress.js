@@ -222,7 +222,6 @@ export default function CustomizedSteppers() {
     }
   }, [round]);
 
-  console.log(round + " what");
   return (
     <div className={classes.root}>
       <Stepper

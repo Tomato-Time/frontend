@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.background.paper,
     background: "#292B3E",
     overflow: "scroll",
-    height: "400px",
-    width: "500px",
+    height: "450px",
+    width: "525px",
     // border: "2px solid #fff", we don't want a border
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -44,7 +44,7 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        style: { backgroundColor: "rgba(255,255,255,0.00001)" },
+        style: { backgroundColor: "rgba(41,43,62,0.7)" },
       }}
     >
       <Fade in={openModal}>
