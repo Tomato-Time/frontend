@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#E3ECFF",
   },
 
+
   fnameInput: {
     borderRadius: 7,
     position: "relative",
@@ -49,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #ced4da",
     fontSize: 16,
     right: 50,
-    // width: 'auto',
     width: 260,
     height: 44,
     padding: "10px 12px",
@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #ced4da",
     fontSize: 16,
     left: 0,
-    // width: 'auto',
     width: 260,
     height: 44,
     padding: "10px 12px",
@@ -165,9 +164,9 @@ export default function Registration() {
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                {/* <fnameInput
+                <fnameInput
               className={classes.inputBase}
-              /> */}
+              />
 
                 <TextField
                   className={classes.fnameInput}
@@ -175,11 +174,8 @@ export default function Registration() {
                   name="first_name"
                   value={form.first_name}
                   onChange={handleOnInputChange}
-                  // variant="filled"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
                   autoFocus
                 />
                 {errors.first_name && (
@@ -191,15 +187,13 @@ export default function Registration() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   className={classes.lnameInput}
-                  // variant="filled"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
+                  autoComplete="lname"
                   name="last_name"
                   value={form.last_name}
                   onChange={handleOnInputChange}
-                  autoComplete="lname"
+                  required
+                  fullWidth
+                  autoFocus
                 />
                 {errors.last_name && (
                   <span className="error">{errors.last_name}</span>
@@ -210,15 +204,13 @@ export default function Registration() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.longInput}
-                  // variant="filled"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
+                  autoComplete="email"
                   name="email"
                   value={form.email}
                   onChange={handleOnInputChange}
-                  autoComplete="email"
+                  required
+                  fullWidth
+                  autoFocus
                 />
                 {errors.email && <span className="error">{errors.email}</span>}
               </Grid>
@@ -227,15 +219,10 @@ export default function Registration() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.longInput}
-                  // variant="filled"
-                  required
                   fullWidth
                   name="password"
                   value={form.password}
                   onChange={handleOnInputChange}
-                  label="Password"
-                  type="password"
-                  id="password"
                   autoComplete="current-password"
                 />
                 {errors.password && (
@@ -269,6 +256,6 @@ export default function Registration() {
         </div>
         <Box mt={5}></Box>
       </Container>
-    </StylesProvider>
+     </StylesProvider>
   );
 }
