@@ -174,7 +174,7 @@ export default function MiniDrawer() {
         })}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -184,14 +184,13 @@ export default function MiniDrawer() {
             })}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
+          
+          {/* USER ICON AND WELCOME MESSAGE */}
+          <div className="welcome-back">
           <Typography variant="h6" noWrap>
             Welcome Back,
-          </Typography>
-
-          {/* USER ICON */}
-          <div className={classes.userIcon}>
             <IconButton
               aria-label="account of current user"
               aria-haspopup="true"
@@ -203,12 +202,15 @@ export default function MiniDrawer() {
             <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
               <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
             </Menu>
+          </Typography>
           </div>
+          
         </Toolbar>
       </AppBar>
       <Drawer
         PaperProps={{ elevation: 0 }}
         variant="permanent"
+        open
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -216,7 +218,7 @@ export default function MiniDrawer() {
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open, //try implementing hover button with this?
+            [classes.drawerOpen]: !open, //try implementing hover button with this?
           }),
         }}
       >
@@ -243,6 +245,7 @@ export default function MiniDrawer() {
                 <ListItem
                   className={classes.listItems}
                   button
+                  onClick={() => handleModalOpen(text)}
                   disabled={notAllowed(text)}
                   key={text}
                 >
@@ -252,7 +255,6 @@ export default function MiniDrawer() {
                   <div>
                     <ListItemText
                       button
-                      onClick={() => handleModalOpen(text)}
                       primary={text}
                     />
                   </div>

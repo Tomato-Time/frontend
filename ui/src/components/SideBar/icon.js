@@ -2,6 +2,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import InfoIcon from "@material-ui/icons/Info";
+
 export default function Icons({ index }) {
   switch (index) {
     case 0:

@@ -4,6 +4,10 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import VariousModals from "./VariousModals";
+import { Button } from "@material-ui/core";
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import "./Modal.css";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,6 +40,8 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
   };
 
   return (
+
+    <div>
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -50,9 +56,21 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
+          <div className="close-button">
+          {/* <Button>
+            X
+          </Button> */}
+          <IconButton>
+            <CloseIcon
+             onClick = {handleModalClose}
+           />
+          </IconButton>
+          </div>
           <VariousModals openModal={openModal} />
         </div>
       </Fade>
     </Modal>
+    </div>
+    
   );
 }
