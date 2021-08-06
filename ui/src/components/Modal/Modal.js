@@ -5,8 +5,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import VariousModals from "./VariousModals";
 import { Button } from "@material-ui/core";
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 import "./Modal.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,46 +31,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ openModal, setOpenModal }) {
+export default function TransitionsModal({
+  openModal,
+  setOpenModal,
+  selectedModal,
+  setSelectedModal,
+}) {
   const classes = useStyles();
 
   const handleModalClose = () => {
     setOpenModal(false);
-    console.log("modal was closed");
+    console.log("modal was closed", openModal);
   };
 
   return (
-
     <div>
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={openModal}
-      onClose={handleModalClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        style: { backgroundColor: "rgba(41,43,62,0.7)" },
-      }}
-    >
-      <Fade in={openModal}>
-        <div className={classes.paper}>
-          <div className="close-button">
-          {/* <Button>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={openModal}
+        onClose={handleModalClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          style: { backgroundColor: "rgba(41,43,62,0.7)" },
+        }}
+      >
+        <Fade in={openModal}>
+          <div className={classes.paper}>
+            <div className="close-button">
+              {/* <Button>
             X
           </Button> */}
-          <IconButton>
-            <CloseIcon
-             onClick = {handleModalClose}
-           />
-          </IconButton>
+              <IconButton>
+                <CloseIcon onClick={handleModalClose} />
+              </IconButton>
+            </div>
+            <VariousModals
+              openModal={openModal}
+              selectedModal={selectedModal}
+            />
           </div>
-          <VariousModals openModal={openModal} />
-        </div>
-      </Fade>
-    </Modal>
+        </Fade>
+      </Modal>
     </div>
-    
   );
 }

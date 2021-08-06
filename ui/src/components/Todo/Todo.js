@@ -24,11 +24,13 @@ const useStyles = makeStyles({
 });
 
 export default function Todo({ todo, setTodos }) {
-  const [checked, setChecked] = useState(todo.checked);
+  const [checked, setChecked] = useState(todo.checked || false);
+  // const [completed, setCompleted] = useState([]);
   const classes = useStyles(checked);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
+    todo.checked = event.target.checked;
   };
   const deleteTodoItem = (deleted) => {
     setTodos((oldTodos) => oldTodos.filter((input) => input.id !== deleted.id));
@@ -51,11 +53,17 @@ export default function Todo({ todo, setTodos }) {
       <ListItem>
         <ListItemIcon>
           <Checkbox
+            value={todo.id}
+            color="primary"
             checked={checked}
-            onChange={handleChange}
+            style={{
+              color: "#36B4F5",
+            }}
+            onChange={(e) => handleChange(e)}
             inputProps={{ "aria-label": "primary checkbox" }}
           />
         </ListItemIcon>
+
         <ListItemText
           className={classes.text}
           primary={todo.input}
@@ -71,6 +79,7 @@ export default function Todo({ todo, setTodos }) {
             </React.Fragment>
           }
         />
+
         <ListItemIcon>
           <IconButton
             onClick={() => handleOnDelete(todo.id)}

@@ -17,7 +17,7 @@ import { DarkModeContext, SettingContext } from "../../RoundContext";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 
-export const userSettings = createContext();
+// export const userSettings = createContext();
 
 const useStyles = makeStyles({
   timer: {
@@ -130,7 +130,6 @@ export default function Settings() {
               marks={workingPeriodMarks}
               min={15}
               max={40}
-
             />
           </Grid>
           <Grid item className="long break duration">

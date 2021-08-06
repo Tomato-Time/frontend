@@ -1,26 +1,17 @@
 import { IconButton } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
 import AddIcon from "@material-ui/icons/Add";
 import AddTask from "./AddTask";
 import apiClient from "../../services/apiClient";
+import { TodoListContext } from "../../RoundContext";
+// export const userTodoList = createContext();
 
 export default function TodoForm({ user }) {
-  const [todos, setTodos] = useState([]);
+  const { todos, setTodos } = useContext(TodoListContext);
   const [add, setAdd] = useState(false);
 
-  // fetch new todos as they get added
-  useEffect(() => {
-    const fetchTasks = async () => {
-      // make api call
-      const { data } = await apiClient.listTodos();
-      console.log("the data from the api call", data);
-      // setTodos
-      if (data) setTodos(data.getTasks);
-    };
-    fetchTasks();
-  }, [setTodos]);
   return (
     <div className="todoForm">
       <div className="todoIcons">
@@ -39,7 +30,7 @@ export default function TodoForm({ user }) {
       <div className="todoItemSection">
         <ul className="todoItems">
           {todos?.map((todo) => (
-            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
+            <Todo key={todo.id + todo.input} todo={todo} setTodos={setTodos} />
           ))}
         </ul>
       </div>
