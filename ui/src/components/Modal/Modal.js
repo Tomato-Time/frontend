@@ -27,12 +27,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ openModal, setOpenModal }) {
+export default function TransitionsModal({
+  openModal,
+  setOpenModal,
+  selectedModal,
+  setSelectedModal,
+}) {
   const classes = useStyles();
 
   const handleModalClose = () => {
     setOpenModal(false);
-    console.log("modal was closed");
+    console.log("modal was closed", openModal);
   };
 
   return (
@@ -50,7 +55,7 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
-          <VariousModals openModal={openModal} />
+          <VariousModals selectedModal={selectedModal} openModal={openModal} />
         </div>
       </Fade>
     </Modal>

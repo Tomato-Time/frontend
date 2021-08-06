@@ -3,17 +3,18 @@ import TodoForm from "../Todo/TodoForm";
 import Calendar from "../Calendar/calendar";
 import AboutUs from "../AboutUs/aboutUs";
 
-export default function VariousModals({ openModal }) {
-  if (openModal === "Settings") {
+export default function VariousModals({ selectedModal, openModal }) {
+  console.log("selectedModal", selectedModal);
+  if (selectedModal === "Settings") {
     return <Settings />;
   }
-  if (openModal === "To-Do") {
-    return <TodoForm />;
+  if (selectedModal === "To-Do") {
+    return <TodoForm openModal={openModal} />;
   }
-  if (openModal === "Statistics") {
+  if (selectedModal === "Statistics") {
     return <Calendar />;
   }
-  if (openModal === "About") {
+  if (selectedModal === "About") {
     return <AboutUs />;
   } else {
     return null;

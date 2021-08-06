@@ -5,14 +5,16 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import apiClient from "../../services/apiClient";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import "./AddTask.css";
 import Dropdown from "./Dropdown";
+import { TodoListContext } from "../../RoundContext";
 
-export default function AddTask({ todos, setTodos, add, setAdd }) {
+export default function AddTask({ add, setAdd }) {
+  const { setTodos } = useContext(TodoListContext);
   const [priority, setPriority] = useState(null);
   const [deadline, setDeadline] = useState(null);
   const [showdd, setShowdd] = useState(false);

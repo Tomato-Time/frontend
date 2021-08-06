@@ -119,11 +119,12 @@ export default function MiniDrawer() {
   };
   // modal function
   // modal functionality
-  // const [selected, setSelected] = useState(null);
+  const [selectedModal, setSelectedModal] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const handleModalOpen = (text) => {
     setOpenModal(true);
-    setOpenModal(text);
+    setSelectedModal(text);
+    // setOpenModal(text);
   };
 
   // USER ICON
@@ -260,17 +261,14 @@ export default function MiniDrawer() {
               </span>
             </Tooltip>
           ))}
-          <Modal openModal={openModal} setOpenModal={setOpenModal} />
+          <Modal
+            selectedModal={selectedModal}
+            setSelectedModal={setSelectedModal}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+          />
         </List>
       </Drawer>
-      {/* {displayed && (
-          <div style={handleDrawerOpen}>
-            Text that will appear when you hover over the button.
-          </div>
-        )} */}
-      {/* <main className={classes.content}>
-        <div className={classes.toolbar} />
-      </main> */}
     </div>
   );
 }
