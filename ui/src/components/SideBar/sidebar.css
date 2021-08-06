@@ -15,3 +15,10 @@
   margin-right: 36px;
   right: 980px;
 }
+
+/* welcome back text is always on top right */
+.welcome-back{
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}

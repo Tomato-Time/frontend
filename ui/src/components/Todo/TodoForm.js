@@ -1,16 +1,26 @@
 import { IconButton } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 import "./TodoForm.css";
-import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
 import AddTask from "./AddTask";
+import apiClient from "../../services/apiClient";
 
 export default function TodoForm({ user }) {
   const [todos, setTodos] = useState([]);
-  const [edit, setEdit] = useState(false);
   const [add, setAdd] = useState(false);
 
+  // fetch new todos as they get added
+  useEffect(() => {
+    const fetchTasks = async () => {
+      // make api call
+      const { data } = await apiClient.listTodos();
+      console.log("the data from the api call", data);
+      // setTodos
+      if (data) setTodos(data.getTasks);
+    };
+    fetchTasks();
+  }, [setTodos]);
   return (
     <div className="todoForm">
       <div className="todoIcons">
@@ -21,9 +31,6 @@ export default function TodoForm({ user }) {
           <IconButton aria-label="add">
             <AddIcon onClick={() => setAdd((prev) => !prev)} />
           </IconButton>
-          <IconButton aria-label="edit">
-            <EditIcon onClick={() => setEdit((prev) => !prev)} />
-          </IconButton>
         </div>
       </div>
       {/* if add is true we want to just show the form and once submitted 
@@ -32,13 +39,7 @@ export default function TodoForm({ user }) {
       <div className="todoItemSection">
         <ul className="todoItems">
           {todos?.map((todo) => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              setTodos={setTodos}
-              edit={edit}
-              setEdit={setEdit}
-            />
+            <Todo key={todo.id} todo={todo} setTodos={setTodos} />
           ))}
         </ul>
       </div>

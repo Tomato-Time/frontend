@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import ReactDOM from "react-dom";
 import CalendarHeatmap from "react-calendar-heatmap";
 import ReactTooltip from "react-tooltip";
 import "./calendar.css";

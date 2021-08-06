@@ -4,6 +4,10 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import VariousModals from "./VariousModals";
+import { Button } from "@material-ui/core";
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import "./Modal.css";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -18,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.background.paper,
     background: "#292B3E",
     overflow: "scroll",
-    height: "400px",
-    width: "500px",
+    height: "450px",
+    width: "525px",
     // border: "2px solid #fff", we don't want a border
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -32,9 +36,12 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
 
   const handleModalClose = () => {
     setOpenModal(false);
+    console.log("modal was closed");
   };
 
   return (
+
+    <div>
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -44,14 +51,26 @@ export default function TransitionsModal({ openModal, setOpenModal }) {
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        style: { backgroundColor: "rgba(255,255,255,0.00001)" },
+        style: { backgroundColor: "rgba(41,43,62,0.7)" },
       }}
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
+          <div className="close-button">
+          {/* <Button>
+            X
+          </Button> */}
+          <IconButton>
+            <CloseIcon
+             onClick = {handleModalClose}
+           />
+          </IconButton>
+          </div>
           <VariousModals openModal={openModal} />
         </div>
       </Fade>
     </Modal>
+    </div>
+    
   );
 }

@@ -19,6 +19,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import "./sidebar.css";
 import Modal from "../Modal/Modal";
+import Icon from "./icon";
 
 // user icon
 // import IconButton from '@material-ui/core/IconButton';   already declared
@@ -173,7 +174,7 @@ export default function MiniDrawer() {
         })}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -183,14 +184,13 @@ export default function MiniDrawer() {
             })}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
+          
+          {/* USER ICON AND WELCOME MESSAGE */}
+          <div className="welcome-back">
           <Typography variant="h6" noWrap>
             Welcome Back,
-          </Typography>
-
-          {/* USER ICON */}
-          <div className={classes.userIcon}>
             <IconButton
               aria-label="account of current user"
               aria-haspopup="true"
@@ -202,12 +202,15 @@ export default function MiniDrawer() {
             <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
               <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
             </Menu>
+          </Typography>
           </div>
+          
         </Toolbar>
       </AppBar>
       <Drawer
         PaperProps={{ elevation: 0 }}
         variant="permanent"
+        open
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -215,7 +218,7 @@ export default function MiniDrawer() {
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open, //try implementing hover button with this?
+            [classes.drawerOpen]: !open, //try implementing hover button with this?
           }),
         }}
       >
@@ -230,37 +233,35 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {["To-Do", "Statistics", "Work Flow", "Settings", "About"].map(
-            (text, index) => (
-              <Tooltip
-                arrow
-                placement="top-start"
-                title={
-                  notAllowed(text) ? "Log in for access to this feature" : ""
-                }
-              >
-                <span>
-                  <ListItem
-                    className={classes.listItems}
-                    button
-                    disabled={notAllowed(text)}
-                    key={text}
-                  >
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <div>
-                      <ListItemText
-                        button
-                        onClick={() => handleModalOpen(text)}
-                        primary={text}
-                      />
-                    </div>
-                  </ListItem>
-                </span>
-              </Tooltip>
-            )
-          )}
+          {["To-Do", "Statistics", "Settings", "About"].map((text, index) => (
+            <Tooltip
+              arrow
+              placement="top-start"
+              title={
+                notAllowed(text) ? "Log in for access to this feature" : ""
+              }
+            >
+              <span>
+                <ListItem
+                  className={classes.listItems}
+                  button
+                  onClick={() => handleModalOpen(text)}
+                  disabled={notAllowed(text)}
+                  key={text}
+                >
+                  <ListItemIcon>
+                    <Icon index={index} />
+                  </ListItemIcon>
+                  <div>
+                    <ListItemText
+                      button
+                      primary={text}
+                    />
+                  </div>
+                </ListItem>
+              </span>
+            </Tooltip>
+          ))}
           <Modal openModal={openModal} setOpenModal={setOpenModal} />
         </List>
       </Drawer>

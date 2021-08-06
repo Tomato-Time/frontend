@@ -23,21 +23,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Todo({ todo, setTodos, edit }) {
-  const [checked, setChecked] = useState(false);
+export default function Todo({ todo, setTodos }) {
+  const [checked, setChecked] = useState(todo.checked);
   const classes = useStyles(checked);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+  const deleteTodoItem = (deleted) => {
+    setTodos((oldTodos) => oldTodos.filter((input) => input.id !== deleted.id));
+  };
 
-  // delete a task
-  const deleteTask = async (taskId) => {
-    // make api call
+  const handleOnDelete = async (taskId) => {
     const { data } = await apiClient.deleteTask(taskId);
-    console.log("the data from the api call", data);
-    // setTodos
-    // if (data) setTodos();
+    console.log(data);
+    deleteTodoItem(data.deletedTask);
   };
   const hour = parseInt(String(todo.deadline).slice(0, 2));
   const formatHour = hour % 12;
@@ -71,13 +71,14 @@ export default function Todo({ todo, setTodos, edit }) {
             </React.Fragment>
           }
         />
-        {edit ? (
-          <ListItemIcon>
-            <IconButton onClick={() => deleteTask(todo.id)} aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </ListItemIcon>
-        ) : null}
+        <ListItemIcon>
+          <IconButton
+            onClick={() => handleOnDelete(todo.id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ListItemIcon>
       </ListItem>
     </List>
   );

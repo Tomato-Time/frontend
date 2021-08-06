@@ -1,54 +1,15 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
-
-function PaperComponent(props) {
-  return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
-      <Paper {...props} />
-    </Draggable>
-  );
-}
+import { Typography } from "@material-ui/core";
+import "./aboutUs.css";
 
 export default function DraggableDialog() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-        BackdropProps={{
-          style: { backgroundColor: "rgba(255,255,255,0.00001)" },
-        }}
-      >
-        <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-          About us
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+      <Typography>
+        <div className="about-us-info">
+
             The Pomodoro Technique is a time management method that focuses on
             periods of focus with frequent short breaks in between.
             <br />
@@ -58,29 +19,43 @@ export default function DraggableDialog() {
             2. Set your timer for 25 minutes, and focus on a single task until
             the timer rings.
             <br />
-            3. When your session ends, mark off one pomodoro and record what you
-            completed.
+            3. When your round ends, you'll see the timer change color! 
             <br />
             4. Then enjoy a five-minute break.
             <br />
-            5. After four pomodoros, take a longer, more restorative 15-30
+
+            5. After four rounds, take a longer, more restorative 40
+
+            
+
             minute break.
             <br />
             <br />
             The technique works best when you: find small distractions derail
             the workday, have lots of open ended work that can take unlimited
-            amounts of time, enjoy gamified goal-setting.
+            amounts of time, or enjoy a gamified goal-setting.
             <br />
             <br />
-            It's biggest strength is in it's simplicity!
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
+
+
+            Our app combines a sleek look with features such as a to-do list, a calendar that tracks your pomodoro sessions, and the ability to customize the time intervals! ⏲
+
+            <br />
+            <br />
+
+            The main feature of our app is the Pomodoro Timer! Underneath it are three buttons, allowing you to reset the current round you are on, play/pause the timer, skip to the next round respectively. The progress bar underneath the buttons keeps track of your current round in the session.
+
+            <br />
+            <br />
+            <div className="bold">
+            It's biggest strength is in it's simplicity! 💡
+            </div>
+
+            <br/> 
+
+            
+        </div>    
+      </Typography>
     </div>
   );
 }
