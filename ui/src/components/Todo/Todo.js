@@ -54,9 +54,10 @@ export default function Todo({ todo, setTodos }) {
         <ListItemIcon>
           <Checkbox
             value={todo.id}
+            color="primary"
             checked={checked}
             style={{
-              color: "#00FF00",
+              color: "#36B4F5",
             }}
             onChange={(e) => handleChange(e)}
             inputProps={{ "aria-label": "primary checkbox" }}
