@@ -1,5 +1,5 @@
 import SignInSide from "../LoginPage/loginForm";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import "./App.css";
 import Registration from "../Registration/Registration";
 import HomePage from "../HomePage/homePage";
@@ -8,6 +8,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import { useState } from "react";
 import { UserContext, DarkModeContext } from "../../RoundContext";
+import ErrorPage from "../ErrorPage/errorPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -21,11 +22,14 @@ function App() {
         <BrowserRouter>
           <DarkModeContext.Provider value={{ darkTheme, setDarkTheme }}>
             <UserContext.Provider value={{ user, setUser }}>
-              <Routes>
-                <Route path="/register" element={<Registration />} />
-                <Route exact path="/" element={<HomePage />} />
-                <Route path="/login" element={<SignInSide />} />
-              </Routes>
+              
+                <Routes>
+                  <Route path="/register" element={<Registration />} />
+                  <Route  path="/" element={<HomePage />} />
+                  <Route path="/login" element={<SignInSide />} />
+                  <Route path="*" element={<ErrorPage/>}/>
+               </Routes>
+             
             </UserContext.Provider>
           </DarkModeContext.Provider>
         </BrowserRouter>
