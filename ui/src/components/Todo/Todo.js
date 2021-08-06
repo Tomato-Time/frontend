@@ -30,13 +30,8 @@ export default function Todo({ todo, setTodos }) {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    // console.log(event.target);
-    // console.log(event.target.value);
-    // completed.filter((c) => c !== value);
-    // setCompleted((old) => [...old, event.target.value]);
+    todo.checked = event.target.checked;
   };
-  // console.log(completed);
-  // to delete a task filter the array that stores the tasks
   const deleteTodoItem = (deleted) => {
     setTodos((oldTodos) => oldTodos.filter((input) => input.id !== deleted.id));
   };
