@@ -121,7 +121,7 @@ export default function Settings() {
               Work Session Duration
             </Typography>
             <Slider
-              defaultValue={25}
+              defaultValue={working}
               onChange={handleWorkChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
@@ -137,7 +137,7 @@ export default function Settings() {
               Short Break Duration
             </Typography>
             <Slider
-              defaultValue={5}
+              defaultValue={shortBreak}
               onChange={handleShortChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
@@ -153,7 +153,7 @@ export default function Settings() {
               Long Break Duration
             </Typography>
             <Slider
-              defaultValue={40}
+              defaultValue={longBreak}
               onChange={handleLongChange}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider"
