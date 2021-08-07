@@ -187,25 +187,27 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton> */}
 
-          
           {/* USER ICON AND WELCOME MESSAGE */}
           <div className="welcome-back">
-          <Typography variant="h6" noWrap>
-            Welcome Back,
-            <IconButton
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu open={openUserIcon} onClose={handleClose} anchorEl={anchorEl}>
-              <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
-            </Menu>
-          </Typography>
+            <Typography variant="h6" noWrap>
+              {user.email ? "Welcome Back," + user.first_name : "Log in"}
+              <IconButton
+                aria-label="account of current user"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                open={openUserIcon}
+                onClose={handleClose}
+                anchorEl={anchorEl}
+              >
+                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+              </Menu>
+            </Typography>
           </div>
-          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -254,10 +256,7 @@ export default function MiniDrawer() {
                     <Icon index={index} />
                   </ListItemIcon>
                   <div>
-                    <ListItemText
-                      button
-                      primary={text}
-                    />
+                    <ListItemText button primary={text} />
                   </div>
                 </ListItem>
               </span>

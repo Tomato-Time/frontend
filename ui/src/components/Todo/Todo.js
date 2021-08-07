@@ -20,6 +20,13 @@ const useStyles = makeStyles({
       }
       return "none";
     },
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    verticalAlign: "middle",
+  },
+  checkbox: {
+    verticalAlign: "middle",
   },
 });
 
@@ -51,7 +58,7 @@ export default function Todo({ todo, setTodos }) {
   return (
     <List className="todoList">
       <ListItem>
-        <ListItemIcon>
+        <ListItemIcon className={classes.checkbox}>
           <Checkbox
             value={todo.id}
             color="primary"
@@ -65,6 +72,7 @@ export default function Todo({ todo, setTodos }) {
         </ListItemIcon>
 
         <ListItemText
+          alignItems="flex-start"
           className={classes.text}
           primary={todo.input}
           secondary={
