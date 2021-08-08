@@ -123,9 +123,13 @@ export default function MiniDrawer() {
     setUser({});
     // clear the token
     apiClient.setToken();
-    // new page view of landing page
-    navigate("/login");
+    //take user to landing page but they are now logged out
+    navigate("/");
     console.log("the user logged in is:", user);
+  };
+
+  const handleLogIn = () => {
+    navigate("/login");
   };
   function notAllowed(text) {
     // if a user is not logged in they don't have access to
@@ -190,7 +194,7 @@ export default function MiniDrawer() {
           {/* USER ICON AND WELCOME MESSAGE */}
           <div className="welcome-back">
             <Typography variant="h6" noWrap>
-              {user.email ? "Welcome Back," + user.first_name : "Log in"}
+              {user.email ? "Welcome Back, " + user.first_name : "Log in"}
               <IconButton
                 aria-label="account of current user"
                 aria-haspopup="true"
@@ -204,7 +208,11 @@ export default function MiniDrawer() {
                 onClose={handleClose}
                 anchorEl={anchorEl}
               >
-                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                {user.email ? (
+                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                ) : (
+                  <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                )}
               </Menu>
             </Typography>
           </div>
