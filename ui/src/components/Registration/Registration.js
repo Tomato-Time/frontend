@@ -71,7 +71,7 @@ export default function Registration() {
         <div className="input-field">
           <input
             type="first_name"
-            name="first_name"
+            name="first_name" 
             placeholder="First Name"
             value={form.first_name}
             onChange={handleOnInputChange}
