@@ -38,7 +38,6 @@ export default function TransitionsModal({
   setSelectedModal,
 }) {
   const classes = useStyles();
-
   const handleModalClose = () => {
     setOpenModal(false);
     console.log("modal was closed", openModal);

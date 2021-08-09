@@ -54,7 +54,22 @@ export default function AddTask({ add, setAdd }) {
       // set the priority and deadline back to null
       setPriority(null);
       setDeadline(null);
+      setForm({ input: "", priority: "", deadline: "", user_id: "" });
+      // do not display menu drop downs
+      setShowDeadlinedd(false);
+      setShowdd(false);
     }
+  };
+  const handleCancelClick = () => {
+    setAdd(false);
+    // set to a blank form
+    setForm({ input: "", priority: "", deadline: "", user_id: "" });
+    // set the priority and deadline back to null
+    setPriority(null);
+    setDeadline(null);
+    // do not display menu drop downs
+    setShowDeadlinedd(false);
+    setShowdd(false);
   };
 
   // if the form is called then display the form
@@ -115,7 +130,7 @@ export default function AddTask({ add, setAdd }) {
             </Grid>
             <Grid item>
               <Button
-                onClick={() => setAdd(false)}
+                onClick={handleCancelClick}
                 variant="contained"
                 color="primary"
               >
