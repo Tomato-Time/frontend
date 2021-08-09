@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#E3ECFF",
   },
 
-
   fnameInput: {
     borderRadius: 7,
     position: "relative",
@@ -103,7 +102,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Registration() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, firstRegister, setFirstRegister } =
+    useContext(UserContext);
   const classes = useStyles();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -148,6 +148,9 @@ export default function Registration() {
     if (data?.user) {
       setUser(data.user);
       apiClient.setToken(data.token);
+      setFirstRegister(true);
+      navigate("/");
+      // handleModalOpen("About");
     }
   };
   return (
@@ -164,9 +167,7 @@ export default function Registration() {
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <fnameInput
-              className={classes.inputBase}
-              />
+                <fnameInput className={classes.inputBase} />
 
                 <TextField
                   className={classes.fnameInput}
@@ -256,6 +257,6 @@ export default function Registration() {
         </div>
         <Box mt={5}></Box>
       </Container>
-     </StylesProvider>
+    </StylesProvider>
   );
 }

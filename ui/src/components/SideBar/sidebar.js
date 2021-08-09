@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -90,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const { user, setUser } = useContext(UserContext);
+  const { firstRegister, setFirstRegister, user, setUser } =
+    useContext(UserContext);
   // modal function
   // modal functionality
   const [selectedModal, setSelectedModal] = useState(null);
@@ -118,6 +119,15 @@ export default function MiniDrawer() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    const openAboutModal = () => {
+      if (firstRegister === true) {
+        handleModalOpen("About");
+      }
+    };
+    openAboutModal();
+  }, [firstRegister]);
 
   const handleLogOut = () => {
     setUser({});

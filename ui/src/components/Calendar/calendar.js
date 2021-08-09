@@ -73,7 +73,7 @@ export default function Calendar() {
         );
         setLastUserMonthData(parseInt(lastMonth));
         setFirstUserMonthData(parseInt(firstMonth));
-        console.log("the first entry on data base", firstUserMonthData);
+        // console.log("the first entry on data base", firstUserMonthData);
       } else {
         // if there is no data in the data array begin display at this month
         setFirstUserMonthData(today.getMonth());
@@ -85,7 +85,7 @@ export default function Calendar() {
   //do not allow the user to look before that month
   function prevMonthDisable() {
     if (month > firstUserMonthData - 1) {
-      console.log(month, ">", firstUserMonthData - 1);
+      // console.log(month, ">", firstUserMonthData - 1);
       return true;
     } else {
       // console.log(month, ">=", firstUserMonthData - 1);
@@ -95,7 +95,7 @@ export default function Calendar() {
 
   function nextMonthDisable() {
     if (month < lastUserMonthData - 1) {
-      console.log(month, "<", lastUserMonthData - 1);
+      // console.log(month, "<", lastUserMonthData - 1);
       return true;
     } else {
       // console.log(month, "<", lastUserMonthData - 1);
