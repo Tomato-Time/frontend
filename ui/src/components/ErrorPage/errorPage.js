@@ -1,39 +1,30 @@
-import { Grid, Link, makeStyles } from "@material-ui/core";
+import React from "react";
+import {  Link } from "react-router-dom";
 import "./errorPage.css";
 
-
-const useStyles = makeStyles((theme) => ({
-      
-    link: {
-      margin: theme.spacing(4, 12, 2), //changes the position
-      // alignItems: 'center',
-      marginTop: theme.spacing(15),
-      color: "#E3ECFF",
-      font: "Montserrat"
-    },
-  }));
   
 export default function ErrorPage(){
 
-    const classes = useStyles();
-
-    return(
+  return(
         <div className="error-message">
-            <h1> Page not Found </h1>
-                <h2> We're sorry, we couldn't find the page you requested. </h2>
-
+          
+            <div>
+              <img src="/images/404.png" alt="Error: Page Not Found"/>
+            </div> 
         
-            <Grid container>
-              <Grid item>
-                <Link href="/login"  className={classes.link}>
-                  Already have an account? Log in
-                </Link>
+            <div className="links">
+              <p>
+                Already have an account? <Link to="/login">Log In</Link>
+              </p>
 
-                <Link href="/register"  className={classes.link}>
-                Don't have an account? Register
-              </Link>
-              </Grid>
-            </Grid>      
-        </div>
+              <p>
+                Don't have an account? <Link to="/register">Register</Link>
+              </p>
+
+            </div>   
+
+
+            </div>
+        
     )
 }
