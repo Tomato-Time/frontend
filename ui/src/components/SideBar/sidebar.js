@@ -144,6 +144,11 @@ export default function MiniDrawer() {
   const handleLogIn = () => {
     navigate("/login");
   };
+
+  const handleRegister = () => {
+    navigate("/register");
+  }
+
   function notAllowed(text) {
     // if a user is not logged in they don't have access to
     // todo or statistics
@@ -225,7 +230,11 @@ export default function MiniDrawer() {
                 {user.email ? (
                   <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
                 ) : (
-                  <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                  <div>
+                       <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                    <MenuItem onClick={handleRegister}>Register</MenuItem>
+                  </div>
+          
                 )}
               </Menu>
             </Typography>
