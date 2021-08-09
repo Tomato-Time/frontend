@@ -9,6 +9,7 @@ import { CssBaseline } from "@material-ui/core";
 import { useState } from "react";
 import { UserContext, DarkModeContext } from "../../RoundContext";
 import ErrorPage from "../ErrorPage/errorPage";
+import PlaySound from "../Sound/sound";
 
 function App() {
   const [user, setUser] = useState({});
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<SignInSide />} />
                 <Route path="*" element={<ErrorPage />} />
+                <Route path="/so" element={<PlaySound />} />
               </Routes>
             </UserContext.Provider>
           </DarkModeContext.Provider>
