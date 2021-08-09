@@ -130,7 +130,7 @@ export default function Registration() {
 
       <div className="footer">
         <p>
-          Already have an account? <Link to="/login">Here</Link>
+          Already have an account? <Link to="/login">Log In</Link>
         </p>
       </div>
     </div>
