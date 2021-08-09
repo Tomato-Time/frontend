@@ -17,6 +17,9 @@ function App() {
   const [darkTheme, setDarkTheme] = useState(true);
   var title = document.querySelector("title");
   title.innerText = "Focus 4 You";
+  
+
+  
   return (
     <ThemeProvider darkTheme={darkTheme} theme={theme}>
       <CssBaseline />
