@@ -18,13 +18,7 @@ export default function Timer() {
   const { working } = useContext(SettingContext);
   const [breakTime, setBreakTime] = useState(shortBreak);
 
-
-
-
-  // const PlaySound = () => {
-  //   const [play] = useSound(sounds);
-  // }
-
+  //sound for timer
   const [play] = useSound(sounds);
   
 

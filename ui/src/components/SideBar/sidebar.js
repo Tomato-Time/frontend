@@ -85,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
   listIcons: {
     marginLeft: 10,
   },
+  menu:{
+    marginTop: 40,
+  },
 }));
 
 export default function MiniDrawer() {
@@ -204,7 +207,7 @@ export default function MiniDrawer() {
           {/* USER ICON AND WELCOME MESSAGE */}
           <div className="welcome-back">
             <Typography variant="h6" noWrap>
-              {user.email ? "Welcome Back, " + user.first_name : "Log in"}
+              {user.email ? "Welcome Back, " + user.first_name : ""}
               <IconButton
                 aria-label="account of current user"
                 aria-haspopup="true"
@@ -217,6 +220,7 @@ export default function MiniDrawer() {
                 open={openUserIcon}
                 onClose={handleClose}
                 anchorEl={anchorEl}
+                className={classes.menu}
               >
                 {user.email ? (
                   <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
