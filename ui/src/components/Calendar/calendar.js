@@ -24,6 +24,8 @@ export default function Calendar() {
   ];
   const [userData, setUserData] = useState([]);
   const [userMinData, setUserMinData] = useState([]);
+  const [firstUserMonthData, setFirstUserMonthData] = useState(1);
+  const [lastUserMonthData, setLastUserMonthData] = useState(12);
   // const [minutes, setMinutes] = useState(0);
   const today = new Date();
   const [month, setMonth] = useState(today.getMonth());
@@ -42,7 +44,7 @@ export default function Calendar() {
       const { data } = await apiClient.getUserRoundCount();
       // console.log(data);
       if (data) setUserData(data.userRounds);
-      // console.log("the data from the api call", data);
+      console.log("the data from the api call", data.userRounds);
     };
     fetchUserRounds();
   }, []);
@@ -60,8 +62,46 @@ export default function Calendar() {
     fetchUserMinutes();
   }, []);
 
-  // for what month do we have data?
+  useEffect(() => {
+    const fetchFirstMonth = async () => {
+      if (userMinData.length > 0) {
+        const firstEntry = userMinData[0];
+        const firstMonth = firstEntry.date_logged.slice(5, 7);
+        const lastMonth = userMinData[userMinData.length - 1].date_logged.slice(
+          5,
+          7
+        );
+        setLastUserMonthData(parseInt(lastMonth));
+        setFirstUserMonthData(parseInt(firstMonth));
+        console.log("the first entry on data base", firstUserMonthData);
+      } else {
+        // if there is no data in the data array begin display at this month
+        setFirstUserMonthData(today.getMonth());
+      }
+    };
+    fetchFirstMonth();
+  }, [firstUserMonthData, userMinData, today]);
+
   //do not allow the user to look before that month
+  function prevMonthDisable() {
+    if (month > firstUserMonthData - 1) {
+      console.log(month, ">", firstUserMonthData - 1);
+      return true;
+    } else {
+      // console.log(month, ">=", firstUserMonthData - 1);
+      return false;
+    }
+  }
+
+  function nextMonthDisable() {
+    if (month < lastUserMonthData - 1) {
+      console.log(month, "<", lastUserMonthData - 1);
+      return true;
+    } else {
+      // console.log(month, "<", lastUserMonthData - 1);
+      return false;
+    }
+  }
   // const beginMonthForUser = parseInt(minutes[0].date_logged.slice(5, 7));
 
   // data used in calendar
@@ -74,17 +114,19 @@ export default function Calendar() {
   return (
     <div className="calendar-box">
       <div className="month">
-        <Tooltip title="no data before this month">
+        <Tooltip title={!prevMonthDisable() ? "no data before this month" : ""}>
           <span>
-            <IconButton disabled={true}>
+            <IconButton disabled={!prevMonthDisable()}>
               <ArrowBackIosIcon onClick={() => setMonth((prev) => prev - 1)} />
             </IconButton>
           </span>
         </Tooltip>
         <h1>{displayMonth}</h1>
-        <Tooltip title="no data past current month">
+        <Tooltip
+          title={!nextMonthDisable() ? "no data past current month" : ""}
+        >
           <span>
-            <IconButton disabled={true}>
+            <IconButton disabled={!nextMonthDisable()}>
               <ArrowForwardIosIcon
                 onClick={() => setMonth((prev) => prev + 1)}
               />
