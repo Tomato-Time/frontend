@@ -5,6 +5,10 @@ import "./timer.css";
 // import { duration } from "@material-ui/core";
 import { RoundContext, SettingContext, UserContext } from "../../RoundContext";
 import apiClient from "../../services/apiClient";
+import useSound from 'use-sound';
+import sounds from "../../audio/sounds.mp3"
+
+
 
 export default function Timer() {
   const { round, setRound } = useContext(RoundContext);
@@ -13,6 +17,16 @@ export default function Timer() {
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working } = useContext(SettingContext);
   const [breakTime, setBreakTime] = useState(shortBreak);
+
+
+
+
+  // const PlaySound = () => {
+  //   const [play] = useSound(sounds);
+  // }
+
+  const [play] = useSound(sounds);
+  
 
   // variables
   let focusColors = [
@@ -56,6 +70,9 @@ export default function Timer() {
       addToUserTime(working);
       console.log("time was added");
     }
+   
+    play()  //plays audio at the end of every round
+    
   }
 
   // user skips to next round
@@ -82,18 +99,6 @@ export default function Timer() {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
     const seconds = remainingTime % 60;
     // to display timer in title bar
-    var title = document.querySelector("title");
-    if (seconds < 10 && isPlaying) {
-      title.innerText = `${minutes}:0${seconds}`;
-    } else if (seconds > 10 && isPlaying) {
-      title.innerText = `${minutes}:${seconds}`;
-    } else if (!isPlaying) {
-      title.innerText = "Focus Time";
-    }
-
-    // if (remainingTime === 0){
-    //   return <div className="inside-timer">Too lale..</div>
-    // }
 
     /////
     if (seconds < 10) {
@@ -128,7 +133,10 @@ export default function Timer() {
   return (
     <div className="timerAndDrawer">
       <div className="App">
+      
+        
         <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
+        
         {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
           {round % 2 === 0 ? (
@@ -139,6 +147,7 @@ export default function Timer() {
               colors={focusColors}
               onComplete={() => {
                 // do stuff here
+               
                 timerUp();
                 return [false, 1000];
               }}
