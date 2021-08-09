@@ -25,19 +25,19 @@ export const theme = createTheme({
       },
     },
 
-    MuiCssBaseline: {
-      "@global": {
-        "@font-face": ['"Montserrat"'],
-      },
-    },
+    // MuiCssBaseline: {
+    //   "@global": {
+    //     "@font-face": ['"Montserrat"'],
+    //   },
+    // },
   },
-  props: {
-    MuiTextField: {
-      InputLabelProps: {
-        shrink: true, //removes the "Google" look aka when the words move to the top, it keeps the words at the top at all times
-      },
-    },
-  },
+  // props: {
+  //   MuiTextField: {
+  //     InputLabelProps: {
+  //       shrink: true, //removes the "Google" look aka when the words move to the top, it keeps the words at the top at all times
+  //     },
+  //   },
+  // },
   shape: {
     borderRadius: 8, //changes border radius of everything
   },
