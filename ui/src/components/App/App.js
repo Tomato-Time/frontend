@@ -4,7 +4,7 @@ import "./App.css";
 import Registration from "../Registration/Registration";
 import HomePage from "../HomePage/homePage";
 import { theme } from "../../index";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import { useState } from "react";
 import { UserContext, DarkModeContext } from "../../RoundContext";
@@ -16,6 +16,9 @@ function App() {
   const [darkTheme, setDarkTheme] = useState(true);
   var title = document.querySelector("title");
   title.innerText = "Focus 4 You";
+  
+
+  
   return (
     <ThemeProvider darkTheme={darkTheme} theme={theme}>
       <CssBaseline />

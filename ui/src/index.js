@@ -18,6 +18,7 @@ export const theme = createTheme({
   //    main: "#292B3E"
   //  },
 
+
   overrides: {
     MuiFilledInput: {
       root: {
@@ -31,13 +32,7 @@ export const theme = createTheme({
     //   },
     // },
   },
-  // props: {
-  //   MuiTextField: {
-  //     InputLabelProps: {
-  //       shrink: true, //removes the "Google" look aka when the words move to the top, it keeps the words at the top at all times
-  //     },
-  //   },
-  // },
+
   shape: {
     borderRadius: 8, //changes border radius of everything
   },
