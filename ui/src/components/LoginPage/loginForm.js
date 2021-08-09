@@ -86,7 +86,7 @@ return (
 
       <div className="footer">
         <p>
-          Don't have an account? Register <Link to="/register">Register</Link>
+          Don't have an account? Register <Link to="/register">Here</Link>
         </p>
       </div>
     </div>
