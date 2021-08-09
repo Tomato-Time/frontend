@@ -1,4 +1,6 @@
 import {
+  Card,
+  CardContent,
   Checkbox,
   List,
   ListItem,
@@ -25,8 +27,27 @@ const useStyles = makeStyles({
     justifyContent: "center",
     verticalAlign: "middle",
   },
+  input: {
+    display: "flex",
+    flexDirection: "row",
+    verticalAlign: "center",
+  },
+  card: {
+    display: "flex",
+    flexDirection: "column",
+  },
   checkbox: {
     verticalAlign: "middle",
+  },
+  paper: {
+    // backgroundColor: theme.palette.background.paper,
+    background: "#292B3E",
+    flexGrow: 1,
+  },
+  fire: {
+    fontSize: 14,
+    display: "flex",
+    justifyContent: "space-between",
   },
 });
 
@@ -55,47 +76,54 @@ export default function Todo({ todo, setTodos }) {
     if (hour > 12) return " PM";
     else return " AM";
   };
+
   return (
     <List className="todoList">
       <ListItem>
-        <ListItemIcon className={classes.checkbox}>
-          <Checkbox
-            value={todo.id}
-            color="primary"
-            checked={checked}
-            style={{
-              color: "#36B4F5",
-            }}
-            onChange={(e) => handleChange(e)}
-            inputProps={{ "aria-label": "primary checkbox" }}
-          />
-        </ListItemIcon>
+        <Card flexGrow={1} width={1}>
+          <div flexGrow={1} className={classes.paper}>
+            <CardContent className={classes.card}>
+              <div className={classes.input}>
+                <Checkbox
+                  className={classes.checkbox}
+                  value={todo.id}
+                  color="primary"
+                  checked={checked}
+                  style={{
+                    color: "#36B4F5",
+                  }}
+                  onChange={(e) => handleChange(e)}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
 
-        <ListItemText
-          alignItems="flex-start"
-          className={classes.text}
-          primary={todo.input}
-          secondary={
-            <React.Fragment>
-              <Typography component="span" variant="body2" color="textPrimary">
-                {todo.priority ? "priority: " + String(todo.priority) : null}
-                <br />
-                {todo.deadline
-                  ? "deadline: " + formatHour + minutes + morningOrNight()
-                  : null}
-              </Typography>
-            </React.Fragment>
-          }
-        />
+                <Typography
+                  className={classes.text}
+                  component="h6"
+                  variant="h6"
+                >
+                  {todo.input}
+                </Typography>
+                <IconButton
+                  onClick={() => handleOnDelete(todo.id)}
+                  aria-label="delete"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
 
-        <ListItemIcon>
-          <IconButton
-            onClick={() => handleOnDelete(todo.id)}
-            aria-label="delete"
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemIcon>
+              <div className={classes.fire}>
+                <Typography color="textSecondary" gutterBottom>
+                  {todo.priority ? "🔥".repeat(todo.priority) : null}
+                </Typography>
+                <Typography color="textSecondary" gutterBottom>
+                  {todo.deadline
+                    ? "Due: " + formatHour + minutes + morningOrNight()
+                    : null}
+                </Typography>
+              </div>
+            </CardContent>
+          </div>
+        </Card>
       </ListItem>
     </List>
   );

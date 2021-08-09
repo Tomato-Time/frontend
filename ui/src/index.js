@@ -5,18 +5,6 @@ import App from "./components/App/App";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 export const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: "#FFFFFF",
-  //   },
-  //   secondary: {
-  //     main: "#3D68DE",
-  //   },
-  // },
-
-  //  backgroundColor:{
-  //    main: "#292B3E"
-  //  },
 
   overrides: {
     MuiFilledInput: {

@@ -81,21 +81,7 @@ export default function Timer() {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
     const seconds = remainingTime % 60;
-    // to display timer in title bar
-    var title = document.querySelector("title");
-    if (seconds < 10 && isPlaying) {
-      title.innerText = `${minutes}:0${seconds}`;
-    } else if (seconds > 10 && isPlaying) {
-      title.innerText = `${minutes}:${seconds}`;
-    } else if (!isPlaying) {
-      title.innerText = "Focus Time";
-    }
 
-    // if (remainingTime === 0){
-    //   return <div className="inside-timer">Too lale..</div>
-    // }
-
-    /////
     if (seconds < 10) {
       return (
         <div style={{ color: "white" }}>
