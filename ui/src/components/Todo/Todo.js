@@ -80,50 +80,44 @@ export default function Todo({ todo, setTodos }) {
   return (
     <List className="todoList">
       <ListItem>
-        <Card flexGrow={1} width={1}>
-          <div flexGrow={1} className={classes.paper}>
-            <CardContent className={classes.card}>
-              <div className={classes.input}>
-                <Checkbox
-                  className={classes.checkbox}
-                  value={todo.id}
-                  color="primary"
-                  checked={checked}
-                  style={{
-                    color: "#36B4F5",
-                  }}
-                  onChange={(e) => handleChange(e)}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
+        <ListItemIcon className={classes.checkbox}>
+          <Checkbox
+            value={todo.id}
+            color="primary"
+            checked={checked}
+            style={{
+              color: "#36B4F5",
+            }}
+            onChange={(e) => handleChange(e)}
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+        </ListItemIcon>
 
-                <Typography
-                  className={classes.text}
-                  component="h6"
-                  variant="h6"
-                >
-                  {todo.input}
-                </Typography>
-                <IconButton
-                  onClick={() => handleOnDelete(todo.id)}
-                  aria-label="delete"
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </div>
+        <ListItemText
+          alignItems="flex-start"
+          className={classes.text}
+          primary={todo.input}
+          secondary={
+            <React.Fragment>
+              <Typography component="span" variant="body2" color="textPrimary">
+                {todo.priority ? "priority: " + String(todo.priority) : null}
+                <br />
+                {todo.deadline
+                  ? "deadline: " + formatHour + minutes + morningOrNight()
+                  : null}
+              </Typography>
+            </React.Fragment>
+          }
+        />
 
-              <div className={classes.fire}>
-                <Typography color="textSecondary" gutterBottom>
-                  {todo.priority ? "🔥".repeat(todo.priority) : null}
-                </Typography>
-                <Typography color="textSecondary" gutterBottom>
-                  {todo.deadline
-                    ? "Due: " + formatHour + minutes + morningOrNight()
-                    : null}
-                </Typography>
-              </div>
-            </CardContent>
-          </div>
-        </Card>
+        <ListItemIcon>
+          <IconButton
+            onClick={() => handleOnDelete(todo.id)}
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ListItemIcon>
       </ListItem>
     </List>
   );
