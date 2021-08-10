@@ -8,6 +8,7 @@ import {
 } from "../../RoundContext";
 import { useEffect, useState } from "react";
 import apiClient from "../../services/apiClient";
+import Quotes from "../Quote/quote";
 
 export default function HomePage() {
   const [round, setRound] = useState(0);

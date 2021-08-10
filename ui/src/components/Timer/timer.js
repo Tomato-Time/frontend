@@ -7,6 +7,7 @@ import { RoundContext, SettingContext, UserContext } from "../../RoundContext";
 import apiClient from "../../services/apiClient";
 import useSound from 'use-sound';
 import sounds from "../../audio/sounds.mp3"
+import Quotes from "../Quote/quote";
 
 
 
@@ -129,10 +130,16 @@ export default function Timer() {
       <div className="App">
       
         
-        <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
+      <div className="quotes">
+        <Quotes/>
+        </div>
+
+        <div className="focus">{round % 2 === 0 ? "Focus" : "Break"}</div>
+        
         
         {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
+        
           {round % 2 === 0 ? (
             <CountdownCircleTimer
               isPlaying={isPlaying}
