@@ -8,6 +8,7 @@ import apiClient from "../../services/apiClient";
 import useSound from 'use-sound';
 import sounds from "../../audio/sounds.mp3"
 import Quotes from "../Quote/quote";
+import silence from "../../audio/rickroll.mp3"
 
 
 
@@ -22,6 +23,11 @@ export default function Timer() {
 
   //sound for timer
   const [play] = useSound(sounds);
+  
+  // useEffect(() => {
+  //   silent()
+  //   console.log("silence")
+  // },[])
   
 
   // variables

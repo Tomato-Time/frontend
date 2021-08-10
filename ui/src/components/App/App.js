@@ -11,6 +11,8 @@ import { UserContext, DarkModeContext } from "../../RoundContext";
 import ErrorPage from "../ErrorPage/errorPage";
 import PlaySound from "../Sound/sound";
 import Quotes from "../Quote/quote";
+import useSound from 'use-sound';
+import silence from "../../audio/silence.mp3"
 
 function App() {
   const [user, setUser] = useState({});
@@ -19,6 +21,8 @@ function App() {
   var title = document.querySelector("title");
   title.innerText = "Focus 4 You";
   
+ 
+
 
   
   return (
