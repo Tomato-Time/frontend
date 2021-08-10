@@ -18,6 +18,7 @@ export default function HomePage() {
   const [shortBreak, setShortBreak] = useState(5);
   const [longBreak, setLongBreak] = useState(40);
   const [working, setWorking] = useState(25);
+  const [volume, setVolume] = useState(true);
 
   // todo
   const [todos, setTodos] = useState([]);
@@ -45,6 +46,8 @@ export default function HomePage() {
             setLongBreak,
             working,
             setWorking,
+            volume,
+            setVolume
           }}
         >
           <Timer />
