@@ -18,6 +18,7 @@ export default function Timer() {
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working } = useContext(SettingContext);
   const [breakTime, setBreakTime] = useState(shortBreak);
+  const {volume, setVolume} = useContext(SettingContext);
 
   //sound for timer
   const [play] = useSound(sounds);
@@ -66,7 +67,10 @@ export default function Timer() {
       console.log("time was added");
     }
    
-    play()  //plays audio at the end of every round
+    if(volume === true){
+      play()  //plays audio at the end of every round
+    }
+    
     
   }
 

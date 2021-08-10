@@ -53,10 +53,9 @@ export default function Quotes(){
         setIndex(index)
     },[])
 
-
     return(
         <div className="quotes">
-            <p>{quotes[index] && quotes[index].quote}</p>
+            {quotes[index] && quotes[index].quote}
         </div>
     )
 }
