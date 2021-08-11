@@ -3,7 +3,7 @@ import {
   Grid,
   IconButton,
   TextField,
-  Typography,
+ 
 } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 import apiClient from "../../services/apiClient";
@@ -77,7 +77,7 @@ export default function AddTask({ add, setAdd }) {
     return (
       <Grid className="taskSubmitForm">
         <Grid item>
-          <Typography>Add Task</Typography>
+          Add Task
         </Grid>
         <form className="todoInput">
           <Grid item>

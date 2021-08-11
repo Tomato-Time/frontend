@@ -15,6 +15,7 @@
   grid-gap: 20px;
   width: 550px;
   font-size: 16px;
+  font-family: "Poppins", sans-serif;
 }
 
 .error img {
@@ -25,4 +26,5 @@
 .error-message a {
   color: #e3ecff;
   font-weight: bold;
+  font-family: "Poppins", sans-serif;
 }

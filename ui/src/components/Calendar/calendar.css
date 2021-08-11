@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  font-family: "Poppins", sans-serif;
 }
 .daysOfWeek {
   display: flex;
@@ -78,30 +79,29 @@
   fill: #eeeeee;
 }
 .react-calendar-heatmap .color-github-1 {
-  fill: #E2D0F4;
+  fill: #e2d0f4;
 }
 .react-calendar-heatmap .color-github-2 {
-  fill: #DBBDF8;
+  fill: #dbbdf8;
 }
 .react-calendar-heatmap .color-github-3 {
-  fill: #D3A8FD;
+  fill: #d3a8fd;
 }
 .react-calendar-heatmap .color-github-4 {
-  fill: #C88EFF;
+  fill: #c88eff;
 }
 .react-calendar-heatmap .color-github-5 {
-  fill: #BE7BFF;
+  fill: #be7bff;
 }
 .react-calendar-heatmap .color-github-6 {
-  fill: #B263FF;
+  fill: #b263ff;
 }
 .react-calendar-heatmap .color-github-7 {
-  fill: #A649FF;
+  fill: #a649ff;
 }
 .react-calendar-heatmap .color-github-8 {
   fill: #7800e7;
 }
-
 
 /*
    * Gitlab color scale
