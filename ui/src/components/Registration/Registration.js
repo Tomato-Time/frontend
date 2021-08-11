@@ -6,7 +6,8 @@ import { UserContext } from "../../RoundContext";
 import "./Registration.css";
 
 export default function Registration() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, firstRegister, setFirstRegister } =
+    useContext(UserContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
@@ -50,6 +51,7 @@ export default function Registration() {
     if (data?.user) {
       setUser(data.user);
       apiClient.setToken(data.token);
+      setFirstRegister(true);
     }
   };
   return (
