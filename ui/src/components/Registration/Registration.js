@@ -58,16 +58,16 @@ export default function Registration() {
     <div className="card">
 
     <div className="logo">
-    <div>
-      <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/>
+    <div className="center">
+    <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/>
+   
+      {/* <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/> */}
 
       <h2>Create Account</h2>
 
-      {errors.form && <span className="error">{errors.form}</span>}
-      <br />
+      {/* {errors.form && <span className="error">{errors.form}</span>} */}
 
       <div className="form">
-     
         <div className="input-field">
           <input
             type="first_name"
@@ -120,23 +120,25 @@ export default function Registration() {
 
         <button
           className="btn"
-          // placeholder="Email Address"
-          // disabled={isProcessing}
           onClick={handleOnSubmit}
         >
           { "Register"}
         </button>
       </div>
 
-      <div className="footer">
-        <p>
-          Already have an account? <Link to="/login">Log In</Link>
+      <p className="topLink"> 
+        Don't have an account? <Link className="linkColor" to="/login">Log In</Link>
         </p>
-      </div>
+      
+         
+          <p>
+          Lost? Return to <Link className="linkColor" to="/">Home</Link>
+          </p>
     </div>
   </div>
   </div>
     </div>
+    
   );
 }
 

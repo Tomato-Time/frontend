@@ -5,19 +5,11 @@ import App from "./components/App/App";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 export const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: "#FFFFFF",
-  //   },
-  //   secondary: {
-  //     main: "#3D68DE",
-  //   },
-  // },
-
-  //  backgroundColor:{
-  //    main: "#292B3E"
-  //  },
-
+  palette: {
+    typography: {
+      fontFamily: 'Poppins',
+    }
+   },
 
   overrides: {
     MuiFilledInput: {
@@ -25,33 +17,12 @@ export const theme = createTheme({
         backgroundColor: "white", //filled inputs now are white at first
       },
     },
-
-    // MuiCssBaseline: {
-    //   "@global": {
-    //     "@font-face": ['"Montserrat"'],
-    //   },
-    // },
   },
 
   shape: {
     borderRadius: 8, //changes border radius of everything
   },
 
-  typography: {
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-      '"Montserrat"', //our font
-    ].join(","),
-  },
 
   palette: {
     background: {
