@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("lg")]: {
       display: "none",
     },
   },
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       flexShrink: 0,
       whiteSpace: "nowrap",
@@ -269,7 +269,7 @@ export default function MiniDrawer() {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             className={classes.drawer}
             variant="permanent"
