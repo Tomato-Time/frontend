@@ -98,9 +98,7 @@ export default function Timer() {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
     const seconds = remainingTime % 60;
-    // to display timer in title bar
 
-    /////
     if (seconds < 10) {
       return (
         <div style={{ color: "white" }}>

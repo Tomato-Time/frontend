@@ -5,12 +5,6 @@ import App from "./components/App/App";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 export const theme = createTheme({
-  // palette: {
-  //   typography: {
-  //     fontFamily: "Poppins",
-  //   },
-  // },
-
   overrides: {
     MuiFilledInput: {
       root: {

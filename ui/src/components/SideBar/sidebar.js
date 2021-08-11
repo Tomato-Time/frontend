@@ -94,8 +94,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const { firstRegister, setFirstRegister, user, setUser } =
-    useContext(UserContext);
+  const { firstRegister, user, setUser } = useContext(UserContext);
   // modal function
   // modal functionality
   const [selectedModal, setSelectedModal] = useState(null);
