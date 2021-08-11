@@ -7,6 +7,8 @@ import { RoundContext, SettingContext, UserContext } from "../../RoundContext";
 import apiClient from "../../services/apiClient";
 import useSound from 'use-sound';
 import sounds from "../../audio/sounds.mp3"
+import Quotes from "../Quote/quote";
+import silence from "../../audio/rickroll.mp3"
 
 
 
@@ -17,9 +19,15 @@ export default function Timer() {
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working } = useContext(SettingContext);
   const [breakTime, setBreakTime] = useState(shortBreak);
+  const {volume, setVolume} = useContext(SettingContext);
 
   //sound for timer
   const [play] = useSound(sounds);
+  
+  // useEffect(() => {
+  //   silent()
+  //   console.log("silence")
+  // },[])
   
 
   // variables
@@ -65,7 +73,10 @@ export default function Timer() {
       console.log("time was added");
     }
    
-    play()  //plays audio at the end of every round
+    if(volume === true){
+      play()  //plays audio at the end of every round
+    }
+    
     
   }
 
@@ -129,10 +140,16 @@ export default function Timer() {
       <div className="App">
       
         
-        <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
+      <div className="quotes">
+        <Quotes/>
+        </div>
+
+        <div className="focus">{round % 2 === 0 ? "Focus" : "Break"}</div>
+        
         
         {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
+        
           {round % 2 === 0 ? (
             <CountdownCircleTimer
               isPlaying={isPlaying}

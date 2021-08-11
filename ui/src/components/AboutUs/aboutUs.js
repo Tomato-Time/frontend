@@ -42,6 +42,10 @@ export default function DraggableDialog() {
           in the session.
           <br />
           <br />
+          Clicking on the settings page allows you to customize the intervals for the timer and 
+          you can also mute the notification sound for the timer!
+          <br />
+          <br />
           <div className="bold">
             It's biggest strength is in it's simplicity! 💡
           </div>

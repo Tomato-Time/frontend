@@ -78,17 +78,30 @@
   fill: #eeeeee;
 }
 .react-calendar-heatmap .color-github-1 {
-  fill: #d6baf0;
+  fill: #E2D0F4;
 }
 .react-calendar-heatmap .color-github-2 {
-  fill: #c596f0;
+  fill: #DBBDF8;
 }
 .react-calendar-heatmap .color-github-3 {
-  fill: #9845e8;
+  fill: #D3A8FD;
 }
 .react-calendar-heatmap .color-github-4 {
+  fill: #C88EFF;
+}
+.react-calendar-heatmap .color-github-5 {
+  fill: #BE7BFF;
+}
+.react-calendar-heatmap .color-github-6 {
+  fill: #B263FF;
+}
+.react-calendar-heatmap .color-github-7 {
+  fill: #A649FF;
+}
+.react-calendar-heatmap .color-github-8 {
   fill: #7800e7;
 }
+
 
 /*
    * Gitlab color scale

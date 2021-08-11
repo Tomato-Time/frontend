@@ -1,14 +1,22 @@
 .App h1 {
   text-align: center;
   color: #e3ecff;
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 10px;
-  margin-top: 80px;
+}
+
+.App .focus{
+  text-align: center;
+  color: #e3ecff;
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
 }
 
 .App h2 {
   text-align: center;
 }
+
 
 .timerAndDrawer {
   display: flex;
