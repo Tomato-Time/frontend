@@ -33,14 +33,6 @@ export default function Registration() {
         setErrors((e) => ({ ...e, email: null }));
       }
     }
-    if (event.target.name === "first_name") {
-      // if (event.target.value < 1) {
-      //   setErrors((e) => ({
-      //     ...e,
-      //     first_name: "First Name is a required field",
-      //   }));
-      // }
-    }
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
 
@@ -60,23 +52,22 @@ export default function Registration() {
       apiClient.setToken(data.token);
     }
   };
-  console.log("the error", errors);
   return (
     <div className="Signup">
       <div className="card">
         <div className="logo">
-          <div>
+          <div className="center">
             <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo" />
+
+            {/* <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/> */}
 
             <h2>Create Account</h2>
 
-            {errors.form && <span className="error">{errors.form}</span>}
-            <br />
+            {/* {errors.form && <span className="error">{errors.form}</span>} */}
 
             <div className="form">
               <div className="input-field">
                 <input
-                  required
                   type="first_name"
                   name="first_name"
                   placeholder="First Name"
@@ -90,7 +81,6 @@ export default function Registration() {
 
               <div className="input-field">
                 <input
-                  required
                   type="last_name"
                   name="last_name"
                   placeholder="Last Name"
@@ -104,7 +94,6 @@ export default function Registration() {
 
               <div className="input-field">
                 <input
-                  required
                   type="email"
                   name="email"
                   placeholder="Email Address"
@@ -116,7 +105,6 @@ export default function Registration() {
 
               <div className="input-field">
                 <input
-                  required
                   type="password"
                   name="password"
                   placeholder="Create Password"
@@ -128,21 +116,24 @@ export default function Registration() {
                 )}
               </div>
 
-              <button
-                className="btn"
-                // placeholder="Email Address"
-                // disabled={isProcessing}
-                onClick={handleOnSubmit}
-              >
+              <button className="btn" onClick={handleOnSubmit}>
                 {"Register"}
               </button>
             </div>
 
-            <div className="footer">
-              <p>
-                Already have an account? <Link to="/login">Log In</Link>
-              </p>
-            </div>
+            <p className="topLink">
+              Don't have an account?{" "}
+              <Link className="linkColor" to="/login">
+                Log In
+              </Link>
+            </p>
+
+            <p>
+              Lost? Return to{" "}
+              <Link className="linkColor" to="/">
+                Home
+              </Link>
+            </p>
           </div>
         </div>
       </div>

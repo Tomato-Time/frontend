@@ -2,4 +2,9 @@
   color: #fff;
   padding-left: 10px;
   padding-right: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.settings title {
+  font-family: "Poppins", sans-serif;
 }

@@ -49,7 +49,7 @@ export default function Login() {
     <div className="Login">
       <div className="card">
         <div className="logo">
-          <div>
+          <div className="center">
             <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo" />
 
             <h2>Log In</h2>
@@ -82,11 +82,19 @@ export default function Login() {
               </button>
             </div>
 
-            <div className="footer">
-              <p>
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
-            </div>
+            <p className="topLink">
+              Already have an account?{" "}
+              <Link className="linkColor" to="/register">
+                Register
+              </Link>
+            </p>
+
+            <p>
+              Lost? Return to{" "}
+              <Link className="linkColor" to="/">
+                Home
+              </Link>
+            </p>
           </div>
         </div>
       </div>
