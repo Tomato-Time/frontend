@@ -1,5 +1,6 @@
 .drawer {
   /* box-shadow: 10px 10px white; */
+  font-family: "Poppins", sans-serif;
 }
 
 /* USER ICON */
@@ -17,8 +18,8 @@
 }
 
 /* welcome back text is always on top right */
-.welcome-back{
-    position: fixed;
-    top: 1em;
-    right: 1em;
+.welcome-back {
+  position: fixed;
+  top: 1em;
+  right: 1em;
 }
