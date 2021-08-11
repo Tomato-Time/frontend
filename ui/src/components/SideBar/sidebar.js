@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth + 20,
     },
     backgroundColor: "#32344A",
+    border: 0,
   },
   toolbar: {
     display: "flex",
@@ -85,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   listIcons: {
     marginLeft: 10,
   },
-  menu:{
+  menu: {
     marginTop: 40,
   },
 }));
@@ -147,7 +148,7 @@ export default function MiniDrawer() {
 
   const handleRegister = () => {
     navigate("/register");
-  }
+  };
 
   function notAllowed(text) {
     // if a user is not logged in they don't have access to
@@ -231,10 +232,9 @@ export default function MiniDrawer() {
                   <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
                 ) : (
                   <div>
-                       <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                    <MenuItem onClick={handleLogIn}>Log In</MenuItem>
                     <MenuItem onClick={handleRegister}>Register</MenuItem>
                   </div>
-          
                 )}
               </Menu>
             </Typography>
