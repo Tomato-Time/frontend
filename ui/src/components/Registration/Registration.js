@@ -5,7 +5,6 @@ import apiClient from "../../services/apiClient";
 import { UserContext } from "../../RoundContext";
 import "./Registration.css";
 
-
 export default function Registration() {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -34,6 +33,14 @@ export default function Registration() {
         setErrors((e) => ({ ...e, email: null }));
       }
     }
+    if (event.target.name === "first_name") {
+      // if (event.target.value < 1) {
+      //   setErrors((e) => ({
+      //     ...e,
+      //     first_name: "First Name is a required field",
+      //   }));
+      // }
+    }
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }));
   };
 
@@ -53,90 +60,92 @@ export default function Registration() {
       apiClient.setToken(data.token);
     }
   };
+  console.log("the error", errors);
   return (
     <div className="Signup">
-    <div className="card">
+      <div className="card">
+        <div className="logo">
+          <div>
+            <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo" />
 
-    <div className="logo">
-    <div>
-      <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/>
+            <h2>Create Account</h2>
 
-      <h2>Create Account</h2>
+            {errors.form && <span className="error">{errors.form}</span>}
+            <br />
 
-      {errors.form && <span className="error">{errors.form}</span>}
-      <br />
+            <div className="form">
+              <div className="input-field">
+                <input
+                  required
+                  type="first_name"
+                  name="first_name"
+                  placeholder="First Name"
+                  value={form.first_name}
+                  onChange={handleOnInputChange}
+                />
+                {errors.first_name && (
+                  <span className="error">{errors.first_name}</span>
+                )}
+              </div>
 
-      <div className="form">
-     
-        <div className="input-field">
-          <input
-            type="first_name"
-            name="first_name" 
-            placeholder="First Name"
-            value={form.first_name}
-            onChange={handleOnInputChange}
-          />
-          {errors.first_name&& (
-            <span className="error">{errors.first_name}</span>
-          )}
+              <div className="input-field">
+                <input
+                  required
+                  type="last_name"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value={form.last_name}
+                  onChange={handleOnInputChange}
+                />
+                {errors.last_name && (
+                  <span className="error">{errors.last_name}</span>
+                )}
+              </div>
+
+              <div className="input-field">
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={form.email}
+                  onChange={handleOnInputChange}
+                />
+                {errors.email && <span className="error">{errors.email}</span>}
+              </div>
+
+              <div className="input-field">
+                <input
+                  required
+                  type="password"
+                  name="password"
+                  placeholder="Create Password"
+                  value={form.password}
+                  onChange={handleOnInputChange}
+                />
+                {errors.password && (
+                  <span className="error">{errors.password}</span>
+                )}
+              </div>
+
+              <button
+                className="btn"
+                // placeholder="Email Address"
+                // disabled={isProcessing}
+                onClick={handleOnSubmit}
+              >
+                {"Register"}
+              </button>
+            </div>
+
+            <div className="footer">
+              <p>
+                Already have an account? <Link to="/login">Log In</Link>
+              </p>
+            </div>
+          </div>
         </div>
-
-        <div className="input-field">
-          <input
-            type="last_name"
-            name="last_name"
-            placeholder="Last Name"
-            value={form.last_name}
-            onChange={handleOnInputChange}
-          />
-          {errors.last_name && (
-            <span className="error">{errors.last_name}</span>
-          )}
-        </div>
-
-        <div className="input-field">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={form.email}
-            onChange={handleOnInputChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
-        </div>
-
-        <div className="input-field">
-          <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            value={form.password}
-            onChange={handleOnInputChange}
-          />
-          {errors.password && (
-            <span className="error">{errors.password}</span>
-          )}
-        </div>
-
-        <button
-          className="btn"
-          // placeholder="Email Address"
-          // disabled={isProcessing}
-          onClick={handleOnSubmit}
-        >
-          { "Register"}
-        </button>
       </div>
-
-      <div className="footer">
-        <p>
-          Already have an account? <Link to="/login">Log In</Link>
-        </p>
-      </div>
-    </div>
-  </div>
-  </div>
     </div>
   );
 }
-

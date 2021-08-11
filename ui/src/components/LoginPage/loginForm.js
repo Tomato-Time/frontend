@@ -45,54 +45,51 @@ export default function Login() {
       apiClient.setToken(data.token);
     }
   };
-return (
-      <div className="Login">
+  return (
+    <div className="Login">
       <div className="card">
-        
-      <div className="logo">
-    <div>
-      <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/>
+        <div className="logo">
+          <div>
+            <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo" />
 
-        <h2>Log In</h2>
+            <h2>Log In</h2>
 
-      <div className="form">
-        <div className="input-field">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address "
-            onChange={handleOnInputChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
+            <div className="form">
+              <div className="input-field">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address "
+                  onChange={handleOnInputChange}
+                />
+                {errors.email && <span className="error">{errors.email}</span>}
+              </div>
+
+              <div className="input-field">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleOnInputChange}
+                />
+                {errors.password && (
+                  <span className="error">{errors.password}</span>
+                )}
+              </div>
+
+              <button className="btn" onClick={handleOnSubmit}>
+                Log In
+              </button>
+            </div>
+
+            <div className="footer">
+              <p>
+                Don't have an account? <Link to="/register">Register</Link>
+              </p>
+            </div>
+          </div>
         </div>
-
-        <div className="input-field">
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleOnInputChange}
-          />
-            {errors.password && (
-                <span className="error">{errors.password}</span>
-              )}
-        </div>
-
-        <button className="btn" 
-               onClick={handleOnSubmit}>
-          Log In
-        </button>
-      </div>
-
-      <div className="footer">
-        <p>
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
       </div>
     </div>
-    </div>
-  </div>
-</div>
-)
+  );
 }
-
