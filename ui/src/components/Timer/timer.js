@@ -5,6 +5,10 @@ import "./timer.css";
 // import { duration } from "@material-ui/core";
 import { RoundContext, SettingContext, UserContext } from "../../RoundContext";
 import apiClient from "../../services/apiClient";
+import useSound from "use-sound";
+import sounds from "../../audio/sounds.mp3";
+import Quotes from "../Quote/quote";
+import silence from "../../audio/rickroll.mp3";
 
 export default function Timer() {
   const { round, setRound } = useContext(RoundContext);
@@ -13,6 +17,15 @@ export default function Timer() {
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working } = useContext(SettingContext);
   const [breakTime, setBreakTime] = useState(shortBreak);
+  const { volume, setVolume } = useContext(SettingContext);
+
+  //sound for timer
+  const [play] = useSound(sounds);
+
+  // useEffect(() => {
+  //   silent()
+  //   console.log("silence")
+  // },[])
 
   // variables
   let focusColors = [
@@ -55,6 +68,10 @@ export default function Timer() {
     if (round % 2 === 0 && user.email) {
       addToUserTime(working);
       console.log("time was added");
+    }
+
+    if (volume === true) {
+      play(); //plays audio at the end of every round
     }
   }
 
@@ -114,17 +131,23 @@ export default function Timer() {
   return (
     <div className="timerAndDrawer">
       <div className="App">
-        <h1>{round % 2 === 0 ? "Focus" : "Break"}</h1>
+        <div className="quotes">
+          <Quotes />
+        </div>
+
+        <div className="focus">{round % 2 === 0 ? "Focus" : "Break"}</div>
+
         {/* <h2>{Math.floor(round / 2) % 5}/4 rounds complete </h2> */}
         <div className="timer-wrapper">
           {round % 2 === 0 ? (
             <CountdownCircleTimer
               isPlaying={isPlaying}
               key={key}
-              duration={working}
+              duration={working * 60}
               colors={focusColors}
               onComplete={() => {
                 // do stuff here
+
                 timerUp();
                 return [false, 1000];
               }}
@@ -139,7 +162,7 @@ export default function Timer() {
             <CountdownCircleTimer
               isPlaying={isPlaying}
               key={key}
-              duration={breakTime}
+              duration={breakTime * 60}
               colors={breakColors}
               onComplete={() => {
                 // do stuff here

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("lg")]: {
       display: "none",
     },
   },
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       flexShrink: 0,
       whiteSpace: "nowrap",
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
       width: drawerWidth + 20,
     },
     backgroundColor: "#32344A",
+    border: 0,
   },
   toolbar: {
     display: "flex",
@@ -84,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
   },
   listIcons: {
     marginLeft: 10,
+  },
+  menu: {
+    marginTop: 40,
   },
 }));
 
@@ -140,6 +144,11 @@ export default function MiniDrawer() {
   const handleLogIn = () => {
     navigate("/login");
   };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   function notAllowed(text) {
     // if a user is not logged in they don't have access to
     // todo or statistics
@@ -203,7 +212,7 @@ export default function MiniDrawer() {
           {/* USER ICON AND WELCOME MESSAGE */}
           <div className="welcome-back">
             <Typography variant="h6" noWrap>
-              {user.email ? "Welcome Back, " + user.first_name : "Log in"}
+              {user.email ? "Welcome Back, " + user.first_name : ""}
               <IconButton
                 aria-label="account of current user"
                 aria-haspopup="true"
@@ -216,11 +225,15 @@ export default function MiniDrawer() {
                 open={openUserIcon}
                 onClose={handleClose}
                 anchorEl={anchorEl}
+                className={classes.menu}
               >
                 {user.email ? (
                   <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
                 ) : (
-                  <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                  <div>
+                    <MenuItem onClick={handleLogIn}>Log In</MenuItem>
+                    <MenuItem onClick={handleRegister}>Register</MenuItem>
+                  </div>
                 )}
               </Menu>
             </Typography>
@@ -255,7 +268,7 @@ export default function MiniDrawer() {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             className={classes.drawer}
             variant="permanent"

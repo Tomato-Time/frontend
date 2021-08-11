@@ -1,110 +1,12 @@
 import React, { useContext } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-// import clsx from 'clsx';
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, alpha, StylesProvider } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import "./Registration.css";
-// import { withStyles } from '@material-ui/core/styles';
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import apiClient from "../../services/apiClient";
 import { UserContext } from "../../RoundContext";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-
-  form: {
-    marginTop: theme.spacing(8),
-    width: "50ch",
-    borderRadius: 50,
-  },
-
-  submit: {
-    margin: theme.spacing(4, 19, 2), //changes the position
-    alignItems: "center",
-    backgroundColor: "#3D68DE",
-  },
-
-  link: {
-    margin: theme.spacing(4, 13, 2), //changes the position
-    // alignItems: 'center',
-    marginTop: theme.spacing(15),
-    color: "#E3ECFF",
-  },
-
-  fnameInput: {
-    borderRadius: 7,
-    position: "relative",
-    backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
-    fontSize: 16,
-    right: 50,
-    width: 260,
-    height: 44,
-    padding: "10px 12px",
-    fontFamily: [
-      '"Montserrat"', //our font
-    ].join(","),
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-
-  lnameInput: {
-    borderRadius: 7,
-    position: "relative",
-    backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
-    fontSize: 16,
-    left: 0,
-    width: 260,
-    height: 44,
-    padding: "10px 12px",
-    fontFamily: [
-      '"Montserrat"', //our font
-    ].join(","),
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-
-  longInput: {
-    borderRadius: 7,
-    position: "relative",
-    backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
-    fontSize: 16,
-    right: 50,
-    // width: 'auto',
-    width: 537,
-    height: 44,
-    padding: "10px 12px",
-    fontFamily: [
-      '"Montserrat"', //our font from figma
-    ].join(","),
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-}));
+import "./Registration.css";
 
 export default function Registration() {
-  const { user, setUser, firstRegister, setFirstRegister } =
-    useContext(UserContext);
-  const classes = useStyles();
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
@@ -148,115 +50,93 @@ export default function Registration() {
     if (data?.user) {
       setUser(data.user);
       apiClient.setToken(data.token);
-      setFirstRegister(true);
-      navigate("/");
-      // handleModalOpen("About");
     }
   };
   return (
-    <StylesProvider injectFirst>
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            Create Account
-          </Typography>
-          {errors.form && <span className="error">{errors.form}</span>}
-          <br />
+    <div className="Signup">
+      <div className="card">
+        <div className="logo">
+          <div className="center">
+            <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo" />
 
-          {/* FIRST NAME */}
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <fnameInput className={classes.inputBase} />
+            {/* <img src="/images/F4Y_landscape.png" alt="Focus 4 You logo"/> */}
 
-                <TextField
-                  className={classes.fnameInput}
-                  autoComplete="fname"
+            <h2>Create Account</h2>
+
+            {/* {errors.form && <span className="error">{errors.form}</span>} */}
+
+            <div className="form">
+              <div className="input-field">
+                <input
+                  type="first_name"
                   name="first_name"
+                  placeholder="First Name"
                   value={form.first_name}
                   onChange={handleOnInputChange}
-                  required
-                  fullWidth
-                  autoFocus
                 />
                 {errors.first_name && (
                   <span className="error">{errors.first_name}</span>
                 )}
-              </Grid>
+              </div>
 
-              {/* LAST NAME */}
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  className={classes.lnameInput}
-                  autoComplete="lname"
+              <div className="input-field">
+                <input
+                  type="last_name"
                   name="last_name"
+                  placeholder="Last Name"
                   value={form.last_name}
                   onChange={handleOnInputChange}
-                  required
-                  fullWidth
-                  autoFocus
                 />
                 {errors.last_name && (
                   <span className="error">{errors.last_name}</span>
                 )}
-              </Grid>
+              </div>
 
-              {/* EMAIL */}
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.longInput}
-                  autoComplete="email"
+              <div className="input-field">
+                <input
+                  type="email"
                   name="email"
+                  placeholder="Email Address"
                   value={form.email}
                   onChange={handleOnInputChange}
-                  required
-                  fullWidth
-                  autoFocus
                 />
                 {errors.email && <span className="error">{errors.email}</span>}
-              </Grid>
+              </div>
 
-              {/* PASSWORD */}
-              <Grid item xs={12}>
-                <TextField
-                  className={classes.longInput}
-                  fullWidth
+              <div className="input-field">
+                <input
+                  type="password"
                   name="password"
+                  placeholder="Create Password"
                   value={form.password}
                   onChange={handleOnInputChange}
-                  autoComplete="current-password"
                 />
                 {errors.password && (
                   <span className="error">{errors.password}</span>
                 )}
-              </Grid>
+              </div>
 
-              {/* REGISTER BUTTON */}
-            </Grid>
-            <Button
-              type="submit"
-              width="50px"
-              variant="contained"
-              color="primary"
-              onClick={handleOnSubmit}
-              className={classes.submit}
-            >
-              Register
-            </Button>
+              <button className="btn" onClick={handleOnSubmit}>
+                {"Register"}
+              </button>
+            </div>
 
-            {/* LOGIN LINK */}
-            <div className="loginLink"></div>
-            <Grid container>
-              <Grid item>
-                <Link href="#" variant="body2" className={classes.link}>
-                  Already have an account? Log in
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
+            <p className="topLink">
+              Don't have an account?{" "}
+              <Link className="linkColor" to="/login">
+                Log In
+              </Link>
+            </p>
+
+            <p>
+              Lost? Return to{" "}
+              <Link className="linkColor" to="/">
+                Home
+              </Link>
+            </p>
+          </div>
         </div>
-        <Box mt={5}></Box>
-      </Container>
-    </StylesProvider>
+      </div>
+    </div>
   );
 }

@@ -5,17 +5,26 @@ import Registration from "../Registration/Registration";
 import HomePage from "../HomePage/homePage";
 import { theme } from "../../index";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import {CssBaseline } from "@material-ui/core";
 import { useState } from "react";
 import { UserContext, DarkModeContext } from "../../RoundContext";
 import ErrorPage from "../ErrorPage/errorPage";
+import PlaySound from "../Sound/sound";
+import { createTheme } from "@material-ui/core/styles";
+
+// const theme = createMuiTheme({
+
+// })
 
 function App() {
   const [user, setUser] = useState({});
   const [firstRegister, setFirstRegister] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
   var title = document.querySelector("title");
-  title.innerText = "Focus Time";
+  title.innerText = "Focus 4 You";
+  
+
+  
   return (
     <ThemeProvider darkTheme={darkTheme} theme={theme}>
       <CssBaseline />
@@ -30,6 +39,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<SignInSide />} />
                 <Route path="*" element={<ErrorPage />} />
+                <Route path="/so" element={<PlaySound />} />
               </Routes>
             </UserContext.Provider>
           </DarkModeContext.Provider>

@@ -1,13 +1,13 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 import "./aboutUs.css";
 
 export default function DraggableDialog() {
   return (
     <div className="aboutUs">
-      <Typography>
+      {/* <Typography> */}
         <div className="about-us-info">
           The Pomodoro Technique is a time management method that focuses on
           periods of focus with frequent short breaks in between.
@@ -42,12 +42,16 @@ export default function DraggableDialog() {
           in the session.
           <br />
           <br />
+          Clicking on the settings page allows you to customize the intervals for the timer and 
+          you can also mute the notification sound for the timer!
+          <br />
+          <br />
           <div className="bold">
             It's biggest strength is in it's simplicity! 💡
           </div>
           <br />
         </div>
-      </Typography>
+      {/* </Typography> */}
     </div>
   );
 }

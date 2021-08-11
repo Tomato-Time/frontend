@@ -20,6 +20,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  font-family: "Poppins", sans-serif;
 }
 .daysOfWeek {
   display: flex;
@@ -78,15 +79,27 @@
   fill: #eeeeee;
 }
 .react-calendar-heatmap .color-github-1 {
-  fill: #d6baf0;
+  fill: #e2d0f4;
 }
 .react-calendar-heatmap .color-github-2 {
-  fill: #c596f0;
+  fill: #dbbdf8;
 }
 .react-calendar-heatmap .color-github-3 {
-  fill: #9845e8;
+  fill: #d3a8fd;
 }
 .react-calendar-heatmap .color-github-4 {
+  fill: #c88eff;
+}
+.react-calendar-heatmap .color-github-5 {
+  fill: #be7bff;
+}
+.react-calendar-heatmap .color-github-6 {
+  fill: #b263ff;
+}
+.react-calendar-heatmap .color-github-7 {
+  fill: #a649ff;
+}
+.react-calendar-heatmap .color-github-8 {
   fill: #7800e7;
 }
 

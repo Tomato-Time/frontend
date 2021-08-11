@@ -1,8 +1,30 @@
-.error-message{
-    color: #E3ECFF;
-    font-family: Montserrat;
+.error-message {
+  color: #e3ecff;
+  /* font: Montseratt */
+  min-height: 600px;
+  height: 44px;
+  background: var(--pure-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.register-link{
-    
+.links {
+  display: grid;
+  grid-template-columns: 300px 300px 20px;
+  grid-gap: 20px;
+  width: 550px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.error img {
+  margin-top: 25px;
+  height: 400px;
+}
+
+.error-message a {
+  color: #e3ecff;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
 }

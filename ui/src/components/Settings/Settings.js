@@ -80,7 +80,7 @@ export default function Settings() {
   const { shortBreak, setShortBreak } = useContext(SettingContext);
   const { longBreak, setLongBreak } = useContext(SettingContext);
   const { working, setWorking } = useContext(SettingContext);
-  const [volume, setVolume] = useState(true);
+  const {volume, setVolume} = useContext(SettingContext);
 
   const handleShortChange = (event, newValue) => {
     setShortBreak(newValue);
@@ -185,18 +185,6 @@ export default function Settings() {
                 )}
               </IconButton>
             </ListItemIcon>
-          </ListItem>
-          <ListItem className="darkModeSection">
-            <ListItemText primary="Dark mode" />
-            <ListItemSecondaryAction>
-              <Switch checked={darkTheme} onChange={handleDarkModeChange} />
-            </ListItemSecondaryAction>
-          </ListItem>
-          <ListItem className="messageSection">
-            <ListItemText primary="Message" />
-          </ListItem>
-          <ListItem className="addBackground">
-            <ListItemText primary="Add Background" />
           </ListItem>
         </List>
         {/* end of list  */}
