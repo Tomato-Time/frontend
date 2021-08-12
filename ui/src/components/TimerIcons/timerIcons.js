@@ -4,7 +4,6 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import IconButton from '@material-ui/core/IconButton';
 import "./timerIcons.css";
-import silence from "../../audio/rickroll.mp3"
 import useSound from 'use-sound';
 
 

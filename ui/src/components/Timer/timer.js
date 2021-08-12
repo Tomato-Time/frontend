@@ -8,7 +8,6 @@ import apiClient from "../../services/apiClient";
 import useSound from "use-sound";
 import sounds from "../../audio/sounds.mp3";
 import Quotes from "../Quote/quote";
-import silence from "../../audio/rickroll.mp3";
 
 export default function Timer() {
   const { round, setRound } = useContext(RoundContext);
