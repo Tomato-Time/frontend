@@ -8,7 +8,6 @@ import apiClient from "../../services/apiClient";
 import useSound from "use-sound";
 import sounds from "../../audio/sounds.mp3";
 import Quotes from "../Quote/quote";
-import silence from "../../audio/rickroll.mp3";
 
 export default function Timer() {
   const { round, setRound } = useContext(RoundContext);
@@ -98,9 +97,7 @@ export default function Timer() {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60); //mm:ss format
     const seconds = remainingTime % 60;
-    // to display timer in title bar
 
-    /////
     if (seconds < 10) {
       return (
         <div style={{ color: "white" }}>

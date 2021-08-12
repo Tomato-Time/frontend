@@ -1,4 +1,6 @@
 import {
+  Card,
+  CardContent,
   Checkbox,
   List,
   ListItem,
@@ -27,8 +29,27 @@ const useStyles = makeStyles({
     verticalAlign: "middle",
     fontSize: "20px",
   },
+  input: {
+    display: "flex",
+    flexDirection: "row",
+    verticalAlign: "center",
+  },
+  card: {
+    display: "flex",
+    flexDirection: "column",
+  },
   checkbox: {
     verticalAlign: "middle",
+  },
+  paper: {
+    // backgroundColor: theme.palette.background.paper,
+    background: "#292B3E",
+    flexGrow: 1,
+  },
+  fire: {
+    fontSize: 14,
+    display: "flex",
+    justifyContent: "space-between",
   },
 });
 
@@ -57,6 +78,7 @@ export default function Todo({ todo, setTodos }) {
     if (hour > 12) return " PM";
     else return " AM";
   };
+
   return (
     <List className="todoList">
       <ListItem>
