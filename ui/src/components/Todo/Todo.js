@@ -11,6 +11,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import React, { useState } from "react";
 import apiClient from "../../services/apiClient";
+import "./Todo.css";
 
 const useStyles = makeStyles({
   text: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     verticalAlign: "middle",
+    fontSize: "20px",
   },
   checkbox: {
     verticalAlign: "middle",
@@ -77,7 +79,12 @@ export default function Todo({ todo, setTodos }) {
           primary={todo.input}
           secondary={
             <React.Fragment>
-              <Typography component="span" variant="body2" color="textPrimary">
+              <Typography
+                className="deadline-input"
+                component="span"
+                variant="body2"
+                color="textPrimary"
+              >
                 {todo.priority ? "priority: " + String(todo.priority) : null}
                 <br />
                 {todo.deadline

@@ -9,10 +9,6 @@
   width: 100%;
 }
 
-.todoForm h1 {
-  font-family: "Poppins", sans-serif;
-}
-
 .todoInput {
   justify-content: center;
   text-align: center;
@@ -20,4 +16,7 @@
 .todoIcons {
   justify-content: space-between;
   display: flex;
+}
+.todoTitle {
+  font-family: "Poppins", sans-serif;
 }
